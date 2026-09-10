@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How facial impressions shape memory — Grace Liu</title>
+<meta name="description" content="Master's thesis: an fMRI secondary analysis of how trustworthiness and dominance impressions from faces influence what people remember, and what happens in the hippocampus and amygdala.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..700;1,8..60,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="skip" href="#body">Skip to the case study</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">Grace Liu</a>
+    <nav aria-label="Primary">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="mailto:grace20029@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="cs-head shell">
+  <a class="cs-back" href="../index.html#work">Back to selected work</a>
+  <h1>How the impressions you form from a face shape what you remember</h1>
+  <p class="cs-standfirst">You judge a stranger's trustworthiness in well under a second, without deciding to. My master's thesis asked whether that snap judgment changes how well you later remember them — and found that trustworthiness and dominance don't act separately. Whether a trustworthy face is memorable depends on how dominant it looks.</p>
+
+  <dl class="cs-meta">
+    <div><dt>Degree</dt><dd>M.A. Quantitative Methods in the Social Sciences, Columbia University, 2025</dd></div>
+    <div><dt>Design</dt><dd>Secondary analysis of an existing fMRI dataset, n=31</dd></div>
+    <div><dt>Methods</dt><dd>Mixed-effects logistic regression, univariate fMRI ROI analysis, brain-behavior correlation</dd></div>
+    <div><dt>Stack</dt><dd>R (lme4), Python, fMRI preprocessing and GLM pipelines</dd></div>
+    <div><dt>Headline result</dt><dd>A significant trustworthiness × dominance interaction on recall accuracy</dd></div>
+    <div><dt>Full paper</dt><dd><a href="../assets/facial-impressions-memory-thesis.pdf">Thesis (PDF)</a></dd></div>
+  </dl>
+</div>
+
+<div class="shell cs-layout">
+
+  <nav class="cs-toc" aria-label="On this page">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#question">The question</a></li>
+      <li><a href="#design">Working with someone else's data</a></li>
+      <li><a href="#paradigm">The task</a></li>
+      <li><a href="#analysis">How I analyzed it</a></li>
+      <li><a href="#behavioral">Behavioral results</a></li>
+      <li><a href="#neural">Neural results</a></li>
+      <li><a href="#nulls">Where I found nothing</a></li>
+      <li><a href="#limits">Limitations</a></li>
+      <li><a href="#why">Why this matters for product work</a></li>
+    </ol>
+  </nav>
+
+  <article class="cs-body" id="body">
+
+    <div class="cs-tldr">
+      <h2>The short version</h2>
+      <dl>
+        <dt>The question</dt>
+        <dd>Social trait impressions from faces — trustworthiness, dominance — form in a fraction of a second and shape hiring, sentencing, and voting. Most of what we know is behavioral. Far less is known about the neural mechanism, and almost nothing about how these impressions affect memory specifically.</dd>
+
+        <dt>The result that held</dt>
+        <dd>Trustworthiness and dominance interact rather than adding up (p = 0.002). At low dominance, a more trustworthy face is remembered better. At high dominance, the effect reverses — a more trustworthy face is remembered <em>worse</em>. At average dominance, trustworthiness does nothing. Faces are read as a whole, not as a sum of independently scored traits.</dd>
+
+        <dt>The result that didn't</dt>
+        <dd>Neither hippocampal nor amygdala activation during encoding predicted whether a face would later be remembered. The brain-behavior link I set out to establish was not there in this dataset.</dd>
+
+        <dt>What I'd flag to a reader</dt>
+        <dd>The race-specific effects, which are the most eye-catching part, were unplanned exploratory analyses on a sample of 31, uncorrected for multiple comparisons. They belong in the "worth testing properly" column, not the findings column. I say so below rather than letting them carry more weight than they can.</dd>
+      </dl>
+    </div>
+
+    <h2 id="question">The question</h2>
+
+    <p>From a glance at a face, people form confident judgments about character. Two dimensions account for most of the variance: how trustworthy someone looks, and how dominant. These impressions are formed rapidly, largely outside awareness, and they have almost no diagnostic validity — but they measurably affect real decisions in hiring, courtrooms, and elections.</p>
+
+    <p>What's less studied is memory. If a first impression changes how strongly a face gets encoded, then trait-based bias isn't only about the judgment made in the moment — it's also about who you can recall afterward, which matters for eyewitness identification and for every situation where being remembered is an advantage.</p>
+
+    <p>My thesis asked two linked questions. Behaviorally: do trustworthiness and dominance impressions predict how accurately a face is later recalled? Neurally: do activation differences in the hippocampus and amygdala during encoding account for that, and do they predict individual memory performance?</p>
+
+    <h4>Hypotheses, stated in advance</h4>
+    <ol>
+      <li>Untrustworthy faces will be remembered better than trustworthy ones — threat-relevant information is prioritized.</li>
+      <li>Dominant faces will be remembered better than submissive ones, via perceptual salience.</li>
+      <li>Hippocampal and amygdala activation during encoding will predict memory outcome.</li>
+      <li>Untrustworthy faces will elicit stronger amygdala activation than average-trustworthy faces.</li>
+      <li>The size of the trustworthiness-related activation difference will correlate with recall accuracy across participants.</li>
+    </ol>
+
+    <p>Of these, one was partially supported as a trend, one was not supported, two were not supported, and the finding that survived best wasn't among them. That's worth saying plainly — the interaction was the strongest result in the thesis and it wasn't something I predicted.</p>
+
+    <h2 id="design">Working with someone else's data</h2>
+
+    <p>This was a secondary analysis of an fMRI dataset collected for a different purpose: a Who-Said-What paradigm built to study how race-based social categorization interacts with memory. I mapped normative trustworthiness and dominance ratings from a standardized face database onto the stimuli that study had already used.</p>
+
+    <p>That constraint shaped everything. It gave me a scanned sample I could never have collected myself as a master's student, and it meant the faces weren't selected to span the trait dimensions I cared about. If I'd designed the study, I'd have chosen stimuli at the extremes of trustworthiness and dominance. Instead I got whatever trait variation happened to exist in a stimulus set chosen on a different criterion — which costs statistical power and puts a ceiling on the effects I could detect.</p>
+
+    <p>Secondary analysis is a real skill and it's mostly this: being precise about which questions the existing design can answer and which it can't, and not pretending the difference away.</p>
+
+    <h2 id="paradigm">The task</h2>
+
+    <p>Thirty-one participants (one excluded for a preprocessing failure), all native English speakers, screened for normal vision and no neurological history.</p>
+
+    <p><strong>Encoding.</strong> Participants saw eight male faces, four Black and four White, each alone for three seconds. Each face was then paired with three first-person behavioral statements, presented one at a time for seven seconds each. The statements were the thing to be remembered.</p>
+
+    <p><strong>Distractor.</strong> Sixty seconds of a numerical judgment task, to clear working memory.</p>
+
+    <p><strong>Retrieval.</strong> A statement appeared alone, then reappeared alongside a grid of all eight faces. Participants selected which face had originally been paired with it.</p>
+
+    <p>Four runs, each with new face identities and statements. A separate localizer task, run beforehand, provided face-viewing neural activity independent of the memory task.</p>
+
+    <h4>Why the error structure was the useful part</h4>
+
+    <p>Accuracy was binary per trial, but errors split into two kinds, and that distinction is where the design earns its keep:</p>
+
+    <ul>
+      <li><strong>Within-category errors</strong> — picking a different face of the same race as the correct one.</li>
+      <li><strong>Between-category errors</strong> — picking a face of the other race.</li>
+    </ul>
+
+    <p>Within-category errors substantially outnumbered between-category errors, replicating a well-established pattern: people confuse individuals within a social category far more readily than across one. Correct recall exceeded between-category errors significantly, and exceeded within-category errors non-significantly. So people were both more accurate <em>and</em> more confusable within a category.</p>
+
+    <h2 id="analysis">How I analyzed it</h2>
+
+    <ul>
+      <li><strong>Mixed-effects logistic regression</strong> on trial-level accuracy, using the continuous trait ratings as predictors with random effects by participant. This is the analysis I trust most — it uses the ratings as measured rather than binning them, and it handles the repeated-measures structure properly.</li>
+      <li><strong>Repeated-measures ANOVA</strong> on mean ROI beta values across the three memory outcomes, with follow-up pairwise tests.</li>
+      <li><strong>Median split</strong> on the trait ratings for the univariate imaging contrasts, applied across all database ratings so the threshold was identical for every participant.</li>
+      <li><strong>Pearson correlations</strong> between each participant's behavioral trustworthiness slope and their trustworthy-minus-untrustworthy activation difference — the direct test of whether neural sensitivity to the trait tracks behavioral sensitivity.</li>
+    </ul>
+
+    <h2 id="behavioral">Behavioral results</h2>
+
+    <div class="finding">
+      <h3>Trustworthiness: the predicted direction, marginally</h3>
+
+      <p>Higher trustworthiness ratings were associated with lower recall accuracy — untrustworthy faces remembered better — at β = −0.268, SE = 0.139, z = −1.93, <strong>p = 0.054</strong>.</p>
+
+      <p>That's a trend in the hypothesized direction and it is not a significant effect. The distinction matters, and the honest reading is: consistent with threat prioritization, insufficient to establish it here. Subsetting by race weakened it further in both groups, which is what you'd expect from halving an already small sample and is not itself informative.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Dominance: no main effect</h3>
+
+      <p>A weak positive trend, β = 0.053, p = 0.422. Not supported. Dominance shapes how people are perceived but didn't independently drive what got encoded.</p>
+    </div>
+
+    <div class="finding">
+      <h3>The interaction: the actual finding</h3>
+
+      <p>Trustworthiness and dominance interacted significantly: β = −0.650, SE = 0.214, z = −3.038, <strong>p = 0.002</strong>.</p>
+
+      <table class="cs-table">
+        <caption>Effect of increasing trustworthiness on recall accuracy, by dominance level</caption>
+        <thead>
+          <tr><th scope="col">Dominance</th><th scope="col">Effect of higher trustworthiness</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Low</td><td>Accuracy increases</td></tr>
+          <tr><td>Average</td><td>No effect</td></tr>
+          <tr><td>High</td><td>Accuracy decreases</td></tr>
+        </tbody>
+      </table>
+
+      <p>The slopes cross near mean trustworthiness, which means dominance matters most at the extremes of the trustworthiness dimension and barely at all in the middle.</p>
+
+      <p>This is the result I'd defend. It's from the regression on continuous ratings, so it doesn't depend on any binning decision, and it makes a specific theoretical point: the two dimensions of face impression are not processed independently and then summed. A face is read as a configuration. Any model that scores trustworthiness and dominance separately and adds them will predict the middle of the distribution adequately and be wrong at both ends — which is exactly where the socially consequential faces are.</p>
+    </div>
+
+    <h2 id="neural">Neural results</h2>
+
+    <p>In the localizer task, the amygdala showed trait-related differences that ran in opposite directions for Black and White faces: greater activation for trustworthy-rated Black faces, and greater activation for untrustworthy-rated White faces. Neither pattern appeared when faces were pooled, and the hippocampus showed nothing at any level.</p>
+
+    <div class="cs-note">
+      <p><strong>Three reasons I present this as exploratory rather than as a finding, and would say the same to any stakeholder.</strong></p>
+      <p><strong>It was unplanned.</strong> The race-specific splits were not in my pre-specified analysis plan. I ran them after the behavioral analysis surfaced race-related differences, which is a legitimate reason to look and not a licence to treat what I found as confirmed.</p>
+      <p><strong>Multiple comparisons.</strong> The localizer analysis involves two brain regions × two trait dimensions × three face groupings. That's twelve uncorrected tests, and the strongest result sits at p = 0.032. It does not survive correction for that family, and I didn't apply one.</p>
+      <p><strong>An analytic choice I made because it produced results.</strong> I first used a participant-specific median split, which returned nothing, then switched to a split computed across all database ratings, which returned the effects above. There's a genuine argument for the second approach — it holds the threshold constant across participants, so "trustworthy" means the same thing for everyone — but I arrived at it after the first approach failed, which makes the justification post hoc. Reported honestly, the result is: this effect is present under one reasonable specification and absent under another. That's a reason to test it in a dataset designed for the question, not to report the specification that worked.</p>
+    </div>
+
+    <p>There's also a confound I flagged in the thesis and consider the most serious one. The trait ratings come from a normative database where raters scored standardized photographs. If those raters adjusted their trustworthiness ratings to avoid appearing racially biased — a plausible social-desirability effect — then the ratings themselves differ systematically by race of face, and the inverse neural pattern could be an artifact of the measurement instrument rather than a fact about perception. Nothing in this dataset can distinguish those two accounts.</p>
+
+    <h2 id="nulls">Where I found nothing</h2>
+
+    <p>The central neural hypothesis failed, and the nulls were emphatic rather than borderline.</p>
+
+    <p><strong>Encoding activation did not predict memory outcome.</strong> Comparing mean hippocampal beta values across correct recall, within-category errors, and between-category errors gave F = 0.269, p = 0.765, with an effect size accounting for well under one percent of variance. The amygdala was the same: F = 0.305, p = 0.738. Every pairwise comparison was null. Prior work would predict greater encoding activation for successfully remembered items; this dataset shows no such difference.</p>
+
+    <p><strong>Brain-behavior correlations were null.</strong> Participants whose memory was more sensitive to trustworthiness did not show larger trustworthy-versus-untrustworthy activation differences, in either region (hippocampus r = −0.09, p = 0.65; amygdala p = 0.35).</p>
+
+    <p>Plausible reasons: 31 participants, thin trial counts once split three ways by outcome, and averaging beta values across every voxel in a large anatomical region, which discards spatial pattern information and dilutes any localized effect. Multivoxel pattern analysis or representational similarity analysis would test whether the information is there in a form that mean activation can't see.</p>
+
+    <div class="cs-note">
+      <p><strong>One phrase I'd remove from my own discussion section.</strong> I wrote, of a near-significant result, that a larger sample would have reached significance. That isn't a valid inference — more data can just as easily move an estimate toward zero, and near-significance carries no information about which way it would go. What I can say is that the study was underpowered to detect effects of the size observed. Catching this in my own writing is part of why I now set thresholds and decision rules before looking at data rather than interpreting borderline results afterward.</p>
+    </div>
+
+    <h2 id="limits">Limitations</h2>
+
+    <ul>
+      <li><strong>The paradigm wasn't built for this question.</strong> Stimuli were selected to study racial categorization, so trait coverage was incidental. With purpose-built stimuli at the trait extremes, the same analyses would have had far more power.</li>
+      <li><strong>n = 31.</strong> Small for fMRI, and smaller still for any subset analysis. Most non-significant results here are uninformative rather than evidence of absence.</li>
+      <li><strong>Trait ratings are normative, not participant-specific.</strong> The faces were rated by a separate large sample, so the analysis assumes my participants' impressions match the average. Individual differences in trait perception are invisible to this design — and they're arguably the interesting variable.</li>
+      <li><strong>Stimulus validity.</strong> Most of the behavioral statements in the original paradigm were model-generated to match the style of a smaller validated set. They weren't independently validated for memorability or difficulty, and they carry the memory load.</li>
+      <li><strong>Univariate analysis only.</strong> Mean beta values answer "how much activity, where." They can't speak to how information is represented.</li>
+      <li><strong>Exploratory analyses are labeled as such throughout,</strong> and I'd rather a reader discount them than mistake them for confirmed effects.</li>
+    </ul>
+
+    <h2 id="why">Why this matters for product work</h2>
+
+    <p>Two things carried forward directly.</p>
+
+    <p><strong>The interaction finding is a warning about additive models of perception.</strong> Two variables that each look weak on their own produced a strong effect jointly, and the joint effect reverses sign across the range. Anyone building a system that scores faces, voices, or interfaces on independent dimensions and combines them linearly is assuming something my thesis found to be false in the one case I could test. It's the same reason I now look for interactions before reporting main effects.</p>
+
+    <p><strong>The nulls taught me more than the significant result.</strong> A thesis where the central hypothesis fails is a thesis where you either overclaim or learn to write precisely about what you don't know. I chose the second, and the habits that came out of it — separating planned from exploratory analysis, disclosing specification choices, refusing to launder marginal p-values into findings — are the ones I use on every study I run now, including in settings where nobody would catch me if I didn't.</p>
+
+    <p>The future direction I found most interesting also turned out to be prescient for where I ended up: as virtual agents and avatars become ordinary, the trait impressions their faces and voices produce will shape whether people trust them and what they remember from the interaction. I'm now working on exactly that problem, with a robot instead of a face database.</p>
+
+    <div class="cs-note">
+      <p>Secondary analysis of de-identified data collected by a Columbia University research lab. Master's thesis, 2025. <a href="../assets/facial-impressions-memory-thesis.pdf">Read the full thesis (PDF)</a>.</p>
+    </div>
+
+    <div class="cs-next">
+      <p>Next</p>
+      <a href="biometric-beats.html">Biometric Beats: when your heart rate is the interface</a>
+    </div>
+
+  </article>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot-inner">
+    <span>Grace Liu — product &amp; UX research</span>
+    <span><a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

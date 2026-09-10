@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Headspace: choosing a feature under uncertainty — Grace Liu</title>
+<meta name="description" content="A product strategy exercise: identifying unmet needs in a meditation app, generating feature concepts, and prioritizing with RICE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..700;1,8..60,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="skip" href="#body">Skip to the case study</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">Grace Liu</a>
+    <nav aria-label="Primary">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="mailto:grace20029@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="cs-head shell">
+  <a class="cs-back" href="../index.html#work">Back to selected work</a>
+  <h1>Headspace: choosing one feature out of fourteen</h1>
+  <p class="cs-standfirst">A product strategy exercise, not a research study. The brief was to propose a feature for an existing consumer product that takes advantage of recent technology — which meant the real work was deciding how to choose between ideas when you don't have the data to choose properly.</p>
+
+  <dl class="cs-meta">
+    <div><dt>Type</dt><dd>Self-directed product strategy exercise</dd></div>
+    <div><dt>Brief</dt><dd>Propose a feature leveraging recent technology for an existing B2C product</dd></div>
+    <div><dt>Inputs</dt><dd>Interviews (n=3), informal conversations (n=5), desk research</dd></div>
+    <div><dt>Frameworks</dt><dd>Jobs-to-be-done, RICE prioritization, feasibility and viability assessment</dd></div>
+  </dl>
+</div>
+
+<div class="shell cs-layout">
+
+  <nav class="cs-toc" aria-label="On this page">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#what">What this is and isn't</a></li>
+      <li><a href="#needs">Identifying unmet needs</a></li>
+      <li><a href="#jtbd">Reframing the job</a></li>
+      <li><a href="#ideas">Generating options</a></li>
+      <li><a href="#rice">Prioritizing</a></li>
+      <li><a href="#feasibility">Feasibility and viability</a></li>
+      <li><a href="#critique">What I'd do differently</a></li>
+    </ol>
+  </nav>
+
+  <article class="cs-body" id="body">
+
+    <div class="cs-tldr">
+      <h2>The short version</h2>
+      <dl>
+        <dt>The problem I landed on</dt>
+        <dd>People come to Headspace because they don't know how to manage their mental health, then face a large library and can't tell which session is right for them right now. Choice overload at the exact moment someone is least equipped to make a choice.</dd>
+
+        <dt>The feature</dt>
+        <dd>A personalized recommendation system drawing on stated mood, wearable signals, and in-app history — turning a library into something that responds to your current state.</dd>
+
+        <dt>The honest caveat</dt>
+        <dd>The research base here is three interviews and some desk work. It was enough to generate a plausible problem framing and nowhere near enough to validate one. I've marked below exactly which claims rest on evidence and which rest on my judgment.</dd>
+      </dl>
+    </div>
+
+    <h2 id="what">What this is and isn't</h2>
+
+    <p>I'm labeling this clearly because it's easy to mistake for something it isn't.</p>
+
+    <p>This is a product strategy exercise: segment definition, needs hypotheses, jobs-to-be-done framing, structured ideation, prioritization, and a feasibility case. Those are PM skills and this exercise demonstrates them.</p>
+
+    <p>It is <strong>not</strong> a research case study. Three interviews and five informal conversations, with no usability testing, cannot establish what a user base needs. The segment I worked with was asserted rather than discovered. If you want to see how I actually run research, the <a href="medcheck.html">MedCheck</a> and <a href="norbert-request-relay.html">request relay</a> studies are the right places to look.</p>
+
+    <p>I've kept it because prioritizing under genuine uncertainty is a real skill and this shows my reasoning. But the reasoning is only as good as its inputs, and I'd rather say so than let the framework's tidiness imply otherwise.</p>
+
+    <h2 id="needs">Identifying unmet needs</h2>
+
+    <p>I started from a target segment — professionals in demanding jobs — and three hypotheses about why they'd use a meditation app: stress from work pressure and overcommitment, feeling lost about how to manage mental health, and not knowing how to build the habit or track progress.</p>
+
+    <div class="cs-note">
+      <p><strong>This is the part I'd restructure.</strong> The segment came before the research, from my assumptions about who uses meditation apps, and then the research was used to check hypotheses derived from that assumption. Headspace's actual user base is far broader than affluent professionals, and I had no basis for narrowing to them. It also means the needs I found were partly a product of who I decided to look at. Segment definition should be a research output, not a research input.</p>
+    </div>
+
+    <p>Talking to users and reading through public discussion surfaced a consistent cluster of difficulties. Grouped:</p>
+
+    <ul>
+      <li><strong>Consistency.</strong> People couldn't make meditation habitual even while paying for an app designed to help them, and struggled to fit it into their schedules.</li>
+      <li><strong>Findability.</strong> Difficulty locating the right content across teachers, styles, and session types — and wanting better search.</li>
+      <li><strong>Confidence in the choice.</strong> This is the one I found most interesting. People weren't just failing to find content; they were unsure whether the style or teacher they'd picked was the right one, and reluctant to switch once habituated.</li>
+      <li><strong>Progress.</strong> Wanting to see and track what they'd done.</li>
+      <li><strong>Variety.</strong> Repetitiveness dulling the experience over time.</li>
+    </ul>
+
+    <p>The findability and confidence items point at the same underlying condition. A large content library is a benefit if you know what you want and a cost if you don't — and someone opening a meditation app while overwhelmed is by definition in the second state.</p>
+
+    <h2 id="jtbd">Reframing the job</h2>
+
+    <p>My initial framing was about productivity: regain focus, avoid burnout, get more done. The research pushed it somewhere less instrumental — people weren't optimizing output, they were trying to address something in their life and didn't know where to start.</p>
+
+    <p>That produced the problem statement I designed against:</p>
+
+    <blockquote>
+      <p>Users come to Headspace because they don't know how to manage their mental health. The library is extensive, which means they often feel overwhelmed and can't tell which session fits what they need right now.</p>
+    </blockquote>
+
+    <p>Two segments have this problem for opposite reasons. Existing subscribers who value effectiveness want to stop spending time searching. Prospective users are intimidated by the volume of choice before they start. The same feature addresses both.</p>
+
+    <h2 id="ideas">Generating options</h2>
+
+    <p>Fourteen concepts across four categories, each traceable to one of the need clusters above rather than to what was technically interesting.</p>
+
+    <table class="cs-table">
+      <caption>Concept categories</caption>
+      <thead>
+        <tr><th scope="col">Category</th><th scope="col">Concepts</th><th scope="col">Need addressed</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AI and ML</td><td>Personalized session recommendations; AI intake feeding human coaching; voice-based meditation guide; using outside signals like calendar activity to time suggestions</td><td>Findability, confidence in choice</td></tr>
+        <tr><td>Experience</td><td>Guided journaling with mood analysis over time; categorized session history; a meditation goal ring</td><td>Progress, consistency</td></tr>
+        <tr><td>Immersive</td><td>VR meditation environments; mixed-reality instruction and posture guidance</td><td>Variety</td></tr>
+        <tr><td>Wearables</td><td>Real-time personalization from stress, sleep, and activity data</td><td>Consistency, confidence in choice</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="rice">Prioritizing</h2>
+
+    <p>I used RICE — reach, impact, confidence, effort — and defined each term first, because the labels are vague enough that undefined they mean whatever you want them to.</p>
+
+    <ul>
+      <li><strong>Reach:</strong> how many users would plausibly use it.</li>
+      <li><strong>Impact:</strong> how much it could move the feature-level metrics that ladder up to commercial ones.</li>
+      <li><strong>Confidence:</strong> of the users who could use it, expected adoption.</li>
+      <li><strong>Effort:</strong> development resource, adjusted for risk.</li>
+    </ul>
+
+    <p><strong>The result:</strong> personalized recommendations won on high reach and high impact, and I argued the high effort through.</p>
+
+    <ul>
+      <li>Reach is high because it needs no additional hardware and integrates into the existing app — unlike the VR and wearable concepts, which gate themselves behind a device.</li>
+      <li>Impact is high because a session matched to someone's current state is more likely to be finished and returned to, which is what retention is made of.</li>
+      <li>Effort is genuinely high — model work, privacy handling, data integration — but the retention case supports the investment.</li>
+    </ul>
+
+    <div class="cs-note">
+      <p><strong>RICE didn't make this decision, and I should be straight about that.</strong> I assigned every score myself, with no usage data, no adoption baselines, and no engineering estimates. A framework where one person supplies all four inputs formalizes a prior belief rather than testing it — and my prior, having just spent the research phase on findability problems, was already recommendations.</p>
+      <p>That doesn't make the conclusion wrong. It makes RICE the wrong evidence for it. What RICE did usefully was force me to state the reasoning per dimension so it can be argued with, and to notice that the hardware-dependent concepts were structurally capped on reach no matter how appealing they were. Those are real outputs. "The framework selected the winner" is not.</p>
+    </div>
+
+    <h2 id="feasibility">Feasibility and viability</h2>
+
+    <p><strong>Feasibility.</strong> The build doesn't require a foundational model. A localized deployment of an open-source model, fine-tuned, is more cost-effective and sufficient for session recommendation. Headspace already holds the relevant proprietary signal — session history and stated preferences — and can access third-party health data with user consent. The main requirements are the model deployment, an API layer, expanded data warehousing, and new front-end surfaces for the flow.</p>
+
+    <p><strong>Viability.</strong> Personalization is close to table stakes in wellness apps, so this is as much defensive as differentiating. The commercial case runs through retention first, acquisition second, and it opens a tier-based pricing option.</p>
+
+    <div class="cs-note">
+      <p><strong>Two things I'd remove from the original version.</strong> I argued partly that generative AI was trending and that building now would position Headspace as a leader. That's a market-timing argument dressed as a user argument, and it's the weakest reasoning in the exercise — if the feature is right, it's right because of the findability problem, not because of what's fashionable. I also floated financially incentivizing users to share external health data. That's a consent problem in a mental health context and I wouldn't propose it now.</p>
+    </div>
+
+    <h2 id="critique">What I'd do differently</h2>
+
+    <ul>
+      <li><strong>Derive the segment from research instead of asserting it.</strong> Everything downstream inherits that choice, and I made it before I'd talked to anyone.</li>
+      <li><strong>Drop the invented persona.</strong> The original included a named persona with a specific age, job title, salary, and personality type, none of which came from data. Precise fictional detail makes a document feel grounded while adding nothing, and it can quietly narrow who you design for.</li>
+      <li><strong>Get one external input into the RICE scores.</strong> Even rough engineering estimates on effort would make the framework do real work instead of restating my view.</li>
+      <li><strong>Test the premise before the solution.</strong> The strongest version of this exercise establishes that choice overload actually costs sessions — via drop-off in browse-to-play, or a simple study on time-to-selection — before proposing a system to fix it. I inferred the problem from what people said and moved straight to solving it.</li>
+    </ul>
+
+    <div class="cs-note">
+      <p>Self-directed exercise, not affiliated with or commissioned by Headspace. Based on publicly available information and a small number of user conversations.</p>
+    </div>
+
+    <div class="cs-next">
+      <p>Next</p>
+      <a href="medcheck.html">MedCheck: designing a mobile medical check-in</a>
+    </div>
+
+  </article>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot-inner">
+    <span>Grace Liu — product &amp; UX research</span>
+    <span><a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

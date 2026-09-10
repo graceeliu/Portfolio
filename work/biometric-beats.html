@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biometric Beats: adaptive music from group heart rate — Grace Liu</title>
+<meta name="description" content="An HCI study comparing three ways to let a group steer a music queue: passive heart rate, explicit voting, and a human DJ reading the room.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..700;1,8..60,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="skip" href="#body">Skip to the case study</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">Grace Liu</a>
+    <nav aria-label="Primary">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="mailto:grace20029@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="cs-head shell">
+  <a class="cs-back" href="../index.html#work">Back to selected work</a>
+  <h1>Biometric Beats: when your heart rate is the interface</h1>
+  <p class="cs-standfirst">The team built a music system that reads a room's heart rate off smartwatches and picks the next song. Participants liked steering it without effort. One of them also became slightly paranoid that resting would be read as boredom — which turned out to be the most interesting result in the study.</p>
+
+  <dl class="cs-meta">
+    <div><dt>My role</dt><dd>Co-led design and execution of the user study — participant protocols, survey and interview design, and analysis of how passive biometric input shapes engagement and perceived control. No hardware or software work.</dd></div>
+    <div><dt>Team</dt><dd>Group project, three researchers; system built by teammates</dd></div>
+    <div><dt>Type</dt><dd>Graduate HCI project, Columbia University</dd></div>
+    <div><dt>Design</dt><dd>Within-subjects comparison of three input methods, n=3, single group session</dd></div>
+    <div><dt>System</dt><dd>Apple Watch and HealthKit → Firebase → Python server → generative song selection</dd></div>
+  </dl>
+</div>
+
+<div class="shell cs-layout">
+
+  <nav class="cs-toc" aria-label="On this page">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#problem">Aux anxiety</a></li>
+      <li><a href="#system">Three ways to steer a queue</a></li>
+      <li><a href="#study">The study we ran</a></li>
+      <li><a href="#findings">What we found</a></li>
+      <li><a href="#numbers">What the numbers do and don't support</a></li>
+      <li><a href="#design">Design implications</a></li>
+      <li><a href="#limits">Limitations</a></li>
+      <li><a href="#learned">What I took from it</a></li>
+    </ol>
+  </nav>
+
+  <article class="cs-body" id="body">
+
+    <div class="cs-tldr">
+      <h2>The short version</h2>
+      <dl>
+        <dt>The idea</dt>
+        <dd>Picking music for a group is socially stressful — whoever holds the aux is accountable for everyone's enjoyment. If a system could read collective engagement passively, nobody would have to hold it.</dd>
+
+        <dt>What we compared</dt>
+        <dd>Three inputs driving the same song-selection logic: aggregated heart rate from smartwatches, explicit up/down voting, and a human watching the room the way a DJ would.</dd>
+
+        <dt>The real finding</dt>
+        <dd>Passive input removes the burden of choosing and replaces it with a subtler one: you can't opt out of your own physiology. A participant described becoming self-conscious that sitting down to rest would be misread as disliking the song. Involuntary input isn't lower-effort, it's differently effortful.</dd>
+
+        <dt>What I'd correct in our own write-up</dt>
+        <dd>We reported heart rate as the best-performing method. With three participants and confidence intervals that overlap across all three conditions, the data don't support a ranking. The qualitative findings do the real work here, and I've reframed the page accordingly.</dd>
+      </dl>
+    </div>
+
+    <h2 id="problem">Aux anxiety</h2>
+
+    <p>Music shapes social gatherings, and controlling it is a social position rather than a technical one. The person choosing songs is managing other people's enjoyment in real time with almost no feedback, which is where the specific discomfort people call "aux anxiety" comes from. Everyone else, meanwhile, has no meaningful input short of complaining.</p>
+
+    <p>Existing adaptive music systems mostly personalize to an individual — mood-based discovery, facial expression detection, tempo matching for runners. Group-level adaptation driven by real-time physiology was largely unexplored, and smartwatches make it newly cheap to try.</p>
+
+    <p>So the research question wasn't really "does heart rate work as a signal." It was: what changes about a shared experience when the thing steering it is something you don't consciously control?</p>
+
+    <h2 id="system">Three ways to steer a queue</h2>
+
+    <p>All three conditions used identical downstream logic, so only the input differed. Each watch pushed data to a shared realtime database; a Python server aggregated across participants; after each song it compared the current reading to the previous one and requested either a similar or a dissimilar next track from a language model.</p>
+
+    <table class="cs-table">
+      <caption>The three input conditions</caption>
+      <thead>
+        <tr><th scope="col">Condition</th><th scope="col">Input signal</th><th scope="col">What it asks of the listener</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Heart rate</td>
+          <td>Average heart rate across participants, compared song to song</td>
+          <td>Nothing conscious</td>
+        </tr>
+        <tr>
+          <td>Voting</td>
+          <td>Majority up/down vote on the current song, via a watch interface</td>
+          <td>A deliberate binary judgment per song</td>
+        </tr>
+        <tr>
+          <td>DJ / vision</td>
+          <td>A researcher observing whether movement increased or decreased</td>
+          <td>Visible reaction, legible from across the room</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The DJ condition was our control — a deliberately low-tech stand-in for how this problem gets solved now.</p>
+
+    <h2 id="study">The study we ran</h2>
+
+    <p>Within-subjects: the same group experienced all three conditions, so each participant served as their own comparison. Three participants, recruited from the university, run as a single group to simulate a casual shared music setting, encouraged to dance and react naturally rather than sit and evaluate.</p>
+
+    <p>Each condition ran for twelve songs. The heart rate condition opened with a one-minute resting baseline measurement. After each condition we ran semi-structured interviews for qualitative feedback, plus usability ratings. Designing the protocol, the interview guide, and the survey instruments was my half of the work; my collaborators built the system.</p>
+
+    <p>The measure we used across conditions was the proportion of song transitions where a "positive indicator" was reached — meaning the signal moved in the direction the system reads as engagement.</p>
+
+    <div class="cs-note">
+      <p><strong>That measure has a problem I'd fix in a second version, and it's the most important thing on this page.</strong> The positive indicator is a different quantity in each condition: rising heart rate, a majority upvote, and observed increase in movement. Those are three different instruments with three different noise profiles, and the paper compared their outputs as if they were one metric.</p>
+      <p>Worse, in each condition the success measure is that condition's own input signal. The heart rate system selects the next song based on whether heart rate rose, and is then scored on whether heart rate rose. That's closer to measuring internal consistency than effectiveness. A clean comparison needs one outcome measured the same way in all three conditions — self-reported enjoyment per track, or observed behavior coded by someone blind to condition — with the input signal kept separate from the outcome.</p>
+    </div>
+
+    <h2 id="findings">What we found</h2>
+
+    <div class="finding">
+      <h3>1. Passive input feels effortless, right up until you notice it</h3>
+
+      <p>The heart rate condition drew the strongest positive reaction, and the reason participants gave was specifically about the absence of a decision:</p>
+
+      <blockquote>
+        <p>I like that I knew I was influencing the music without actually consciously thinking about it, which made the experience feel effortless.</p>
+        <cite>Participant, heart rate condition</cite>
+      </blockquote>
+
+      <p>Then the counter-current, from the same condition:</p>
+
+      <blockquote>
+        <p>There were times when I enjoyed the song but maybe I just needed to rest, so I became a little bit paranoid that I was causing the system to think I wanted a shift in the music when I didn't.</p>
+        <cite>Participant, heart rate condition</cite>
+      </blockquote>
+
+      <p>This is the finding I'd build the next study around. The appeal of passive biometric input is that you don't have to do anything. The cost is that you can't <em>stop</em> doing anything — there's no way to abstain, no way to signal "this reading doesn't mean what you think it means," and the system's interpretation of your body is not negotiable.</p>
+
+      <p>It also exposes a modeling error we'd baked in. We treated a heart rate drop as disengagement. Physiologically, rest is a normal phase of enjoying an hour of music, and a system that reads every dip as boredom will chase a monotonically rising curve that no group can sustain. The person who said "I just needed to rest" diagnosed our algorithm more precisely than our metric did.</p>
+    </div>
+
+    <div class="finding">
+      <h3>2. Binary voting suppressed the feedback it was designed to collect</h3>
+
+      <blockquote>
+        <p>There were times when the song was solid, but it was not my most favorite, and that made it really hard to decide whether to up-vote or down-vote, so I sometimes withheld feedback.</p>
+        <cite>Participant, voting condition</cite>
+      </blockquote>
+
+      <p>Clean instrument-design finding. When the available responses don't include the response someone actually has, the result isn't a rounded answer — it's a missing one. And because the missing answers are concentrated in the middle of the distribution, the votes the system does receive over-represent strong opinions. The measurement error is systematic, not random.</p>
+
+      <p>This is the same problem I'd later run into in a clinical card sort, where staff who felt a request was both urgent and not theirs were forced to pick one. Response options that don't span the response space produce confident-looking data that quietly omits the ambivalent cases.</p>
+    </div>
+
+    <div class="finding">
+      <h3>3. The human condition failed on latency, and people compensated</h3>
+
+      <p>The DJ condition rated lowest on seamlessness. Participants noticed the gap between reacting and the music responding — and several began exaggerating their movements to be legible from across the room.</p>
+
+      <p>That compensation is the interesting part. Given an input channel with poor bandwidth, people didn't stop trying to communicate; they started performing. Which means the observational data a DJ collects is partly a response to being observed.</p>
+    </div>
+
+    <h2 id="numbers">What the numbers do and don't support</h2>
+
+    <p>Our positive-indicator rates came out at roughly 78% for heart rate, 70% for voting, and 60% for the DJ condition, and the paper described this as heart rate outperforming the alternatives.</p>
+
+    <p>I don't think that holds. The 95% confidence intervals were wide and overlapping — the heart rate interval alone spanned from the mid-forties to the low nineties, comfortably containing both other point estimates. With three participants and a modest number of transitions, those intervals are doing exactly what they should: telling us we can't distinguish these conditions.</p>
+
+    <p>To our credit, we computed and reported them, and noted why heart rate's interval was widest — involuntary, continuous signals carry more noise than deliberate binary choices. But having established that, we still ranked the point estimates. The word "confirm" appears in our discussion section, and it shouldn't.</p>
+
+    <p>What the study does support: three participants preferred the passive condition, and articulated specific, mechanistic reasons why — reduced decision load in one direction, loss of control in the other. That's a hypothesis worth testing properly, generated by a study too small to test it.</p>
+
+    <h2 id="design">Design implications</h2>
+
+    <ul>
+      <li><strong>Passive systems need an override.</strong> If a system interprets your body, you need a way to say "not now" — otherwise the effortlessness converts into self-monitoring, which is more effortful than pressing a button.</li>
+      <li><strong>Don't read every dip as disengagement.</strong> Rest is part of the pattern. Weighting recent history rather than reacting to single transitions would distinguish a lull from actual boredom, and would stop the system chasing an impossible upward curve.</li>
+      <li><strong>Give ambivalence somewhere to go.</strong> A third option, a magnitude, or an explicit skip. Forcing a binary loses the middle of the distribution entirely.</li>
+      <li><strong>Biometric input carries real privacy weight.</strong> Continuous physiological data can reveal health status and emotional state, and this becomes a consent question at the moment such a system leaves a lab. Worth saying that a party is a context where nobody reads a consent flow.</li>
+    </ul>
+
+    <h2 id="limits">Limitations</h2>
+
+    <ul>
+      <li><strong>Three participants, one group, one session.</strong> Everything here is a hypothesis. No claim about which method is better survives this sample.</li>
+      <li><strong>Condition order was fixed, not counterbalanced.</strong> Heart rate always ran first, across roughly thirty-six songs in a single sitting. Order, novelty, and fatigue are fully confounded with condition — the condition that scored best is also the one participants encountered while freshest and most curious. Protocol design was my responsibility, so this one is on me, and it's the first thing I'd fix.</li>
+      <li><strong>Participants knew which condition they were in,</strong> which they'd have to for voting, but it means the usability ratings are unblinded.</li>
+      <li><strong>The songs differed across conditions.</strong> Track selection came from a language model responding to each condition's signal, so participants heard different music in each condition. Music quality is uncontrolled and plausibly larger than any interface effect.</li>
+      <li><strong>Setting was a dorm lounge,</strong> not the crowded venue the system is pitched for. Density, noise, and social pressure are all different there, and all bear on the aux-anxiety problem the system is meant to solve.</li>
+      <li><strong>Homogeneous sample.</strong> Three university students of similar age, with similar music reference points and similar comfort with wearables.</li>
+    </ul>
+
+    <h2 id="learned">What I took from it</h2>
+
+    <p><strong>Choose the outcome measure before the system exists.</strong> We built three input methods and then asked how to compare them, which is how we ended up with a metric that differs by condition. Had we specified one common outcome first, the system design would have accommodated it and the study would have been able to answer its own question.</p>
+
+    <p><strong>The confidence intervals were the most honest thing in the paper and we then talked past them.</strong> Computing uncertainty and then ranking point estimates anyway is a specific, common failure, and recognizing it in my own work is why I now write decision thresholds down before collecting data rather than deciding what counts as a win afterward.</p>
+
+    <p><strong>Response options are a measurement instrument, not a UI detail.</strong> The withheld-vote finding stuck with me. If the options don't cover the response space, you get missing data that looks like no data rather than like a gap — and you won't notice unless someone tells you in an interview.</p>
+
+    <div class="cs-note">
+      <p>Graduate coursework project. Participants are de-identified; no physiological data is reproduced here.</p>
+    </div>
+
+    <div class="cs-next">
+      <p>Next</p>
+      <a href="trading-app-nlp.html">What 4,000 negative reviews say about trading apps</a>
+    </div>
+
+  </article>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot-inner">
+    <span>Grace Liu — product &amp; UX research</span>
+    <span><a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

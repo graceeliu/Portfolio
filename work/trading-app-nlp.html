@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What 4,000 negative app reviews say about trading apps — Grace Liu</title>
+<meta name="description" content="Applying sentiment analysis and topic modeling to App Store reviews of four trading apps to surface UX pain points at a scale interviews can't reach.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..700;1,8..60,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="skip" href="#body">Skip to the case study</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">Grace Liu</a>
+    <nav aria-label="Primary">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="mailto:grace20029@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="cs-head shell">
+  <a class="cs-back" href="../index.html#work">Back to selected work</a>
+  <h1>What 4,000 negative reviews say about trading apps</h1>
+  <p class="cs-standfirst">Bad design in a trading app doesn't just annoy people — it costs them money. We wanted to know whether App Store reviews could be turned into a usable product backlog. The most useful thing we found was that the star rating attached to a review often disagrees with what the review says.</p>
+
+  <dl class="cs-meta">
+    <div><dt>Type</dt><dd>Graduate NLP final project, Columbia University</dd></div>
+    <!-- TODO: replace with your specific contribution before publishing.
+         e.g. "Group project (four researchers). I led the topic modeling
+         and the translation of topics into product recommendations." -->
+    <div><dt>Team</dt><dd>Group project, four researchers</dd></div>
+    <div><dt>Data</dt><dd>4,000 App Store reviews — 1,000 each from four trading apps, 2021–2025</dd></div>
+    <div><dt>Methods</dt><dd>VADER sentiment analysis, TF-IDF, LDA topic modeling, Random Forest as diagnostic</dd></div>
+    <div><dt>Stack</dt><dd>Python, pandas, gensim, scikit-learn</dd></div>
+  </dl>
+</div>
+
+<div class="shell cs-layout">
+
+  <nav class="cs-toc" aria-label="On this page">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#why">Why trading apps</a></li>
+      <li><a href="#data">Data and app selection</a></li>
+      <li><a href="#stars">The star rating problem</a></li>
+      <li><a href="#pipeline">The pipeline</a></li>
+      <li><a href="#findings">What the reviews said</a></li>
+      <li><a href="#ngrams">Unigram to trigram</a></li>
+      <li><a href="#recs">Recommendations by app</a></li>
+      <li><a href="#critique">What I'd change</a></li>
+    </ol>
+  </nav>
+
+  <article class="cs-body" id="body">
+
+    <div class="cs-tldr">
+      <h2>The short version</h2>
+      <dl>
+        <dt>The question</dt>
+        <dd>Can NLP turn unstructured App Store reviews into a prioritized list of UX problems for a trading app — and does that list differ meaningfully across a traditional broker, a commission-free app, a crypto exchange, and a new entrant?</dd>
+
+        <dt>The finding that shaped the method</dt>
+        <dd>Star ratings are a poor proxy for sentiment. A classifier trained to predict a review's star rating from its text alone performed barely above the majority-class baseline, and only reliably on 1-star and 5-star reviews. People write complaints and give five stars, and vice versa.</dd>
+
+        <dt>What the topics showed</dt>
+        <dd>The pain points cluster around money movement and access — withdrawals, account locks, verification, transaction delays — far more than around interface design. Support responsiveness and trust came up more than layout.</dd>
+
+        <dt>The limitation that matters most</dt>
+        <dd>We tuned sentiment thresholds per app to align with star ratings, having just argued that star ratings are unreliable. That's circular, and it undermines the cross-app comparison. I explain below what I'd do instead.</dd>
+      </dl>
+    </div>
+
+    <h2 id="why">Why trading apps</h2>
+
+    <p>Poor design in most consumer apps produces frustration. Poor design in a trading app produces mistaken trades and real financial loss, and the population exposed to it has changed. Following the 2020 retail trading surge, a large share of new accounts belonged to first-time investors on digital platforms — people with the least financial context using the least forgiving category of interface.</p>
+
+    <p>Prior work on fintech UX leans heavily on surveys and moderated usability testing, both of which are expensive and small-n. Cross-platform comparison is rarer still, which means industry-wide patterns and genuine competitive differences are hard to see. App Store reviews are the opposite trade-off: enormous volume, no recruitment cost, terrible signal-to-noise. The project was an attempt at that trade.</p>
+
+    <h2 id="data">Data and app selection</h2>
+
+    <p>1,000 reviews per app, scraped from the Apple App Store, sampled across 2021–2025 with roughly even coverage per year so the corpus captured both older and recent experiences including platform updates and market events.</p>
+
+    <p>The four apps were chosen to span the market rather than to be similar:</p>
+
+    <table class="cs-table">
+      <caption>App selection and what each represents</caption>
+      <thead>
+        <tr><th scope="col">App</th><th scope="col">Represents</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Fidelity</td><td>Traditional full-service brokerage, long operating history</td></tr>
+        <tr><td>Robinhood</td><td>Commission-free trading, deliberately simplified interface</td></tr>
+        <tr><td>Coinbase</td><td>Crypto exchange — different asset class, different regulatory surface</td></tr>
+        <tr><td>Moomoo</td><td>Newer mobile-first platform with heavy analytical tooling</td></tr>
+      </tbody>
+    </table>
+
+    <p>The rating distributions alone were informative. Robinhood and Coinbase were strongly bimodal — dominated by 1-star and 5-star reviews with very little in between, and in Coinbase's case more than twice as many 1-star as 5-star. Moomoo was heavily positive, with roughly seven in ten reviews at 5 stars. Fidelity sat closest to balanced.</p>
+
+    <p>That shape matters for what follows: a corpus where almost nobody uses the middle of the scale is a corpus where the scale isn't really a scale.</p>
+
+    <h2 id="stars">The star rating problem</h2>
+
+    <p>Before modeling topics in negative reviews, we needed to know which reviews were actually negative. The obvious answer is the star rating. We tested that assumption instead of adopting it.</p>
+
+    <p>We trained a Random Forest classifier to predict a review's star rating from its text alone, vectorized with TF-IDF. This was a diagnostic, not a product: the question was whether there's a strong linguistic signal linking what people write to the number they select. Strong performance would mean star ratings are a usable filter. Weak performance would mean we needed a text-based sentiment measure.</p>
+
+    <p>Performance was weak. Accuracy on held-out data sat in the mid-fifties on a five-class problem where the majority class alone accounts for over 40% — so the model was barely beating "guess 5 stars." Broken down by class, it did reasonably on 1-star and 5-star and effectively failed on 2, 3, and 4.</p>
+
+    <p>Applying the same model across the other three apps reproduced the pattern, including one case where accuracy looked much higher purely because that app's reviews were so skewed positive that predicting the majority class worked most of the time. That's not generalization, and we said so — it's the same finding in a different costume.</p>
+
+    <p><strong>The conclusion:</strong> people give five stars while listing complaints, and one star while using mild language. Filtering by rating would have thrown away detailed negative feedback sitting inside 4- and 5-star reviews, and admitted a lot of terse 1-star noise. So we moved to lexicon-based sentiment scoring on the text itself, independent of the rating.</p>
+
+    <h2 id="pipeline">The pipeline</h2>
+
+    <ol>
+      <li><strong>Scrape and load.</strong> App Store reviews to CSV, with title, body, rating, date, and developer response.</li>
+      <li><strong>Preprocess for topic modeling only.</strong> Lowercase; strip punctuation except apostrophes, emoji, and stopwords. Deliberately no stemming or lemmatization — we wanted contextual integrity preserved for the sentiment pass, and the sentiment scoring ran on unprocessed text.</li>
+      <li><strong>Sentiment scoring.</strong> VADER compound scores on every review, classified positive, neutral, or negative.</li>
+      <li><strong>Filter to negative reviews.</strong> Negative reviews are longer, more specific, and more diagnostic. Positive reviews tend to be generic praise with little actionable content.</li>
+      <li><strong>Vectorize.</strong> TF-IDF on the negative subset, keeping the full feature space rather than reducing it.</li>
+      <li><strong>Topic model.</strong> LDA via gensim on a bag-of-words corpus, four topics per app, with top terms extracted and manually interpreted into readable themes.</li>
+    </ol>
+
+    <h4>One decision worth defending</h4>
+
+    <p>We kept the full TF-IDF feature space instead of applying dimensionality reduction, despite the sparsity that comes with short user-generated text. The reason is domain-specific: terms like <em>locked</em>, <em>glitch</em>, and <em>margin</em> are individually infrequent and not statistically discriminative, but they name exactly the failures we were trying to surface. Reduction techniques optimize for variance explained, which in this corpus means keeping <em>account</em> and <em>money</em> and discarding the words that identify what actually went wrong.</p>
+
+    <h2 id="findings">What the reviews said</h2>
+
+    <div class="finding">
+      <h3>The problems are about money movement, not layout</h3>
+
+      <p>Across all four apps, the recurring topics concerned getting money in, getting money out, and getting into your own account. Withdrawal delays, account locks, identity verification, transaction settlement, deposit handling. Interface and navigation complaints existed but were secondary.</p>
+
+      <p>This is the finding I'd carry into a product role. A team reading these reviews looking for UI problems would find some and miss the pattern. The category's core UX problem is that the moments where the product touches your money are the moments it feels least trustworthy — and those are operations, support, and compliance surfaces as much as design surfaces.</p>
+    </div>
+
+    <div class="finding">
+      <h3>The profile differed sharply by app</h3>
+
+      <p>Keyword prevalence across three themes we tracked — user experience, fee transparency, and accessibility — separated the apps clearly. Fee transparency was mentioned in a large majority of the crypto exchange's negative reviews, far above the others, consistent with unclear costs on transactions. The traditional brokerage clustered on settlement timing and verification delays. The commission-free app clustered on automated identity verification and handling of personal information. The newest app clustered on withdrawals, support, and accusations of fraud.</p>
+
+      <p>That last one is worth pausing on. An app can hold overwhelmingly positive ratings and still have a negative-review corpus dominated by people who believe they've been scammed. Aggregate rating and the severity of the tail are independent, and the tail is where the product risk is.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Trust and support outrank interface</h3>
+
+      <p>Two themes recurred that aren't UX in the narrow sense: customer support responsiveness, and doubt about whether trading was being executed fairly. Neither is fixable by a designer. Both showed up more consistently than anything about screen layout.</p>
+    </div>
+
+    <h2 id="ngrams">Unigram to trigram</h2>
+
+    <p>The most instructive analytical step was also the simplest. Unigram frequency on the negative reviews returns words like <em>account</em>, <em>money</em>, <em>transaction</em>, <em>fee</em> — accurate and useless, since they describe what the app is rather than what's wrong with it.</p>
+
+    <p>Moving to bigrams and trigrams changed the output completely. Phrases like <em>account locked</em>, <em>can't even withdraw</em>, and <em>worst customer service</em> carry the complaint. The information wasn't in the words, it was in the pairs.</p>
+
+    <p>The general lesson transfers well beyond this project: for short, emotional, user-generated text, single-token frequency analysis systematically discards the grievance and keeps the subject matter. If a stakeholder asks for a word cloud, the n-gram choice determines whether the output is decorative or diagnostic.</p>
+
+    <h2 id="recs">Recommendations by app</h2>
+
+    <p>We translated each app's top topics into a prioritized backlog. The point was to demonstrate that the pipeline output could be handed to a product team, not just described in a paper.</p>
+
+    <table class="cs-table">
+      <caption>Prioritized recommendations derived from LDA topics</caption>
+      <thead>
+        <tr><th scope="col">App</th><th scope="col">Priorities from the topics</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Fidelity</td>
+          <td>Onboarding and account verification; streamline buy/sell flows; clearer communication around fund movement; faster deposits and trade execution</td>
+        </tr>
+        <tr>
+          <td>Robinhood</td>
+          <td>Support quality and unresolved tickets; withdrawal delays; address perceptions of unfair execution; reduce app lag and order delays</td>
+        </tr>
+        <tr>
+          <td>Coinbase</td>
+          <td>Support response time; login and account access failures; expedite withdrawals and transfers; state fees clearly upfront</td>
+        </tr>
+        <tr>
+          <td>Moomoo</td>
+          <td>Onboarding and interface for new traders; support; transparency around sign-up, deposits, and account security; withdrawal and transfer delays</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="critique">What I'd change</h2>
+
+    <div class="cs-note">
+      <p><strong>The threshold tuning was circular, and it's the flaw I'd fix first.</strong> After concluding that star ratings are an unreliable proxy for sentiment, we then spot-checked VADER's labels against those same star ratings and adjusted the sentiment thresholds per app to improve agreement. Both halves of that can't be right. If ratings are unreliable, agreement with ratings isn't a validation criterion — and the same applies to the second Random Forest run, where adding the sentiment score as a feature improved star-rating prediction. That shows the score correlates with ratings; it can't show the score measures sentiment better than ratings do.</p>
+      <p>It also breaks the comparison that is the project's main contribution. Per-app thresholds mean "negative" means something slightly different in each of the four corpora, so cross-app differences in theme prevalence are partly an artifact of calibration. What I'd do instead: hand-label a stratified sample of a few hundred reviews for sentiment, independent of rating, and use that as ground truth to set one threshold applied uniformly. More work, and the only version that supports the claim.</p>
+    </div>
+
+    <ul>
+      <li><strong>Four topics per app was chosen for convenience, not coherence.</strong> We picked four to give developers a manageable number of priorities. Inspecting the output, several topics per app share most of their top terms — two of the crypto exchange's four are near-duplicates. That's evidence four was too many for this corpus. Topic count should be selected by coherence score, and I'd sweep it rather than fix it in advance.</li>
+      <li><strong>Topic interpretation was subjective.</strong> Turning a list of ten words into "simplify account verification" is a judgment call, and different analysts would land differently. We validated by spot-checking reviews against topics, which is better than nothing, but the honest fix is multiple independent coders and a measure of agreement.</li>
+      <li><strong>Self-selection is unavoidable and directional.</strong> People who write app reviews are disproportionately people with something to complain about, plus some incentivized and bot-generated ratings. This corpus describes the tail of the user distribution, not the middle. It's useful for finding severe failures and useless for estimating how common they are.</li>
+      <li><strong>The newest app had a shorter history,</strong> so its corpus spans fewer years and covers fewer product eras than the others. Its comparison to the rest is the weakest.</li>
+      <li><strong>A lexicon can't read sarcasm,</strong> and app reviews are full of it, along with slang, misspellings, and language switching. A transformer-based sentiment model would handle this better, and a finance-specific pre-trained model better still. That was the clearest next step.</li>
+    </ul>
+
+    <p>The direction I'd most want to pursue is tying sentiment to specific product features rather than to whole apps, and tracking it over time against release dates — which turns a snapshot into something a team can actually monitor.</p>
+
+    <div class="cs-note">
+      <p>Graduate coursework project. Analysis based on publicly posted App Store reviews; no reviewer identities are reproduced here. Recommendations are inferences from public review text and are not affiliated with or endorsed by any of the companies named.</p>
+    </div>
+
+    <div class="cs-next">
+      <p>Next</p>
+      <a href="biometric-beats.html">Biometric Beats: adaptive music from group heart rate</a>
+    </div>
+
+  </article>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot-inner">
+    <span>Grace Liu — product &amp; UX research</span>
+    <span><a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grace Liu — Product &amp; UX Research</title>
+<meta name="description" content="Grace Liu is a mixed-methods product researcher trained in cognitive psychology and neuroscience. Field research, experiment design, and human-robot interaction.">
+<meta property="og:title" content="Grace Liu — Product &amp; UX Research">
+<meta property="og:description" content="Mixed-methods research on how people decide, categorize, and remember — and how that becomes product decisions.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..700;1,8..60,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#work">Skip to selected work</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="index.html">Grace Liu</a>
+    <nav aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="mailto:grace20029@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero shell">
+    <h1>Hi, I'm Grace.</h1>
+    <div class="hero-body">
+      <p>I'm a mixed-methods researcher trained in cognitive psychology and neuroscience. I design experiments, run field studies in messy real-world settings, and build the data infrastructure that turns both into decisions a product team can actually act on.</p>
+      <p>Currently <strong>product research at Norbert Health</strong>, working on a semi-autonomous companion robot deployed in skilled nursing.</p>
+    </div>
+    <div class="hero-meta">
+      <span>New York City | San Francisco</span>
+      <a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a>
+      <a href="https://www.linkedin.com/in/graceeliu/">LinkedIn</a>
+      <!-- Add your LinkedIn and resume PDF here:
+      <a href="resume.pdf">Resume (PDF)</a>
+      -->
+    </div>
+  </section>
+
+  <section class="section shell" id="work">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <p class="section-note">Filter by the kind of work. Some projects carry more than one tag.</p>
+    </div>
+
+    <div class="filters" id="filters" role="group" aria-label="Filter work by type"></div>
+    <p class="result-count" id="result-count" role="status" aria-live="polite"></p>
+
+    <div class="grid" id="grid"></div>
+
+    <div id="writing-dir"></div>
+  </section>
+
+  <section class="section shell" id="about">
+    <div class="section-head">
+      <h2>About</h2>
+    </div>
+    <div class="about">
+      <div class="prose">
+        <p>I started in cognitive psychology and neuroscience, studying how people recognize faces, form impressions, and remember them — first through behavioral experiments for my undergraduate honors thesis, then with fMRI and behavioral data for my master's research at Columbia.</p>
+        <p>That training turned out to transfer cleanly to product work. The questions are the same: how do people categorize what's in front of them, what do they attend to first, and what happens when the system's model of a task doesn't match the mental model of the person doing it. The difference is that a wrong answer on a clinical floor has consequences, so the research has to hold up.</p>
+        <p>I work across the full range: semi-structured field interviews, card sorting, diary and observational studies, pre-registered experiments with decision rules set in advance, survey design, and quantitative analysis in Python and SQL. I build my own instruments when the off-the-shelf ones don't fit, and I write the memos and dashboards that get findings in front of people who make the call.</p>
+        <p>I'm looking for product research, UX research, human factors, and HRI roles. I'm most drawn to problems where the interface sits between a person and a decision that matters — health and wearables, payments and fintech, and anything with hardware in the loop.</p>
+      </div>
+      <dl class="sidelist">
+        <dt>Methods</dt>
+        <dd>Field &amp; contextual research, semi-structured interviews, card sorting, diary studies, pre-registered experiments, A/B design, survey design, usability testing, thematic analysis</dd>
+        <dt>Analysis</dt>
+        <dd>Python (pandas, scipy, statsmodels), SQL, R, topic modeling &amp; sentiment analysis, fMRI analysis, dashboarding</dd>
+        <dt>Domains</dt>
+        <dd>Human-robot interaction, human-computer interaction, clinical human factors, cognition, conversational &amp; voice interfaces, LLM evaluation, cognitive neuroscience, social psychology</dd>
+        <dt>Education</dt>
+        <dd><strong>M.A. Quantitative Methods in the Social Sciences</strong> (focus: HCI &amp; psychology research)<br>Columbia University</dd>
+        <dd><strong>B.S. Psychological &amp; Brain Sciences</strong>, minor in Professional Writing (science communication)<br>University of California, Santa Barbara</dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot-inner">
+    <span>Grace Liu — product &amp; UX research</span>
+    <span><a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+/* =============================================================
+   EDIT HERE — this array is the whole site's content index.
+   To add a project: copy a block, change the fields, done.
+
+   tags:   any of "product", "academic", "case", "writing"
+   href:   path to the case study page, or null if not written yet
+   wide:   true makes the card span two columns (use sparingly, 1-2 max)
+   meta:   short method/context labels shown at the bottom of the card
+   ============================================================= */
+
+const TAGS = {
+  product:  { label: "Product research", color: "var(--cat-product)" },
+  academic: { label: "Academic research", color: "var(--cat-academic)" },
+  case:     { label: "Case study", color: "var(--cat-case)" },
+  writing:  { label: "Writing", color: "var(--cat-writing)" }
+};
+
+const PROJECTS = [
+
+  /* ---------- Norbert Health: product research ---------- */
+  {
+    title: "Patient request relay and prioritization",
+    tags: ["product"],
+    href: "work/norbert-request-relay.html",
+    wide: true,
+    blurb: "How should a companion robot hand patient requests to nursing staff? Card sorting with 12 clinical staff plus field interviews across five units found that staff weren't triaging on one urgency scale at all — they were answering two separate questions the product had collapsed into one, which stripped the urgency off escalated clinical symptoms. The finding reframed the feature from a message relay into a care-coordination layer.",
+    meta: ["Card sorting", "Field interviews", "Custom research instrument", "Norbert Health"]
+  },
+  {
+    title: "Designing a voice agent to administer a depression screener at bedside",
+    tags: ["product"],
+    href: null,
+    blurb: "How should a robot speak when asking older adults, some with dementia, a validated set of questions about how they've been feeling? Synthesized three conflicting evidence bases into implementable parameters, and identified which question the literature genuinely couldn't answer so primary testing got spent there.",
+    meta: ["Evidence synthesis", "Design specification", "Clinical human factors"]
+  },
+  {
+    title: "Prompt phrasing and the engagement funnel",
+    tags: ["product"],
+    href: null,
+    blurb: "Residents were noticing the robot but not speaking to it. A within-subject crossover A/B test of generic versus personalized prompts, with decision rules and thresholds registered before launch — including the conditions under which a null result redirects effort elsewhere.",
+    meta: ["Experiment design", "Within-subject crossover", "Pre-registered"]
+  },
+  {
+    title: "Cantonese and Mandarin language routing",
+    tags: ["product"],
+    href: null,
+    blurb: "Field research on language-matched interaction in a multilingual resident population, and what it takes to route a resident to the right language without relying on staff to intervene.",
+    meta: ["Field research", "Language personalization", "Norbert Health"]
+  },
+
+  /* ---------- Self-directed case studies ---------- */
+  {
+    title: "MedCheck: a mobile medical appointment check-in",
+    tags: ["case"],
+    href: "work/medcheck.html",
+    blurb: "Two-phase study on medical check-in. Discovery found that repetition isn't experienced as inefficiency but as evidence nobody read the last form \u2014 which moved the design goal from fewer fields to visible continuity. Usability testing then failed on the task I'd treated as secondary.",
+    meta: ["Discovery interviews (n=4)", "Usability testing (n=5)", "Prototype iteration"]
+  },
+  {
+    title: "Depop: making sustainability visible",
+    tags: ["case"],
+    href: "work/depop-sustainability.html",
+    blurb: "I expected to find that surfacing environmental impact would change how people shop secondhand. The research found sustainability wasn't why they were there at all \u2014 which reframed the feature from behavior change to retention, and the success metrics with it.",
+    meta: ["Interviews", "Survey design", "Thematic analysis", "Fashion / marketplace"]
+  },
+  {
+    title: "Headspace: choosing one feature out of fourteen",
+    tags: ["case"],
+    href: "work/headspace-recommendations.html",
+    blurb: "A product strategy exercise rather than a research study: needs framing, structured ideation, and RICE prioritization for a meditation app \u2014 with an honest account of where the framework formalized a prior belief instead of testing one.",
+    meta: ["Product strategy", "Jobs-to-be-done", "RICE prioritization"]
+  },
+
+  /* ---------- Columbia: academic + HCI/LLM/NLP ---------- */
+  {
+    title: "How facial impressions shape memory",
+    tags: ["academic"],
+    href: "work/facial-impressions-memory.html",
+    blurb: "Master's thesis. An fMRI secondary analysis of whether the snap judgments you form from a face change how well you later remember it. Trustworthiness and dominance turned out not to act separately \u2014 whether a trustworthy face is memorable depends on how dominant it looks, and the effect reverses across the range.",
+    meta: ["fMRI", "Mixed-effects models", "Secondary analysis", "Master's thesis"]
+  },
+  {
+    title: "Does pairing a face with a sound help you remember it?",
+    tags: ["academic"],
+    href: "work/multisensory-recognition-memory.html",
+    blurb: "Undergraduate honors thesis. Dual-coding theory predicts two channels beat one; I ran a signal detection study to find where the benefit was largest. Pairing made visual recognition reliably worse and did nothing for auditory \u2014 an asymmetry that points at encoding competition rather than a failure of the theory.",
+    meta: ["Signal detection theory", "Within-subjects (n=67)", "Honors thesis"]
+  },
+  {
+    title: "Evaluating LLM performance on medical questions",
+    tags: ["academic"],
+    href: null,
+    blurb: "Assessed clinical accuracy of large language models against real-world medical QA datasets, with attention to hallucination rates and what a plausible-but-wrong answer costs in a clinical context.",
+    meta: ["LLM evaluation", "Benchmarking"]
+  },
+  {
+    title: "Biometric Beats: when your heart rate is the interface",
+    tags: ["academic"],
+    href: "work/biometric-beats.html",
+    blurb: "An HCI study comparing passive heart rate, explicit voting, and a human DJ as ways for a group to steer a music queue. I ran the usability study. The finding that lasted: passive input removes the burden of choosing and replaces it with the inability to opt out of your own physiology.",
+    meta: ["Usability study", "Within-subjects design", "Wearables", "HCI"]
+  },
+  {
+    title: "What 4,000 negative reviews say about trading apps",
+    tags: ["academic"],
+    href: "work/trading-app-nlp.html",
+    blurb: "Sentiment analysis and topic modeling on App Store reviews of four trading apps. A classifier trained to predict a review's star rating from its text barely beat guessing \u2014 so the ratings couldn't be trusted to find the negative reviews, and the pain points turned out to be about money movement rather than layout.",
+    meta: ["NLP", "Topic modeling (LDA)", "Python", "Fintech"]
+  },
+
+  /* ---------- Writing ---------- */
+
+  /* ---------- Client work (Precision) — UNPUBLISHED ----------
+     Kept commented out until you have written permission and have
+     confirmed there's no confidentiality or IP clause blocking it.
+     If cleared, anonymize the client and remove all proprietary findings.
+
+  ,{
+    title: "Market landscape analysis for an early-stage venture firm",
+    tags: ["product"],
+    href: null,
+    blurb: "Landscape and competitive analysis supporting an investment thesis in an emerging category. Client and findings confidential; method and approach available on request.",
+    meta: ["Landscape analysis", "Client work", "Details on request"]
+  }
+  ------------------------------------------------------------- */
+
+];
+
+/* =============================================================
+   WRITING — four categories of writing samples. Each piece links
+   to its own short page in writing/, which gives the background
+   and then links out to the PDF or the live article.
+
+   To add a piece:
+     1. add an entry to build_writing_pages.py and rerun it
+     2. add an object to the right category's list below
+     href: "writing/slug.html", or null if the page isn't written yet
+     note: a few words of context. Optional. Keep it short.
+   ============================================================= */
+
+const WRITING = [
+  {
+    category: "Content design",
+    pieces: [
+      { title: "Workiva", note: "Help center and GRC content", href: "writing/workiva.html" }
+    ]
+  },
+  {
+    category: "Academic papers",
+    pieces: [
+      { title: "A literature review of prosopagnosia", note: "Maastricht University", href: "writing/prosopagnosia-review.html" },
+      { title: "Commentary: face- and body-selective regions in the fusiform gyrus", note: "Maastricht University", href: "writing/fusiform-gyrus-commentary.html" }
+    ]
+  },
+  {
+    category: "Science communication",
+    pieces: [
+      { title: "AI Basics &amp; Big Ideas", note: "Beginner's guidebook to AI", href: "writing/ai-basics-guidebook.html" },
+      { title: "The debate over AI sentience", note: "Essay", href: "writing/ai-sentience.html" },
+      { title: "Ignaz Semmelweis and the genesis of handwashing", note: "Science history essay", href: "writing/semmelweis.html" }
+    ]
+  },
+  {
+    category: "Journalism",
+    pieces: [
+      { title: "Daily Nexus", note: "Copy editor, four years", href: "writing/daily-nexus.html" },
+      { title: "The Student Behind the Spotlight", note: "UCSB Humanities &amp; Fine Arts", href: "writing/student-behind-the-spotlight.html" },
+      { title: "Cultural appropriation in social-media fashion trends", note: "Magazine feature", href: "writing/tiktok-appropriation.html" }
+    ]
+  }
+];
+
+/* ---------- Render ---------- */
+
+const grid = document.getElementById("grid");
+const filterRow = document.getElementById("filters");
+const resultCount = document.getElementById("result-count");
+let active = "all";
+
+function tagPills(tags) {
+  return tags.map(t =>
+    `<span><i style="background:${TAGS[t].color}"></i>${TAGS[t].label}</span>`
+  ).join("");
+}
+
+function cardInner(p) {
+  const foot = p.href
+    ? `<span class="item-open">Read the case study</span>`
+    : `<span class="item-soon">Write-up in progress</span>`;
+  return `
+    <div class="item-tags">${tagPills(p.tags)}</div>
+    <h3>${p.title}</h3>
+    <p>${p.blurb}</p>
+    <div class="item-foot">${p.meta.map(m => `<span>${m}</span>`).join("")}</div>
+    <div class="item-foot" style="margin-top:.75rem">${foot}</div>
+  `;
+}
+
+function writingCount() {
+  return WRITING.reduce((n, c) => n + c.pieces.length, 0);
+}
+
+function renderWriting() {
+  const wrap = document.getElementById("writing-dir");
+  if (active !== "all" && active !== "writing") { wrap.innerHTML = ""; return; }
+
+  const cols = WRITING.map(c => `
+    <div class="wcol">
+      <h3>${c.category}</h3>
+      <ul>
+        ${c.pieces.map(p => {
+          const inner = `${p.title}${p.note ? `<span class="wnote">${p.note}</span>` : ""}`;
+          return `<li>${
+            p.href ? `<a href="${p.href}">${inner}</a>` : `<span class="wpending">${inner}</span>`
+          }</li>`;
+        }).join("")}
+      </ul>
+    </div>`).join("");
+
+  wrap.innerHTML =
+    (active === "all" ? `<h3 class="wdir-head">Writing</h3>` : "") +
+    `<div class="wdir">${cols}</div>`;
+}
+
+function render() {
+  grid.innerHTML = "";
+  let shown = 0;
+
+  PROJECTS.forEach(p => {
+    const visible = active === "all" || p.tags.includes(active);
+    if (visible) shown++;
+
+    const art = document.createElement("article");
+    art.className = "item" + (p.wide ? " is-wide" : "") + (visible ? "" : " is-hidden");
+
+    if (p.href) {
+      const a = document.createElement("a");
+      a.className = "item-link";
+      a.href = p.href;
+      a.innerHTML = cardInner(p);
+      art.appendChild(a);
+    } else {
+      art.innerHTML = cardInner(p);
+    }
+    grid.appendChild(art);
+  });
+
+  renderWriting();
+  grid.style.display = active === "writing" ? "none" : "";
+
+  if (active === "writing") {
+    resultCount.textContent = "";
+  } else if (active === "all") {
+    resultCount.textContent =
+      `Showing ${shown} projects and ${writingCount()} writing samples.`;
+  } else {
+    resultCount.textContent =
+      `Showing ${shown} ${TAGS[active].label.toLowerCase()} projects.`;
+  }
+
+  filterRow.querySelectorAll(".filter").forEach(b => {
+    b.setAttribute("aria-pressed", String(b.dataset.tag === active));
+  });
+}
+
+function buildFilters() {
+  const counts = { all: PROJECTS.length + writingCount() };
+  Object.keys(TAGS).forEach(t => {
+    counts[t] = PROJECTS.filter(p => p.tags.includes(t)).length;
+  });
+  counts.writing = writingCount();
+
+  const entries = [["all", "Everything", null]].concat(
+    Object.keys(TAGS).map(t => [t, TAGS[t].label, TAGS[t].color])
+  );
+
+  entries.forEach(([tag, label, color]) => {
+    if (counts[tag] === 0) return;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "filter";
+    b.dataset.tag = tag;
+    b.setAttribute("aria-pressed", String(tag === active));
+    b.innerHTML =
+      (color ? `<span class="swatch" style="background:${color}"></span>` : "") +
+      `${label}<span class="count">${counts[tag]}</span>`;
+    b.addEventListener("click", () => { active = tag; render(); });
+    filterRow.appendChild(b);
+  });
+}
+
+buildFilters();
+render();
+</script>
+
+</body>
+</html>

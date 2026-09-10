@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Does pairing a face with a sound help you remember it? — Grace Liu</title>
+<meta name="description" content="Undergraduate honors thesis: a signal detection study of whether pairing visual and auditory stimuli improves recognition memory. It didn't — it made visual recognition worse.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..700;1,8..60,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="skip" href="#body">Skip to the case study</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">Grace Liu</a>
+    <nav aria-label="Primary">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="mailto:grace20029@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="cs-head shell">
+  <a class="cs-back" href="../index.html#work">Back to selected work</a>
+  <h1>Does pairing a face with a sound help you remember it?</h1>
+  <p class="cs-standfirst">Dual-coding theory says two channels beat one — pair an image with a sound and you build a stronger memory. I ran the study to find where that effect was strongest. Instead, pairing made recognition reliably <em>worse</em>, and only for the modality that was already good.</p>
+
+  <dl class="cs-meta">
+    <div><dt>Type</dt><dd>Undergraduate honors thesis, UC Santa Barbara — Department of Psychological &amp; Brain Sciences</dd></div>
+    <div><dt>Lab</dt><dd>Miller Memory Lab, advised by Michael Miller, Ph.D. and Evan Layher, Ph.D.</dd></div>
+    <div><dt>Funding</dt><dd>Undergraduate Research &amp; Creative Activities grant</dd></div>
+    <div><dt>Design</dt><dd>Within-subjects, six conditions, 67 participants analyzed</dd></div>
+    <div><dt>Analysis</dt><dd>Signal detection theory — d′ and ROC curves across confidence ratings</dd></div>
+    <div><dt>Full paper</dt><dd><a href="../assets/multisensory-recognition-memory-thesis.pdf">Thesis (PDF)</a> · <a href="../assets/multisensory-recognition-memory-poster.pdf">Poster (PDF)</a></dd></div>
+  </dl>
+</div>
+
+<div class="shell cs-layout">
+
+  <nav class="cs-toc" aria-label="On this page">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#question">The question</a></li>
+      <li><a href="#design">Design</a></li>
+      <li><a href="#measure">Why signal detection theory</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#interpretation">What I think happened</a></li>
+      <li><a href="#limits">Limitations</a></li>
+      <li><a href="#carried">What I carried forward</a></li>
+    </ol>
+  </nav>
+
+  <article class="cs-body" id="body">
+
+    <div class="cs-tldr">
+      <h2>The short version</h2>
+      <dl>
+        <dt>The prediction</dt>
+        <dd>Dual-coding theory holds that information encoded through two channels — verbal and nonverbal, or here visual and auditory — is remembered better than information encoded through one. Pairing a face with a sound should build a stronger associative trace.</dd>
+
+        <dt>What happened</dt>
+        <dd>The opposite. Recognition of faces was best when faces were presented alone (d′ = 1.83) and dropped when paired with any sound, familiar or unfamiliar (d′ ≈ 1.59–1.62).</dd>
+
+        <dt>The asymmetry</dt>
+        <dd>Pairing didn't help the weak modality either. Auditory recognition sat flat around d′ ≈ 0.68–0.78 whether or not an image accompanied it. So the second channel cost something where performance was strong and bought nothing where it was weak.</dd>
+
+        <dt>How I read it</dt>
+        <dd>Not as a refutation of dual coding, but as a boundary condition: with simultaneous presentation and no time to integrate, a second stimulus competes for encoding resources rather than adding a second route to the same memory.</dd>
+      </dl>
+    </div>
+
+    <h2 id="question">The question</h2>
+
+    <p>Two findings set this up. First, dual-coding theory: pairing an image with an auditory cue should create a strong associative bridge, since the information gets encoded through two channels rather than one. Second, and separately, auditory recognition memory is substantially weaker than visual recognition memory — a robust and somewhat unintuitive result.</p>
+
+    <p>Put together, they suggest something practical. If auditory memory is the weak channel and dual coding strengthens encoding, then pairing sounds with images should shore up the weak channel. And if pairing works partly through associative familiarity, a <em>familiar</em> face might scaffold an unfamiliar sound better than an unfamiliar face would.</p>
+
+    <p>So the study wasn't testing whether dual coding exists. It was mapping where the benefit is largest — building what I described at the time as a recognition hierarchy based on stimulus familiarity.</p>
+
+    <h4>Hypotheses</h4>
+    <ol>
+      <li>Pairing visual face images with sounds will produce more robust encoding than either alone.</li>
+      <li>Pairing sounds with <em>familiar</em> faces will produce higher recognition accuracy for the sounds than pairing them with unfamiliar faces.</li>
+      <li>Recognition accuracy for faces will exceed accuracy for sounds across conditions.</li>
+    </ol>
+
+    <p>One and two were wrong. Three replicated.</p>
+
+    <h2 id="design">Design</h2>
+
+    <p>Within-subjects, six study/test cycles. Each cycle presented a set of stimuli to encode, then a test phase where participants judged each item "old" or "new" along with a confidence rating.</p>
+
+    <table class="cs-table">
+      <caption>The six conditions</caption>
+      <thead>
+        <tr><th scope="col">Condition</th><th scope="col">Tested on</th><th scope="col">Paired with</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Image</td><td>Nothing</td></tr>
+        <tr><td>2</td><td>Image</td><td>Unfamiliar audio</td></tr>
+        <tr><td>3</td><td>Image</td><td>Familiar audio</td></tr>
+        <tr><td>4</td><td>Audio</td><td>Nothing</td></tr>
+        <tr><td>5</td><td>Audio</td><td>Unfamiliar image</td></tr>
+        <tr><td>6</td><td>Audio</td><td>Familiar image</td></tr>
+      </tbody>
+    </table>
+
+    <p>The structure is a crossed design: each modality tested alone, with an unfamiliar partner, and with a familiar partner. That lets you separate two things that are easy to conflate — whether a second modality helps at all, and whether the <em>familiarity</em> of the partner matters.</p>
+
+    <p>Seventy-two participants were recruited from the university subject pool, ages 18–30 (M = 20.4). Five were excluded for below-chance performance, leaving 67 analyzed.</p>
+
+    <h2 id="measure">Why signal detection theory</h2>
+
+    <p>The measure was d′ rather than raw accuracy, and that choice does real work here.</p>
+
+    <p>Raw hit rate confounds two different things: how well you can tell studied items from new ones, and how willing you are to say "old." A participant who answers "old" to everything gets a perfect hit rate and has discriminated nothing. Signal detection theory separates discriminability (d′) from response bias, so a higher d′ means genuinely better ability to tell signal from noise rather than a looser threshold.</p>
+
+    <p>That matters especially across modalities. People may well be more willing to guess "old" on a sound they half-recognize than on a face, and a comparison built on hit rates would read that bias difference as a memory difference. Collecting confidence ratings let me plot full ROC curves rather than relying on a single threshold, which is the more complete picture of discrimination performance.</p>
+
+    <h2 id="results">Results</h2>
+
+    <table class="cs-table">
+      <caption>Mean d′ by condition — higher is better discrimination</caption>
+      <thead>
+        <tr><th scope="col">Condition</th><th scope="col">Tested</th><th scope="col">Paired with</th><th scope="col" class="num">d′</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Image</td><td>No audio</td><td class="num">1.83</td></tr>
+        <tr><td>2</td><td>Image</td><td>Unfamiliar audio</td><td class="num">1.62</td></tr>
+        <tr><td>3</td><td>Image</td><td>Familiar audio</td><td class="num">1.59</td></tr>
+        <tr><td>4</td><td>Audio</td><td>No image</td><td class="num">0.77</td></tr>
+        <tr><td>5</td><td>Audio</td><td>Unfamiliar image</td><td class="num">0.68</td></tr>
+        <tr><td>6</td><td>Audio</td><td>Familiar image</td><td class="num">0.78</td></tr>
+      </tbody>
+    </table>
+
+    <div class="finding">
+      <h3>Pairing hurt visual recognition</h3>
+
+      <p>Faces alone produced the highest discrimination in the study. Adding a sound cost roughly 0.2 in d′, and it made essentially no difference whether that sound was familiar or unfamiliar. Condition 1 was the only condition to reach statistical significance in the analysis (p = 0.024).</p>
+
+      <p>This is the reverse of the prediction. Dual coding says the second channel should add a retrieval route; here it subtracted performance.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Pairing did nothing for auditory recognition</h3>
+
+      <p>The three audio conditions span 0.68 to 0.78 — a range small enough to treat as flat. Adding an image, familiar or not, neither helped nor meaningfully hurt.</p>
+
+      <p>This is the part I find most interesting, and it's the asymmetry that constrains the explanation. If a second modality simply added noise, you'd expect a cost in both directions. If it simply added a retrieval route, you'd expect a benefit in both. Getting a cost in the strong modality and nothing in the weak one points at competition for a limited resource rather than at interference or at redundant encoding.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Visual beat auditory by a wide margin</h3>
+
+      <p>Averaged across conditions, visual d′ was 1.68 against auditory d′ of 0.74 — more than double. This replicated the established finding and is the one hypothesis that survived. Worth noting it's a replication, not a contribution.</p>
+    </div>
+
+    <div class="finding">
+      <h3>The familiarity manipulation produced nothing</h3>
+
+      <p>Familiar and unfamiliar partners performed within a few hundredths of each other in every comparison. The whole familiarity axis of the design — the part that would have built the hierarchy I set out to map — returned nothing at all.</p>
+
+      <p>The honest reading is that this is as likely to be a manipulation problem as a null effect. If the familiarity contrast wasn't strong enough to register, or if participants didn't encode the partner stimulus at all in a paired trial, then the design couldn't detect a familiarity effect whether or not one exists. That's a measurement question I'd want to resolve before concluding anything about familiarity.</p>
+    </div>
+
+    <h2 id="interpretation">What I think happened</h2>
+
+    <p>The interpretation I'd defend is a divided-attention account. In these trials the two stimuli arrived together, with no instruction or time to integrate them into a single unit. Encoding capacity at the moment of presentation is limited. Given two things and no reason to bind them, attention splits — and the item that loses is the one that was being encoded most efficiently, because it had the most to lose.</p>
+
+    <p>That reconciles the result with dual-coding theory rather than contradicting it. Dual coding describes a benefit from two <em>integrated</em> representations of the same content — an image and a word naming it. My design paired two <em>unrelated</em> items and tested one of them. Those are different things, and my hypothesis quietly assumed they were the same.</p>
+
+    <p>Recognizing that is really the finding. The prediction failed because of a mismatch between the theory's mechanism and my operationalization of it, not because the theory is wrong. A follow-up would manipulate whether the pair is presented as a unit to be associated versus two co-occurring stimuli — which is a better-specified study than the one I ran.</p>
+
+    <h2 id="limits">Limitations</h2>
+
+    <ul>
+      <li><strong>The reported significance test needs specifying.</strong> The poster reports a significant effect for condition 1 at p = 0.024 without stating the contrast. On its own a single condition can't have an effect — it has to be significant relative to something. If I were presenting this now I'd name the comparison explicitly, report the test statistic and an effect size, and correct for the number of pairwise comparisons across six conditions. As written, the strongest claim in the study is the least precisely reported.</li>
+      <li><strong>No confidence intervals on the d′ estimates.</strong> Point estimates without intervals make a 0.2 difference and a 0.1 difference look like the same kind of evidence, and they aren't necessarily.</li>
+      <li><strong>Exclusions were outcome-based.</strong> Removing five participants for below-chance performance is defensible — they weren't doing the task — but it's a criterion applied after seeing the data, and I'd pre-specify it now.</li>
+      <li><strong>Undergraduate subject pool.</strong> Narrow age range, self-selected, single site.</li>
+      <li><strong>Single study, no replication.</strong> Everything here is one dataset.</li>
+      <li><strong>The familiarity manipulation was never validated.</strong> Its null result can't be distinguished from a manipulation that didn't take.</li>
+    </ul>
+
+    <h2 id="carried">What I carried forward</h2>
+
+    <p><strong>Separate discrimination from bias.</strong> Signal detection theory was the first framework that made me think carefully about the difference between whether someone can tell two things apart and whether they're inclined to say so. That distinction shows up constantly in applied research — in survey response styles, in how staff use the extremes of a rating scale, in whether a low click-through rate means people didn't see something or didn't want it.</p>
+
+    <p><strong>Check that your operationalization matches the mechanism you're invoking.</strong> My hypotheses were derived correctly from the literature and tested something the literature wasn't describing. That's a failure mode no amount of statistical care catches, and it's why I now write out the mechanism I think is operating before designing the manipulation.</p>
+
+    <p><strong>A failed prediction is a result.</strong> This was my first experience of a study coming out backwards, and the useful part was that the pattern was <em>specific</em> — a cost in one modality, nothing in the other — rather than just noisy. Specific unexpected patterns are informative in a way that vague ones aren't, and noticing the difference is most of what makes a null worth writing up.</p>
+
+    <p><a href="../assets/multisensory-recognition-memory-thesis.pdf">Read the full thesis (PDF)</a> &nbsp;·&nbsp; <a href="../assets/multisensory-recognition-memory-poster.pdf">Conference poster (PDF)</a></p>
+
+    <div class="cs-note">
+      <p>Undergraduate honors thesis, conducted in the Miller Memory Lab at UC Santa Barbara with support from an Undergraduate Research &amp; Creative Activities grant. Participants are de-identified.</p>
+    </div>
+
+    <div class="cs-next">
+      <p>Next</p>
+      <a href="facial-impressions-memory.html">How facial impressions shape memory</a>
+    </div>
+
+  </article>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot-inner">
+    <span>Grace Liu — product &amp; UX research</span>
+    <span><a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
