@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Designing a voice agent to administer a depression screener at bedside — Grace Liu</title>
+<meta name="description" content="Evidence synthesis and field critique for a companion robot's voice agent administering the PHQ-9 depression screener to older adults in skilled nursing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..700;1,8..60,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="skip" href="#body">Skip to the case study</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">Grace Liu</a>
+    <nav aria-label="Primary">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="mailto:grace20029@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="cs-head shell">
+  <a class="cs-back" href="../index.html#work">Back to selected work</a>
+  <h1>Designing a voice agent to administer a depression screener at bedside</h1>
+  <p class="cs-standfirst">A companion robot was asking older adults, many with dementia, nine validated questions about their mood. The prototype worked well enough to look promising and badly enough to be dangerous. My job was to work out how it should speak and listen — and where the evidence ran out.</p>
+
+  <dl class="cs-meta">
+    <div><dt>Role</dt><dd>Researcher — evidence synthesis, prototype critique, voice-preference interviews</dd></div>
+    <div><dt>Timeline</dt><dd>July – September 2026</dd></div>
+    <div><dt>Methods</dt><dd>Literature synthesis, review of recorded bedside sessions, field observation, preference interviews (n=6)</dd></div>
+    <div><dt>Output</dt><dd>Design parameters, session-level critique, voice recommendation</dd></div>
+    <div><dt>Context</dt><dd>Norbert Health; a prototype feature tested in skilled nursing</dd></div>
+  </dl>
+</div>
+
+<div class="shell cs-layout">
+
+  <nav class="cs-toc" aria-label="On this page">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#context">The problem</a></li>
+      <li><a href="#prototype">What the prototype did</a></li>
+      <li><a href="#conflict">Three bodies of evidence</a></li>
+      <li><a href="#spec">The design parameters</a></li>
+      <li><a href="#gap">Where the evidence ran out</a></li>
+      <li><a href="#field">What the bedside sessions showed</a></li>
+      <li><a href="#voice">Testing the voice</a></li>
+      <li><a href="#outcome">What changed</a></li>
+      <li><a href="#reflection">What I'd do differently</a></li>
+    </ol>
+  </nav>
+
+  <article class="cs-body" id="body">
+
+    <div class="cs-tldr">
+      <h2>The short version</h2>
+      <dl>
+        <dt>The question</dt>
+        <dd>How should a robot speak — pace, pauses, wording, voice — when it asks a frail older adult whether they've felt hopeless lately?</dd>
+
+        <dt>What the research found</dt>
+        <dd>The guidance didn't agree. Dementia care says to leave long silences; voice-AI norms say a two-second gap feels broken. The two are compatible once you separate them: <em>wait long before deciding the person has finished, and respond fast once they have.</em></dd>
+
+        <dt>What testing showed</dt>
+        <dd>Residents were comfortable answering out loud, even with a roommate present. The binding problem was listening, not speaking: the agent sometimes recorded answers nobody gave, and in a few cases flipped a score's severity.</dd>
+
+        <dt>Where it landed</dt>
+        <dd>The team paused expansion, added a human check on every answer, and set a quality bar before any screener goes to production. I argued the robot is an interaction agent before it is a measurement agent — and that the screener should be held to the second standard.</dd>
+      </dl>
+    </div>
+
+    <h2 id="context">The problem</h2>
+
+    <p>The PHQ-9 is a nine-question depression screener: <em>over the last two weeks, how often have you been bothered by…</em> with four answer options from "not at all" to "nearly every day." In U.S. nursing homes a version of it is part of the federally required resident assessment, and it is normally administered by staff in a structured interview, a few times a year.</p>
+
+    <p>Norbert visits residents every day. If it could administer the screener reliably between formal assessments, clinicians would see mood changes earlier, and staff would get time back. That was the product case.</p>
+
+    <p>The population makes this hard. Residents are older, many have dementia or hearing loss, they tire quickly, and rooms are shared and often loud with television. And the stakes are unusual for a voice interface: question nine asks about thoughts of self-harm. A screener that mishears an answer isn't a usability bug. It's a missed clinical signal, or a false one in someone's chart.</p>
+
+    <h2 id="prototype">What the prototype did</h2>
+
+    <p>The first version read each question and the four options aloud through the robot, captured the spoken answer, and scored it, with a remote operator listening in. The team started bedside sessions on two floors in late July. I observed sessions and reviewed recordings, and wrote a session-by-session critique.</p>
+
+    <p>The early problems were concrete:</p>
+    <ul>
+      <li><strong>It couldn't rephrase.</strong> When a resident was confused by the first question, the agent repeated it word for word. In one session it looped the same question seven times.</li>
+      <li><strong>Its prompts were too long.</strong> Residents started answering before it finished. The microphone was muted while the robot spoke — deliberately, to keep television audio out — so those answers were lost.</li>
+      <li><strong>It never said the resident's name,</strong> and several residents asked whether it was talking to them.</li>
+      <li><strong>Silence read as refusal.</strong> A resident taking time to think got the question again, which comes across as impatience.</li>
+    </ul>
+
+    <p>A single change came out of the first day: if a resident answered "not at all" to both of the first two questions, the agent stopped there. That two-question version (the PHQ-2) is itself validated as a first-stage screen, and it cut session time sharply for most residents.</p>
+
+    <h2 id="conflict">Three bodies of evidence that disagreed</h2>
+
+    <p>To turn the critique into a specification, I synthesized three literatures that each had something to say and didn't agree with each other.</p>
+
+    <table class="cs-table">
+      <caption>What each evidence base recommended, and where they collided</caption>
+      <thead>
+        <tr><th scope="col">Evidence base</th><th scope="col">What it says</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Dementia and geriatric communication</strong></td><td>Speak slowly, one idea at a time, and allow long processing time. Pauses of two seconds or more usually signal conversational trouble — but people with dementia need significant pauses to answer at all.</td></tr>
+        <tr><td><strong>Voice-AI and human-robot interaction</strong></td><td>Human turn gaps are around 200 ms, so two seconds of latency feels broken. Fixed listening windows cut people off mid-answer. Show turn-taking visually; let people interrupt.</td></tr>
+        <tr><td><strong>Clinical voice and chatbot screeners</strong></td><td>Read items verbatim for psychometric validity, but wrap them in flexible, empathetic dialogue. Speaking answers aloud didn't suppress disclosure — though that was in a private clinic room.</td></tr>
+      </tbody>
+    </table>
+
+    <p>Read side by side, these look contradictory: be patient, but don't be slow; be warm, but don't change the words. Two separations resolved most of it.</p>
+
+    <div class="finding">
+      <h3>1. Waiting and responding are different moments</h3>
+      <p>The dementia literature is about how long to wait before deciding someone has finished. The voice-AI literature is about how long to take to reply once they have. Those aren't in tension. The parameter became: wait at least three to five seconds of silence before re-prompting, never treat a two-second gap as disengagement, and reply within about a second once the answer is in.</p>
+      <blockquote>
+        <p>Wait long before deciding the patient has finished, and respond fast once they have.</p>
+        <cite>From my synthesis</cite>
+      </blockquote>
+    </div>
+
+    <div class="finding">
+      <h3>2. Warmth goes in the transitions, not the items</h3>
+      <p>The questions themselves are read verbatim, one at a time, never bundled. Everything around them — the greeting, the purpose, the receipts, the recovery when something goes wrong — can be conversational. Residents can answer in their own words; the agent maps the answer to one of the four options and confirms it before scoring.</p>
+    </div>
+
+    <div class="finding">
+      <h3>3. Privacy was an open question, so I flagged it as one</h3>
+      <p>The clinic study's finding that people disclose freely out loud was encouraging but didn't transfer: a shared bedside room is not a private exam room. I recommended offering a non-voice way to answer and treating privacy as something to measure in the field, not assume.</p>
+    </div>
+
+    <h2 id="spec">The design parameters</h2>
+
+    <p>The synthesis ended in a prioritized specification, written to be implementable rather than aspirational.</p>
+
+    <h4>Speech</h4>
+    <ul>
+      <li><strong>Rate:</strong> 0.85–0.9× normal speed.</li>
+      <li><strong>Length:</strong> five to nine words per sentence, one idea per turn, at most two sentences.</li>
+      <li><strong>Pauses:</strong> a deliberate beat after each question before the options, and more space between options.</li>
+      <li><strong>Voice:</strong> middle-aged, warm, calm, with crisp consonants — age-related hearing loss hits high frequencies first, so very deep or very breathy voices are harder to hear. A banned-word list for patronizing language ("sweetie," "honey") and for casual filler.</li>
+    </ul>
+
+    <h4>Listening</h4>
+    <ul>
+      <li><strong>A visible listening indicator</strong> — a simple light that shows whose turn it is. I flagged this as the highest-value, lowest-cost change on the list.</li>
+      <li><strong>Interpret answers in context:</strong> map "sometimes, not much" against the question that was asked, not in isolation.</li>
+      <li><strong>Confirm before scoring,</strong> with a receipt: "Okay — you said sometimes."</li>
+      <li><strong>Audio order of operations:</strong> fix echo cancellation and gain control first, because much of the "noise" may be the robot hearing itself; then a microphone array; only light noise suppression, since heavy denoising hurts speech recognition.</li>
+    </ul>
+
+    <h4>Dialogue</h4>
+    <ul>
+      <li><strong>Start warm, not cold.</strong> Rapport, consent, a sentence about why, and one or two practice questions before anything is scored. For a mood screener this isn't decoration — starting cold biases the thing being measured.</li>
+      <li><strong>A real ready-check with branches.</strong> Yes starts the screener. Confusion gets the options re-read more slowly, once; a second sign of confusion gets an offer to bring a nurse. "Not now" gets "Of course. I'll wait."</li>
+      <li><strong>Silence gets patience, not repetition:</strong> "Take your time, I'm still here."</li>
+      <li><strong>Signposting:</strong> how long it takes, that they can stop any time, and "that's question three of nine."</li>
+      <li><strong>Closing on a hard answer.</strong> After someone has said they feel hopeless, "That's everything!" is the wrong last line. Ask whether there's anything to pass along.</li>
+    </ul>
+
+    <h2 id="gap">Where the evidence ran out</h2>
+
+    <p>The most useful output of a synthesis is often the list of things it can't tell you. Three stood out:</p>
+    <ol>
+      <li><strong>No source gave a number for how long to wait.</strong> Every guideline said "allow time"; none said how many seconds, and certainly not for this population on this robot. I recommended making the wait a per-resident parameter that adapts to how long each person typically takes to answer.</li>
+      <li><strong>No source said what voice or speech rate would work here.</strong> That needed primary testing with residents — which became the voice interviews below.</li>
+      <li><strong>No source established whether residents with moderate dementia can validly self-report through a voice agent at all.</strong> That turned out to be the most important unknown, and the field data started to answer it.</li>
+    </ol>
+
+    <h2 id="field">What the bedside sessions showed</h2>
+
+    <p>The team's bedside testing ran across two floors over about two weeks. These are the team's results; I'm including them because they're what the specification had to answer to.</p>
+
+    <div class="bar-row">
+      <span>Completed a screen</span>
+      <span class="bar-track"><span class="bar-fill" style="width:25.3%;--bar:var(--cat-product)"></span></span>
+      <span class="bar-val">20</span>
+    </div>
+    <div class="bar-row">
+      <span>Attempted, not completed</span>
+      <span class="bar-track"><span class="bar-fill" style="width:50.6%;--bar:var(--cat-case)"></span></span>
+      <span class="bar-val">40</span>
+    </div>
+    <div class="bar-row">
+      <span>Not attempted</span>
+      <span class="bar-track"><span class="bar-fill" style="width:24.1%;--bar:var(--ink-faint)"></span></span>
+      <span class="bar-val">19</span>
+    </div>
+    <p class="bar-legend">79 residents across two floors. Of the 20 completed screens, 14 stopped after the two-question gate and 6 were full nine-question screens. "Not attempted" includes residents who decline robot visits and residents who are non-verbal or hard of hearing.</p>
+
+    <div class="finding">
+      <h3>Residents were comfortable. The privacy worry didn't materialize.</h3>
+      <p>On the floor with session-level tracking (29 sessions), residents rated their comfort 4.4 out of 5 on average, and completion was no lower with another person in the room than alone. The numbers are too small to say more than that — but they cut against the assumption that bedside was too public for this.</p>
+    </div>
+
+    <div class="finding">
+      <h3>The agent agreed with the human listener 83% of the time — and the other 17% mattered more</h3>
+      <p>Across 80 questions, the agent's recorded answer matched what the operator heard 83% of the time, and the operator had to step in on about a quarter of questions. Broken down, the disagreements weren't random noise:</p>
+
+      <table class="cs-table">
+        <caption>The 14 disagreements between the agent and the human listener</caption>
+        <thead>
+          <tr><th scope="col">Type</th><th scope="col" class="num">Count</th><th scope="col">What happened</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Answer recorded that wasn't given</td><td class="num">7</td><td>The operator heard no clear answer, but the agent scored one. Mostly with residents with dementia who were talking about something else entirely.</td></tr>
+          <tr><td>Answer missed or under-scored</td><td class="num">4</td><td>A clear "not at all" not recognized; "half the days" recorded as "not at all."</td></tr>
+          <tr><td>Severity flipped</td><td class="num">3</td><td>"Not every day" transcribed as "nearly every day" — the opposite end of the scale, from clean audio.</td></tr>
+        </tbody>
+      </table>
+
+      <p>Twelve of the fourteen came from just three sessions. That pattern is the finding: the agent doesn't fail evenly, it fails with specific residents, and the residents it fails with are the ones least able to notice or correct it. A score produced that way looks exactly like a valid one in the chart.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Question nine needs a protocol, not a parameter</h3>
+      <p>One response to the self-harm item was escalated for clinical review during testing. Every result was human-reviewed, which is how it was caught and adjudicated. But that review was a property of the test, not the product. A production screener needs a written response and escalation protocol for that item before anything else about it ships.</p>
+    </div>
+
+    <h2 id="voice">Testing the voice</h2>
+
+    <p>The literature couldn't say which voice or speech rate would work for these residents, so in September I ran preference interviews with six residents across four floors, comparing three candidate voices at the slower rate.</p>
+
+    <ul>
+      <li><strong>The slower rate was acceptable to all six.</strong> Pacing wasn't a differentiator, which meant the team could deploy 0.85–0.9× without a trade-off.</li>
+      <li><strong>The bright, bubbly voice was eliminated</strong> after visible aversive reactions — wincing, scoffing — that residents didn't always put into words. Watching faces mattered as much as asking questions.</li>
+      <li><strong>Animation and perceived age turned out to be separate dimensions.</strong> Residents could find a voice warm without finding it young. I recommended the warm, calm voice.</li>
+    </ul>
+
+    <h2 id="outcome">What changed</h2>
+
+    <p>Several decisions followed from the testing and the critique. These were team decisions; my research fed them.</p>
+    <ul>
+      <li><strong>Expansion to a third floor was paused</strong> until capture quality improved.</li>
+      <li><strong>A hybrid check became mandatory:</strong> the operator listens live and logs answers independently, the agent confirms every answer at least once, and unclear audio is flagged for review.</li>
+      <li><strong>A quality gate before production:</strong> new voice agents now need a run of monitored interactions with human review and a failure taxonomy before they reach residents.</li>
+      <li><strong>Audio became the company priority.</strong> Microphone and echo work moved to the top of the engineering list.</li>
+      <li><strong>Voice tone and speed were updated</strong> across the product, not just the screener.</li>
+    </ul>
+
+    <p>The reframe I argued for was simpler. Norbert is an interaction agent before it is a measurement agent. Residents will forgive an awkward conversation; a chart won't forgive a wrong score. So the screener should be held to a measurement standard — validated against nurse-administered scores, with a clear eligibility rule for residents with cognitive impairment — before it carries clinical weight.</p>
+
+    <h2 id="reflection">What I'd do differently</h2>
+
+    <ul>
+      <li><strong>Synthesize before the first session, not after.</strong> I wrote the specification once testing had already started, so several parameters arrived as fixes instead of defaults. A two-day literature pass up front would have prevented the looping and the cut-off answers.</li>
+      <li><strong>Settle eligibility first.</strong> The most consequential errors came from a handful of residents with more advanced dementia. A short cognitive screen beforehand — or routing those residents to the observational version of the instrument — would have protected both the residents and the data.</li>
+      <li><strong>Measure against the real benchmark.</strong> Agreement with the operator is a useful proxy, but the question that decides whether this is a clinical tool is agreement with nurse-administered scores. That comparison is the next study I'd run.</li>
+    </ul>
+
+    <div class="cs-note">
+      <p><strong>On confidentiality.</strong> This describes a prototype that has not been released. The facility, partners, and staff are not named, and no resident-identifiable information appears here; all resident results are aggregated, and individual scores are not reported. Some internal product and vendor detail has been withheld.</p>
+    </div>
+
+    <div class="cs-next">
+      <p>Next</p>
+      <a href="norbert-prompt-phrasing.html">Prompt phrasing and the engagement funnel</a>
+    </div>
+
+  </article>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot-inner">
+    <span>Grace Liu — product &amp; UX research</span>
+    <span><a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

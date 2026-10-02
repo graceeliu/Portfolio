@@ -109,7 +109,7 @@ a:hover { text-decoration-color: var(--accent); }
 
 /* ---------- Hero ---------- */
 
-.hero { padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(2.5rem, 5vw, 4rem); }
+.hero { padding-top: clamp(3.5rem, 9vw, 7rem); padding-bottom: clamp(2.5rem, 5vw, 4rem); }
 
 .hero h1 {
   font-family: var(--sans);
@@ -138,7 +138,7 @@ a:hover { text-decoration-color: var(--accent); }
 
 /* ---------- Section headers ---------- */
 
-.section { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+.section { padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: clamp(2.5rem, 6vw, 4.5rem); }
 .section-head {
   display: flex; align-items: flex-end; justify-content: space-between;
   gap: 1.5rem; flex-wrap: wrap;
@@ -194,11 +194,14 @@ a:hover { text-decoration-color: var(--accent); }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
 }
 
+/* Every cell draws its own right and bottom rule, so the grid stays
+   closed no matter which cards span two columns or how many there are. */
 .item {
   grid-column: span 1;
   border-bottom: 1px solid var(--rule);
@@ -209,13 +212,11 @@ a:hover { text-decoration-color: var(--accent); }
   background: transparent;
   transition: background-color 140ms ease;
 }
-.item:nth-child(3n) { border-right: 0; }
 .item.is-wide { grid-column: span 2; }
-.item.is-wide:nth-child(3n) { border-right: 1px solid var(--rule); }
 
 .item.is-hidden { display: none; }
 
-.item-link { text-decoration: none; color: inherit; display: block; }
+.item-link { text-decoration: none; color: inherit; display: flex; flex-direction: column; flex: 1; }
 .item:has(.item-link):hover { background: var(--paper-tint); }
 
 .item-tags {
@@ -255,14 +256,12 @@ a:hover { text-decoration-color: var(--accent); }
 .item-soon { font-family: var(--sans); font-size: 0.8125rem; color: var(--ink-faint); font-style: normal; }
 
 @media (max-width: 860px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-  .item:nth-child(3n) { border-right: 1px solid var(--rule); }
-  .item:nth-child(2n) { border-right: 0; }
-  .item.is-wide { grid-column: span 2; border-right: 0; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
   .grid { grid-template-columns: 1fr; }
-  .item, .item.is-wide { grid-column: span 1; border-right: 0; }
+  .item, .item.is-wide { grid-column: span 1; }
+  .item { padding: 1.25rem 1.1rem 1.35rem; }
 }
 
 /* ---------- About ---------- */
@@ -291,7 +290,7 @@ a:hover { text-decoration-color: var(--accent); }
    Case study pages
    =========================================================== */
 
-.cs-head { padding: clamp(2.5rem, 6vw, 4.5rem) 0 0; }
+.cs-head { padding-top: clamp(2.5rem, 6vw, 4.5rem); }
 .cs-back {
   font-family: var(--sans); font-size: var(--step--1); font-weight: 550;
   color: var(--ink-soft); text-decoration: none;
@@ -326,7 +325,7 @@ a:hover { text-decoration-color: var(--accent); }
 .cs-meta dt { font-weight: 620; margin-bottom: 0.2rem; }
 .cs-meta dd { margin: 0; color: var(--ink-soft); }
 
-.cs-layout { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+.cs-layout { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
 .cs-body { max-width: var(--measure); min-width: 0; }
 
 .cs-toc { position: sticky; top: 5rem; font-family: var(--sans); font-size: 0.8125rem; }
@@ -409,7 +408,7 @@ blockquote cite {
 }
 
 /* Tables */
-.cs-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 1.75rem; font-family: var(--sans); font-size: var(--step--1); }
+.cs-table { width: 100%; table-layout: auto; overflow-wrap: break-word; border-collapse: collapse; margin: 1.5rem 0 1.75rem; font-family: var(--sans); font-size: var(--step--1); }
 .cs-table caption { text-align: left; color: var(--ink-faint); font-size: 0.8125rem; margin-bottom: 0.55rem; }
 .cs-table th, .cs-table td { text-align: left; padding: 0.6rem 0.75rem 0.6rem 0; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
 .cs-table thead th { border-bottom: 1px solid var(--ink); font-weight: 620; }
@@ -417,8 +416,8 @@ blockquote cite {
 
 /* Inline bar for distributions */
 .bar-row { display: grid; grid-template-columns: minmax(110px, 0.9fr) 1fr 3.5rem; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; font-family: var(--sans); font-size: var(--step--1); }
-.bar-track { background: var(--rule-soft); height: 14px; }
-.bar-fill { height: 14px; background: var(--bar, var(--accent)); }
+.bar-track { display: block; background: var(--rule-soft); height: 14px; }
+.bar-fill { display: block; height: 14px; background: var(--bar, var(--accent)); }
 .bar-val { text-align: right; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 .bar-legend { font-family: var(--sans); font-size: 0.8125rem; color: var(--ink-faint); margin: 0.9rem 0 1.75rem; }
 
@@ -566,3 +565,26 @@ figcaption { font-family: var(--sans); font-size: 0.8125rem; color: var(--ink-fa
   font-weight: 550;
   color: var(--ink-faint);
 }
+
+/* ===========================================================
+   Small-screen polish
+   =========================================================== */
+
+@media (max-width: 560px) {
+  .masthead-inner { gap: 0.5rem 1rem; }
+  .masthead nav { gap: 1rem; }
+  .bar-row { grid-template-columns: minmax(0, 1fr) 3rem; }
+  .bar-row .bar-track { grid-column: 1 / -1; grid-row: 2; }
+  .cs-tldr { padding: 1.2rem 1.1rem 0.9rem; }
+  blockquote { font-size: var(--step-0); }
+  .cs-table { font-size: 0.8125rem; }
+  .cs-table th, .cs-table td { padding-right: 0.5rem; }
+}
+
+/* Two-up comparison used in case studies (e.g. Arm A vs Arm B) */
+.compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0 1.75rem; font-family: var(--sans); font-size: var(--step--1); }
+.compare > div { border: 1px solid var(--rule); background: var(--paper-2); padding: 1rem 1.1rem; }
+.compare h4 { margin: 0 0 0.4rem !important; font-size: var(--step--1) !important; color: var(--ink-faint); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.compare p { margin: 0; font-family: var(--serif); font-size: var(--step-0); color: var(--ink); }
+@media (max-width: 560px) { .compare { grid-template-columns: 1fr; } }
+.item-cta { margin-top: 0.75rem; font-family: var(--sans); }

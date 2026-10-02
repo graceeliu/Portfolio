@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompt phrasing and the engagement funnel — Grace Liu</title>
+<meta name="description" content="A pre-registered within-subject crossover test of generic versus personalized prompts for a companion robot in skilled nursing — and what the reversed result taught.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..700;1,8..60,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="skip" href="#body">Skip to the case study</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">Grace Liu</a>
+    <nav aria-label="Primary">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="mailto:grace20029@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="cs-head shell">
+  <a class="cs-back" href="../index.html#work">Back to selected work</a>
+  <h1>Prompt phrasing and the engagement funnel</h1>
+  <p class="cs-standfirst">Residents were looking at the robot, waving at it, and then saying nothing. I tested whether a better first question would get them talking. It didn't — the generic prompt won — and because the decision rules were written down before launch, that result was useful instead of awkward.</p>
+
+  <dl class="cs-meta">
+    <div><dt>Role</dt><dd>Sole researcher — diagnosis, hypotheses, pre-registration, design, analysis, readout</dd></div>
+    <div><dt>Timeline</dt><dd>July – September 2026</dd></div>
+    <div><dt>Methods</dt><dd>Funnel analysis, floor observation, pre-registered within-subject crossover A/B test</dd></div>
+    <div><dt>Sample</dt><dd>32 residents with complete pairs, across two floors</dd></div>
+    <div><dt>Context</dt><dd>Norbert Health, a companion robot with remote operators in skilled nursing</dd></div>
+  </dl>
+</div>
+
+<div class="shell cs-layout">
+
+  <nav class="cs-toc" aria-label="On this page">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#funnel">Where the funnel broke</a></li>
+      <li><a href="#measure">Fixing the measurement first</a></li>
+      <li><a href="#design">The experiment</a></li>
+      <li><a href="#rules">Decision rules, set in advance</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#principle">The principle underneath</a></li>
+      <li><a href="#decision">The decision</a></li>
+      <li><a href="#validity">What limits this</a></li>
+      <li><a href="#reflection">What I'd do differently</a></li>
+    </ol>
+  </nav>
+
+  <article class="cs-body" id="body">
+
+    <div class="cs-tldr">
+      <h2>The short version</h2>
+      <dl>
+        <dt>The problem</dt>
+        <dd>After a release that taught the robot to wave and make eye contact, most residents acknowledged it. Only about one in ten spoke to it. The drop was between noticing and talking.</dd>
+
+        <dt>The test</dt>
+        <dd>Each resident got a generic check-in one day and a personalized question the other, in randomized order, so every resident was their own control. The threshold to ship personalization was set before launch: a 10-point lift, holding on every floor.</dd>
+
+        <dt>The result</dt>
+        <dd>The generic prompt won, 66% to 49% verbal response. Of the eleven residents who answered one prompt but not the other, only two favored the personalized one. Every pre-registered criterion for personalization failed.</dd>
+
+        <dt>What it was worth</dt>
+        <dd>Under the surface was a pattern: questions about something present — breakfast, the room, what's on TV — got answers; questions that asked residents to recall something often didn't. That became the product recommendation.</dd>
+      </dl>
+    </div>
+
+    <h2 id="funnel">Where the funnel broke</h2>
+
+    <p>Remote operators label every visit the robot makes to an awake resident as one of three outcomes: no response; acknowledged (looks at the robot, waves, makes eye contact); or responded (says something back). That gives a simple funnel: the robot reaches the resident, the resident notices, the resident speaks.</p>
+
+    <p>In late July the team shipped waving and eye contact. Acknowledgment rose sharply, and overall engagement climbed from the low 50s to roughly 75–80% of visits. The share of visits where the resident actually spoke barely moved, staying around 10%.</p>
+
+    <p>Floor observation said the same thing in person. Residents looked at the robot when it greeted them and stayed silent when it asked how they were. One note from an observation day suggested the obvious alternative: when a resident is watching television, ask what they're watching.</p>
+
+    <blockquote>
+      <p>Patients notice and look at Norbert but don't talk to it.</p>
+      <cite>From the experiment plan</cite>
+    </blockquote>
+
+    <h2 id="measure">Fixing the measurement first</h2>
+
+    <p>Before testing anything, I had to trust the metric. Two problems were large enough to fake a result on their own.</p>
+
+    <div class="finding">
+      <h3>The denominator moved</h3>
+      <p>An apparent engagement drop after an earlier voice release turned out to be a logging change: the share of visits that got logged at all jumped from about 43% to about 60%, and the newly logged visits were disproportionately quiet ones. The count of engaged visits fell far less than the rate. From then on I reported logging completeness next to every rate.</p>
+    </div>
+
+    <div class="finding">
+      <h3>The response rate tracked operators, not residents</h3>
+      <p>Different operators label the same behavior differently. In one window, the response rate would have been 14.4% instead of 7.5% if one operator had labeled at another's rate. Later, an apparent collapse on one floor turned out to be a change in which operator covered it. I concluded that the absolute response rate wasn't usable as a product KPI — and designed the experiment so that operator differences couldn't masquerade as a prompt effect.</p>
+    </div>
+
+    <div class="finding">
+      <h3>I corrected my own attribution</h3>
+      <p>One biweekly report credited a rise in the response rate to the personalized prompts while the test was running. Two weeks later the rise had faded, and two language updates had shipped in the same window. I revised it in the next report: the cause was uncertain, it looked like a novelty effect, and testing it properly needed a log of every product change by date. Getting that in front of leadership quickly mattered more than the original claim.</p>
+    </div>
+
+    <h2 id="design">The experiment</h2>
+
+    <p><strong>Hypothesis.</strong> A specific, personalized question gets a verbal response more often than a generic check-in, because it's concrete, socially natural, and answerable without much effort.</p>
+
+    <div class="compare">
+      <div>
+        <h4>Arm A · Generic</h4>
+        <p>"Good morning [name], how are you today?"</p>
+      </div>
+      <div>
+        <h4>Arm B · Personalized</h4>
+        <p>"How was breakfast this morning?" · "What are you reading right now?" · "Where did you grow up?"</p>
+      </div>
+    </div>
+
+    <p>Arm B drew from five question types, assigned at random and logged per visit: something visible in the room, a past conversation, reminiscence, the present moment (meals, lighting), and profile questions. Including present-moment questions was deliberate — they're specific without being personal, which let me separate specificity from personalization later.</p>
+
+    <h4>Why within-subject</h4>
+    <p>The differences between residents — cognition, hearing, mood, acuity — are far larger than any plausible prompt effect. Comparing two groups of residents would mostly measure who happened to be in each group. So each resident got both prompts on consecutive days, in randomized order, and served as their own control. Randomization happened at the resident level within each floor.</p>
+
+    <h2 id="rules">Decision rules, set in advance</h2>
+
+    <p>I wrote down what each outcome would mean before any data came in, including the outcome where nothing worked.</p>
+
+    <table class="cs-table">
+      <caption>Pre-registered criteria and what each branch would trigger</caption>
+      <thead>
+        <tr><th scope="col">If…</th><th scope="col">Then</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Personalized beats generic by <strong>≥10 points</strong>, at least <strong>60%</strong> of residents who split favor it, and it wins <strong>on every floor</strong></td><td>Ship personalization</td></tr>
+        <tr><td>Personalized fails, but the generic prompt alone reaches <strong>≥18%</strong> response (about double baseline)</td><td>Keep the generic prompt; personalization isn't worth its setup cost per resident</td></tr>
+        <tr><td>Personalized wins by <strong>3–10 points</strong>, or the lift is concentrated in one floor or one question type</td><td>Iterate</td></tr>
+        <tr><td>No difference between arms</td><td>Phrasing isn't the bottleneck; redirect effort to the voice itself — pacing, turn-taking, intelligibility</td></tr>
+      </tbody>
+    </table>
+
+    <p>Two further checks were built in. An order check: any lift had to hold among residents who did and didn't respond to the generic prompt first, or the real finding was "two questions beat one." And a consistency check, in the plan's own words:</p>
+
+    <blockquote>
+      <p>One floor or two enthusiastic patients carrying the average is an iterate, not a ship.</p>
+      <cite>From the pre-registration</cite>
+    </blockquote>
+
+    <h2 id="results">Results</h2>
+
+    <p>Two floors completed both days. The generic prompt won on both.</p>
+
+    <div class="bar-row">
+      <span>Generic (Arm A)</span>
+      <span class="bar-track"><span class="bar-fill" style="width:65.7%;--bar:var(--cat-academic)"></span></span>
+      <span class="bar-val">65.7%</span>
+    </div>
+    <div class="bar-row">
+      <span>Personalized (Arm B)</span>
+      <span class="bar-track"><span class="bar-fill" style="width:48.6%;--bar:var(--cat-product)"></span></span>
+      <span class="bar-val">48.6%</span>
+    </div>
+    <p class="bar-legend">Verbal response rate per visit. Generic 23 of 35 visits; personalized 18 of 37. Restricting to the 32 residents with both visits gives the same picture: 72% versus 50%.</p>
+
+    <table class="cs-table">
+      <caption>Verbal response rate by floor</caption>
+      <thead>
+        <tr><th scope="col">Floor</th><th scope="col" class="num">Generic</th><th scope="col" class="num">Personalized</th><th scope="col" class="num">Difference</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Floor 1</td><td class="num">65.0% (13/20)</td><td class="num">57.9% (11/19)</td><td class="num">−7.1 pts</td></tr>
+        <tr><td>Floor 2</td><td class="num">66.7% (10/15)</td><td class="num">38.9% (7/18)</td><td class="num">−27.8 pts</td></tr>
+        <tr><td><strong>Combined</strong></td><td class="num"><strong>65.7%</strong></td><td class="num"><strong>48.6%</strong></td><td class="num"><strong>−17.1 pts</strong></td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>The split residents told the same story.</strong> Eleven residents answered one prompt and not the other. Two of them favored the personalized prompt; nine favored the generic one. The pre-registered bar was 60% favoring personalized. It came in at 18%.</p>
+
+    <p><strong>Order didn't explain it.</strong> The generic prompt won whether it came first or second, so this wasn't a second-day fatigue effect.</p>
+
+    <table class="cs-table">
+      <caption>Against the pre-registered criteria</caption>
+      <thead>
+        <tr><th scope="col">Criterion</th><th scope="col">Result</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Personalized ahead by ≥10 points</td><td>Not met — 17 points <em>behind</em></td></tr>
+        <tr><td>Wins on every floor</td><td>Not met — loses on both</td></tr>
+        <tr><td>≥60% of split residents favor personalized</td><td>Not met — 18%</td></tr>
+        <tr><td>Resulting branch</td><td>Keep the generic prompt</td></tr>
+      </tbody>
+    </table>
+
+    <div class="cs-note">
+      <p><strong>A comparison I didn't make.</strong> Both arms came in far above the ~10% baseline response rate, and it's tempting to read that as proof that a deliberate first question works. It isn't. The experiment counted researcher-attended visits with retries, excluded residents who couldn't be reached, and enrolled mostly residents who were already engaged. The baseline counts every logged visit, labeled by operators. Those aren't the same measurement, so the ≥18% bar can't really be judged from this data either.</p>
+    </div>
+
+    <h2 id="principle">The principle underneath</h2>
+
+    <p>The headline was a loss for personalization. The question types inside Arm B were more interesting than the headline.</p>
+
+    <table class="cs-table">
+      <caption>Response rate by personalized question type (both floors; small counts, directional only)</caption>
+      <thead>
+        <tr><th scope="col">Question type</th><th scope="col">Example</th><th scope="col" class="num">Responded</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Present moment</td><td>"How was breakfast this morning?"</td><td class="num">5 of 7</td></tr>
+        <tr><td>Past conversation</td><td>"How are your grandchildren?"</td><td class="num">4 of 7</td></tr>
+        <tr><td>Profile</td><td>"What's your favorite season?"</td><td class="num">1 of 5</td></tr>
+      </tbody>
+    </table>
+
+    <p>Present-moment questions were the only type that did well on both floors. Questions about something visible split into winners and losers depending on the follow-up: asking a resident to <em>describe</em> something in front of them worked; asking them to <em>recall</em> a fact about it often didn't.</p>
+
+    <p>Recoded that way — questions about something present versus questions that ask for retrieval — present-anchored prompts got answers clearly more often. For a population where many residents have memory impairment, that's not surprising in hindsight. A personalized question that asks someone to remember is harder to answer than a generic one, not easier.</p>
+
+    <p>There was a second difference the response rate couldn't see. When residents did answer a specific question, they said more, and what they said was often useful: that lunch was cold, that noise was keeping them awake, that they felt unwell. Same response rate, different conversation.</p>
+
+    <h2 id="decision">The decision</h2>
+
+    <p>The generic check-in stayed the default — not because personalization failed outright, but because this round's real output was a phrasing principle, not a single winning script worth swapping in. I wrote it up as exactly that, and explicitly not as a final verdict on personalization.</p>
+
+    <h4>Product recommendations</h4>
+    <ul>
+      <li><strong>Contextual prompt buttons for operators,</strong> all present-anchored: "Ask about the meal" (adapting to breakfast or lunch by time of day), "Ask about what's visible," "Ask how they're feeling right now."</li>
+      <li><strong>A conversation starters library</strong> of prompts that worked, so good phrasing doesn't depend on which operator is on shift.</li>
+      <li><strong>A profile field for remembered details</strong> — family, hometown, interests — so that retrieval questions, when they're used, are at least about something the resident has actually said.</li>
+    </ul>
+
+    <h4>Research follow-ups</h4>
+    <ul>
+      <li>Close the missing second-day visits on the floor with the most attrition, which would roughly double its usable sample.</li>
+      <li>A reversed-order confirmation round.</li>
+      <li>Deliberately enroll low-engagement residents. This study mostly tested residents who already talk to the robot — not the silent majority that motivated it.</li>
+    </ul>
+
+    <h2 id="validity">What limits this</h2>
+
+    <ul>
+      <li><strong>It's small.</strong> Thirty-two complete pairs and eleven split residents. The direction is consistent across every cut; the size of the gap is not something I'd quote with confidence.</li>
+      <li><strong>The panel was already engaged.</strong> 39 of the 40 enrolled residents had responded to the robot at least half the time in the prior three weeks. I'd flagged that ceiling risk in planning and didn't fully avoid it.</li>
+      <li><strong>Attrition was high.</strong> About 38% of enrolled residents couldn't be reached across sessions — asleep, door closed, declined — and missing second visits clustered on one floor.</li>
+      <li><strong>Operators were confounded with floors.</strong> Each floor had different operators, and the personalized arm depends on operator skill more than the generic one does. One of the clearest wins came from an operator improvising a compliment on a resident's jacket.</li>
+      <li><strong>Two planned measures weren't logged.</strong> How often residents asked the robot to repeat itself, and each resident's cognitive status. Without them I couldn't apply the intelligibility screen or test whether personalization helps cognitively intact residents more.</li>
+    </ul>
+
+    <h2 id="reflection">What I'd do differently</h2>
+
+    <ul>
+      <li><strong>Pre-register the coding scheme, not just the thresholds.</strong> The present-versus-retrieval pattern emerged after the fact. It's the most useful thing the study produced, and it's also the least protected from my own hindsight. The next round should test it as a hypothesis, not report it as a finding.</li>
+      <li><strong>Make the instrument capture what the hypotheses need.</strong> Two of my three hypotheses depended on fields — repeat requests and cognitive status — that never made it onto the data sheet. That's a design failure, not a data failure.</li>
+      <li><strong>Recruit from the bottom of the funnel.</strong> The question was why residents don't talk. The sample was residents who mostly do.</li>
+    </ul>
+
+    <div class="cs-note">
+      <p><strong>On confidentiality.</strong> Floors are relabeled and the facility, staff, and operators are not named. No resident-identifiable information appears here, and anecdotes are generalized. Some internal product detail has been withheld.</p>
+    </div>
+
+    <div class="cs-next">
+      <p>Next</p>
+      <a href="norbert-request-relay.html">Patient request relay and prioritization</a>
+    </div>
+
+  </article>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot-inner">
+    <span>Grace Liu — product &amp; UX research</span>
+    <span><a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

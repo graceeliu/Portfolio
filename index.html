@@ -126,23 +126,16 @@ const PROJECTS = [
   {
     title: "Designing a voice agent to administer a depression screener at bedside",
     tags: ["product"],
-    href: null,
+    href: "work/voice-agent-depression-screener.html",
     blurb: "How should a robot speak when asking older adults, some with dementia, a validated set of questions about how they've been feeling? Synthesized three conflicting evidence bases into implementable parameters, and identified which question the literature genuinely couldn't answer so primary testing got spent there.",
-    meta: ["Evidence synthesis", "Design specification", "Clinical human factors"]
+    meta: ["Evidence synthesis", "Design specification", "Clinical human factors", "Norbert Health"]
   },
   {
     title: "Prompt phrasing and the engagement funnel",
     tags: ["product"],
-    href: null,
-    blurb: "Residents were noticing the robot but not speaking to it. A within-subject crossover A/B test of generic versus personalized prompts, with decision rules and thresholds registered before launch — including the conditions under which a null result redirects effort elsewhere.",
-    meta: ["Experiment design", "Within-subject crossover", "Pre-registered"]
-  },
-  {
-    title: "Cantonese and Mandarin language routing",
-    tags: ["product"],
-    href: null,
-    blurb: "Field research on language-matched interaction in a multilingual resident population, and what it takes to route a resident to the right language without relying on staff to intervene.",
-    meta: ["Field research", "Language personalization", "Norbert Health"]
+    href: "work/norbert-prompt-phrasing.html",
+    blurb: "Residents were noticing the robot but not speaking to it. A pre-registered within-subject crossover tested generic against personalized prompts — and the generic prompt won, 66% to 49%. Because the decision rules were set before launch, the loss was usable: it surfaced a phrasing principle (ask about the present, not the past) that became the product recommendation.",
+    meta: ["Experiment design", "Within-subject crossover", "Pre-registered", "Norbert Health"]
   },
 
   /* ---------- Self-directed case studies ---------- */
@@ -289,7 +282,7 @@ function cardInner(p) {
     <h3>${p.title}</h3>
     <p>${p.blurb}</p>
     <div class="item-foot">${p.meta.map(m => `<span>${m}</span>`).join("")}</div>
-    <div class="item-foot" style="margin-top:.75rem">${foot}</div>
+    <div class="item-cta">${foot}</div>
   `;
 }
 

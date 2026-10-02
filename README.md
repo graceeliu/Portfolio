@@ -8,8 +8,12 @@ five years, and you can fix a typo from your phone.
 portfolio/
 ├── index.html          Home: hero, filterable Selected Work grid, About
 ├── styles.css          All styling for every page
-├── work/
-│   └── norbert-request-relay.html
+├── work/               One page per case study
+│   ├── norbert-request-relay.html
+│   ├── voice-agent-depression-screener.html
+│   ├── norbert-prompt-phrasing.html
+│   └── …
+├── writing/            One short page per writing sample
 └── README.md
 ```
 
@@ -257,9 +261,10 @@ page and get a live site, with no git involved. Same result, slightly less contr
 
 ## Before you publish
 
-- [ ] Written permission from Norbert Health for the request-relay case study
-- [ ] Separate sign-off for the voice agent page — it describes an unreleased
-      feature, so this is a higher bar. Consider holding it until the feature ships.
+- [ ] Written permission from Norbert Health for all three Norbert case studies
+      (request relay, depression screener, prompt phrasing)
+- [ ] Separate sign-off for the depression screener page — it describes an
+      unreleased prototype, so this is a higher bar
 - [ ] Add your LinkedIn URL and resume PDF to the `.hero-meta` block in `index.html`
 - [ ] Decide whether the phone number from your old site should be public (a portfolio
       generally doesn't need one — email is enough, and a public number invites spam)
@@ -268,10 +273,5 @@ page and get a live site, with no git involved. Same result, slightly less contr
 
 ## What's not built yet
 
-The other fifteen projects are in the grid as cards with `href: null`. Send the
-materials in clusters and each one becomes a page. Priority order, if you want a
-recommendation: MedCheck, then the master's thesis, then the topic modeling project
-(that one does double duty for the fintech roles you're interested in).
-
-The voice agent page needs a findings section added once testing with residents is
-done. Look for the `#next` section — that's where it goes.
+One card is still `href: null`: the LLM medical-QA evaluation. The Cantonese and
+Mandarin language-routing card was removed on purpose.
