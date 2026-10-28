@@ -50,8 +50,8 @@
       <li><a href="#desk">The desk research</a></li>
       <li><a href="#findings">What I found</a></li>
       <li><a href="#voices">Designing three voices</a></li>
-      <li><a href="#pacing">Designing the pacing</a></li>
-      <li><a href="#voice">Testing the voices</a></li>
+      <li><a href="#pacing">Conversational pacing</a></li>
+      <li><a href="#voice">Voice testing</a></li>
       <li><a href="#outcome">What changed</a></li>
     </ol>
   </nav>
@@ -71,24 +71,21 @@
         <dd>In bedside interviews, residents picked the warm, mid-range female voice most often (3 of 8). The higher, brighter voice drew cringes and was called “too childish,” and the slower speaking rate worked for everyone.</dd>
 
         <dt>Where it landed</dt>
-        <dd>Norbert now uses the warm, mid-range voice with slower, shorter, more patient pacing across the product.</dd>
+        <dd>Our robot now uses the warm, mid-range voice with slower, shorter, more patient pacing across the product.</dd>
       </dl>
     </div>
 
     <h2 id="context">The problem</h2>
 
-    <p>Norbert talks to residents every day, and the team wasn't happy with how it sounded. The default voice had been chosen the way most voices are: it sounded pleasant to us. But the people Norbert talks to are older, many have dementia, and most have some degree of hearing loss. A voice tuned for a normal-hearing adult in a quiet office can be harder to hear, harder to follow, and easier to dislike at a bedside.</p>
+    <p>Our robot talks to residents every day, and the team wasn't happy with how it sounded. The default voice had been chosen the way most voices are: it sounded pleasant to us. But the people the robot talks to are older, many with dementia, and most have some degree of hearing loss. A voice tuned for a normal-hearing adult in a quiet office can be harder to hear, harder to follow, and easier to dislike at a bedside.</p>
 
     <p>So the question had two parts: <strong>what should Norbert sound like</strong> (pitch, gender, age, tone), and <strong>how should it pace a conversation</strong> (speed, sentence length, how long to wait for an answer). Neither had a ready answer, so I started with the literature.</p>
 
-    <h2 id="desk">How I ran the desk research</h2>
-
-    <p>I searched three bodies of work, each answering a different part of the question. For every source I pulled out only what could become a concrete setting, and I marked where a source stopped short of a number, since those gaps would need testing with residents.</p>
+    <h2 id="desk">The desk research</h2>
 
     <table class="cs-table">
-      <caption>Three research streams and what I took from each</caption>
       <thead>
-        <tr><th scope="col">Stream</th><th scope="col">Sources</th><th scope="col">What I needed from it</th></tr>
+        <tr><th scope="col">Topic</th><th scope="col">Sources</th><th scope="col">What I needed from it</th></tr>
       </thead>
       <tbody>
         <tr><td><strong>Speech protocol for older and dementia populations</strong></td><td>NHS communication guidance, caregiver and speech-language therapy guides, an automated study of pausing in dementia speech</td><td>How people should talk to this population: rate, sentence length, pauses, tone</td></tr>
@@ -100,63 +97,54 @@
     <h2 id="findings">What I found</h2>
 
     <div class="finding">
-      <h3>1. Pitch matters more than gender, and mid-range wins</h3>
-      <p>Age-related hearing loss mostly affects high frequencies, which is where consonants live. Consumer text-to-speech is tuned to sound pleasant to normal-hearing ears, which tends to add bass and smooth over consonants; reviewers with hearing loss called smart-speaker voices "too bass-heavy." Very deep voices are harder to hear, and very high voices can feel shrill. In one robot study, an older user called a high-pitched voice "disturbing." The safest range is the middle: a mid-range female or a soft male voice, with crisp consonants and no vocal fry, heavy compression, or reverb.</p>
+      <h3>1. Pitch matters more than gender, and mid-range wins.</h3>
+      <p>Age-related hearing loss mostly affects high frequencies. Consumer text-to-speech is tuned to sound pleasant to normal-hearing ears, which tends to add bass and smooth over consonants; reviewers with hearing loss called smart-speaker voices "too bass-heavy." Very deep voices are harder to hear, and very high voices can feel shrill. In one robot study, an older user called a high-pitched voice "disturbing." The safest range is the middle: a mid-range female or a soft male voice.</p>
     </div>
 
     <div class="finding">
-      <h3>2. Gender has no universal winner, but a female default is defensible</h3>
-      <p>No source showed that gender changes comprehension. Preference studies leaned female: older adults favored female agents (Esposito et al., 2021), and female voices were preferred for assistive roles while male voices were preferred for authority roles (Zhang et al., 2025). Gender-ambiguous voices had mixed results (De Cet et al., 2025). The GRACE assistant used a female voice without testing alternatives, and one participant asked for a male option. That told me gender was worth testing, not assuming.</p>
+      <h3>2. Gender has no universal winner, but a female default is defensible.</h3>
+      <p>Some studies found that older adults favored female agents, and female voices were preferred for assistive roles while male voices were preferred for authority roles; gender-ambiguous voices had mixed results (De Cet et al., 2025).</p>
     </div>
 
     <div class="finding">
-      <h3>3. Middle-aged, calm, and warm beats young and chirpy</h3>
-      <p>A middle-aged voice reads as competent and safe. Very old-sounding voices lose intelligibility, and childlike cues are a recurring reason older adults reject robots, since they can feel infantilizing. Clinical agents used consistent, calm prosody and avoided overly cheerful affect.</p>
+      <h3>3. Middle-aged, calm, and warm beats young and chirpy.</h3>
+      <p>A middle-aged voice reads as competent and safe. Very old-sounding voices lose intelligibility, and adults reject childlike voices since they can feel infantilizing, immature, and untrustworthy. Clinical agents used consistent, calm prosody and avoided overly cheerful affect.</p>
     </div>
 
     <div class="finding">
       <h3>4. The pacing advice seemed contradictory until I separated two moments</h3>
       <p>Dementia research says pauses of two seconds or more usually signal trouble in conversation, but that people with dementia need significant pauses to answer at all. Voice-AI research says human turn gaps are about 200 ms, so a two-second delay feels broken, and Alexa's fixed listening window cuts people off mid-answer. The two fit together once you see they describe different moments: how long to wait before deciding someone has finished, and how fast to reply once they have.</p>
-      <blockquote>
-        <p>Wait long before deciding the patient has finished, and respond fast once they have.</p>
-        <cite>From my synthesis</cite>
-      </blockquote>
     </div>
 
     <h2 id="voices">Designing three voices</h2>
 
-    <p>The research settled most of the voice but left one question open: pitch and gender. So I held everything the evidence agreed on constant (middle-aged, calm, warm, slower rate, clear consonants) and built three candidates in ElevenLabs that varied only along that open dimension.</p>
+    <p>Based on the literature reviews (middle-aged, calm, warm, slower rate), I designed three voice candidates in ElevenLabs that varied only along that open dimension.</p>
 
     <table class="cs-table">
-      <caption>The three candidate voices and what each one tested</caption>
       <thead>
         <tr><th scope="col">Voice</th><th scope="col">Profile</th><th scope="col">Why it was in the set</th></tr>
       </thead>
       <tbody>
         <tr><td><strong>Voice 1</strong></td><td>Warm, mid-range female</td><td>The option the research pointed to</td></tr>
         <tr><td><strong>Voice 2</strong></td><td>Higher, brighter, more animated</td><td>The typical "friendly assistant" voice; tested whether the chirpy, young-sounding risk showed up here</td></tr>
-        <tr><td><strong>Voice 3</strong></td><td>Lower, male</td><td>Tested the male option residents might want, and whether a lower pitch helped or hurt</td></tr>
+        <tr><td><strong>Voice 3</strong></td><td>Lower, gender-ambiguous</td><td>Tested the gender-neutral option residents might want, and whether a lower pitch helped or hurt</td></tr>
       </tbody>
     </table>
 
-    <h2 id="pacing">Designing the conversational pacing</h2>
-
-    <p>Pacing applied to every voice, so I wrote it as a short set of rules the team could build directly:</p>
+    <h2 id="pacing">Conversational pacing</h2>
     <ul>
-      <li><strong>Speak a little slower:</strong> 0.85–0.9× normal rate.</li>
+      <li><strong>Speak slower:</strong> 0.85–0.9× normal rate.</li>
       <li><strong>Keep it short:</strong> 5–9 words per sentence, one idea at a time, no multi-part questions.</li>
       <li><strong>Leave a beat:</strong> a deliberate pause after asking a question, so it lands before anything else is said.</li>
       <li><strong>Wait 3–5 seconds before asking again.</strong> Never treat a two-second silence as a no.</li>
-      <li><strong>Reply within about a second</strong> once the resident has clearly finished, so Norbert doesn't feel broken.</li>
       <li><strong>Learn each resident's timing:</strong> set the wait from how long that person usually takes to answer.</li>
       <li><strong>Re-prompt with patience, not repetition:</strong> "Take your time, I'm still here," and clear recovery lines like "Let's try that again" instead of "Sorry, I didn't understand."</li>
-      <li><strong>Show whose turn it is:</strong> a simple listening light, which GRACE used to prevent residents and robot talking over each other.</li>
     </ul>
-    <p>Watching recordings of clinicians at the bedside backed this up. They opened with small talk, waited after each question instead of repeating it, and used short bridges like "Okay, that makes sense" between topics.</p>
+    <p>Watching recordings of clinicians at the bedside backed this up. They opened with small talk, waited after each question instead of repeating it, and used short confirmations like "Okay, that makes sense" between topics.</p>
 
-    <h2 id="voice">Testing the voices with residents</h2>
+    <h2 id="voice">Voice testing</h2>
 
-    <p>In September I played the three voices for residents across four floors at the slower rate and asked which they preferred. I also watched their faces, because several reactions never made it into words.</p>
+    <p>I played the three voices for residents across four floors at the slower rate and asked which they preferred, while observing their physical reactions.</p>
 
     <div class="bar-row">
       <span>Voice 1 · warm, mid-range female</span>
@@ -178,7 +166,6 @@
       <span class="bar-track"><span class="bar-fill" style="width:25%;--bar:var(--ink-faint)"></span></span>
       <span class="bar-val">2</span>
     </div>
-    <p class="bar-legend">Resident votes for their preferred voice.</p>
 
     <ul>
       <li><strong>Voice 1 was the top pick.</strong> Residents said it had a "good balance" and sounded professional, "like a real doctor."</li>
@@ -190,7 +177,7 @@
 
     <h2 id="outcome">What changed</h2>
 
-    <p>I recommended Voice 1 with the pacing rules above, and the team updated Norbert's voice tone and speed across the product. The sample is small, so I framed the result the way the evidence supports it: a female default is defensible, not universal. Voice 3 had real fans, which makes a per-resident voice option worth building next.</p>
+    <p>I recommended Voice 1 with the pacing rules above, and the team updated the robot's voice tone and speed across the product. The sample is small, so I framed the result the way the evidence supports it: a female default is defensible, not universal.</p>
 
     <div class="cs-note">
       <p>This write-up is de-identified. Some internal product detail has been withheld.</p>
@@ -204,7 +191,7 @@
 
 <footer class="foot">
   <div class="shell foot-inner">
-    <span>Grace Liu — product &amp; UX research</span>
+    <span>Grace Liu</span>
     <span><a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a></span>
   </div>
 </footer>
