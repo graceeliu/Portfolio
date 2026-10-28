@@ -77,7 +77,7 @@
 
     <div class="about">
       <div class="prose">
-        <p class="lede">I've always been a bit of an explorer, diving into health, journalism, and data, and this range is what makes me adaptable.</p>
+        <p class="lede">I've always loved trying anything and everything, diving into health, journalism, and data, and this range is what makes me adaptable.</p>
         <p>I started in cognitive psychology and neuroscience, studying how people recognize faces, form impressions, and remember them. This grew into behavioral experiments for my undergraduate honors thesis and continued with fMRI analyses for my master's research. </p>
         <p>Luckily for me, this training transferred cleanly to product work, because the questions are the same. How do people categorize what's in front of them? What do they notice and remember first? What happens when a system's model of a task doesn't match the mental model of the person doing it? I'm especially curious about how small things, like a voice agent's choise of words or a micro-decision, shape behavior and people's reactions.</p>
         <p>I work across the full range, from field interviews and card sorts, to concept testing with lo-fi prototypes, to quantitative analysis, and I build my own Frankenstein research processes when there isn't one that fits.</p>
@@ -104,7 +104,7 @@
             <img src="assets/img/about-3.jpg" width="768" height="960" alt="Grace in a long trench coat walking along a tree-lined park path in spring" loading="lazy">
           </figure>
         </div>
-        <p class="offclock-text">Discovering new music and going to live shows (top 3: Cage the Elephant, Rüfüs Du Sol, A$AP Rocky), thrifting, trying new recipes, and getting outdoors in my free time. A hammock by the ocean, a powdery ski run, or a hike that ends at a view.</p>
+        <p class="offclock-text">Discovering new music and going to live shows (top 3: Cage the Elephant, Rüfüs Du Sol, A$AP Rocky), thrifting, trying new recipes, and getting outdoors in my free time.</p>
       </div>
     </div>
 
@@ -116,9 +116,9 @@
       <div>
         <dt>Analysis</dt>
         <dd>Python, SQL, R, behavioral analytics, statistical modeling, topic modeling &amp; sentiment analysis, dashboarding, MS Suite, Google Suite</dd>
-      </div>s
+      </div>
       <div>
-        <dt>Interest</dt>
+        <dt>Interests</dt>
         <dd>Human-robot interaction, HCI, clinical human factors, conversational &amp; voice interfaces, cognitive psychology and neuroscience, wearables, fintech</dd>
       </div>
       <div>
@@ -194,7 +194,7 @@ const PROJECTS = [
     href: "work/norbert-prompt-phrasing.html",
     context: "Norbert Health · 2026",
     finding: "A crossover experiment found no significant difference in increasing patients' engagement with the robot when starting conversation with a generic prompt versus a personalized one, 52% to 45%. But, the real difference was in what patients said next, surfacing the rule to ask about the present, not the past.",
-    methods: ["Pre-registered A/B", "Within-subject crossover"]
+    methods: ["A/B", "Within-subject crossover"]
   },
 
   /* ---------- Academic Research ---------- */
@@ -225,9 +225,9 @@ const PROJECTS = [
   },
   {
     cat: "academic",
-    title: "Memorial Sloan Kettering: general vs. domain-specific LLMs",
+    title: "Memorial Sloan Kettering Cancer Center: general vs. domain-specific LLMs",
     href: "work/msk-llm-evaluation.html",
-    context: "Graduate practicum with Memorial Sloan Kettering Cancer Center · Columbia, 2024",
+    context: "Graduate practicum · Columbia, 2024",
     finding: "Both models sounded equally right on semantic similarity. Only fact-checking metrics separated them: the medical model gave hallucination-free answers 78% of the time vs. 67%.",
     methods: ["LLM evaluation", "Hallucination scoring"]
   },
@@ -245,7 +245,7 @@ const PROJECTS = [
     cat: "case",
     title: "Headspace",
     href: "work/headspace-recommendations.html",
-    context: "Product strategy · self-directed",
+    context: "Product strategy",
     finding: "An exploratory product exercise that found the problem wasn’t too little content but too much: users couldn’t tell which session fit how they felt, which led to personalized recommendations out of 14 feature ideas.",
     methods: ["Jobs-to-be-done", "RICE", "Interviews"]
   },
@@ -253,7 +253,7 @@ const PROJECTS = [
     cat: "case",
     title: "Depop: making sustainability visible",
     href: "work/depop-sustainability.html",
-    context: "UX research · self-directed",
+    context: "UX research",
     finding: "Sustainability wasn't the leading reason why people shopped secondhand at all, which reframed the feature from behavior change to retention.",
     methods: ["Interviews", "Survey", "Thematic analysis"]
   },
@@ -261,7 +261,7 @@ const PROJECTS = [
     cat: "case",
     title: "MedCheck: a mobile medical appointment check-in",
     href: "work/medcheck.html",
-    context: "UX research · 4 weeks",
+    context: "UX research",
     finding: "When patients are given the same, repetitive forms as their previous visits, they feel that no one is really reading or remembering their information. So, the goal shifted from fewer fields during check-in to visible continuity.",
     methods: ["Discovery interviews", "Usability testing (n=5)", "Lo-fi prototyping", "Figma"]
   }
@@ -309,7 +309,7 @@ function count(cat) {
 function card(p) {
   const c = CATEGORIES[p.cat];
   const cta = p.href
-    ? `<span class="card-cta">Read<span aria-hidden="true">→</span></span>`
+    ? `<span class="card-cta">Read <span aria-hidden="true">→</span></span>`
     : `<span class="card-soon">Write-up in progress</span>`;
   const inner = `
     <p class="card-context"><i style="background:${c.color}"></i>${p.context}</p>
