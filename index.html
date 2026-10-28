@@ -14,10 +14,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..700;1,8..60,200..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-  /* Hero photo: no offset color box behind it, and zoomed in a bit */
+  /* Hero photo: no offset color box, no zoom, taller 3:4 frame so the magnolias and as much of the photo as possible show */
   .hero-photo::before { display: none; }
   .hero-photo { overflow: hidden; }
-  .hero-photo img { transform: scale(1.18); transform-origin: 50% 35%; }
+  .hero-photo img { transform: none; aspect-ratio: 3 / 4; object-position: 50% 50%; }
 </style>
 </head>
 <body>
@@ -49,7 +49,6 @@
       </div>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#work">See my work</a>
-          <a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a>
         <!-- Add your resume here once it's in assets/:
         <a class="btn" href="assets/grace-liu-resume.pdf">Resume (PDF)</a>
         -->
