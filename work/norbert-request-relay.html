@@ -29,15 +29,15 @@
 
 <div class="cs-head shell">
   <a class="cs-back" href="../index.html#product">← Back to Product Research</a>
-  <h1>Patient request relay and prioritization</h1>
-  <p class="cs-standfirst">A companion robot was already collecting patient requests. The open question was what to do with them: which requests to pass along, to whom, how urgently, and through what channel. The research changed the answer to three of them, and surfaced a real disagreement about the fourth.</p>
+  <h1>Patient-nurse request relay system and prioritization</h1>
+  <p class="cs-standfirst">Patients were already giving the robot requests, but the  question was what to do with them: which requests to pass along, to whom, how urgently, and through what channel.</p>
 
   <dl class="cs-meta">
-    <div><dt>Role</dt><dd>Sole researcher — scoping, instrument design, fieldwork, analysis, recommendations</dd></div>
-    <div><dt>Timeline</dt><dd>June – September 2026</dd></div>
+    <div><dt>Role</dt><dd>Product and user researcher — scoping, instrument design, fieldwork, analysis, recommendations</dd></div>
+    <div><dt>Timeline</dt><dd>July – August 2026</dd></div>
     <div><dt>Methods</dt><dd>Card sorting (n=12), semi-structured field interviews (n=6), on-floor observation, ongoing metric reporting</dd></div>
     <div><dt>Output</dt><dd>Discovery memo, request taxonomy, priority model, five product recommendations</dd></div>
-    <div><dt>Context</dt><dd>Norbert Health, deployed in a skilled nursing facility</dd></div>
+    <div><dt>Context</dt><dd>Deployed in a skilled nursing facility</dd></div>
   </dl>
 </div>
 
@@ -50,11 +50,9 @@
       <li><a href="#questions">Research questions</a></li>
       <li><a href="#instrument">Building the instrument</a></li>
       <li><a href="#findings">Findings</a></li>
-      <li><a href="#baseline">The communication baseline</a></li>
-      <li><a href="#tension">The unresolved tension</a></li>
+      <li><a href="#baseline">The real gap</a></li>
       <li><a href="#recs">Recommendations</a></li>
-      <li><a href="#after">What happened next</a></li>
-      <li><a href="#reframe">Reframing the problem</a></li>
+      <li><a href="#after">Next steps</a></li>
       <li><a href="#reflection">What I'd do differently</a></li>
     </ol>
   </nav>
@@ -62,29 +60,26 @@
   <article class="cs-body" id="body">
 
     <div class="cs-tldr">
-      <h2>The short version</h2>
+      <h2>TLDR</h2>
       <dl>
         <dt>The assumption going in</dt>
         <dd>Requests should be scored on a single urgency scale and routed to the right role — nurse or aide — based on job title.</dd>
 
         <dt>What the research found</dt>
-        <dd>Staff weren't using an urgency scale. They were answering two separate questions at once — <em>is this urgent</em> and <em>is this mine</em> — which the product had collapsed into one field. So a nursing assistant reporting chest pain marked it "not my responsibility," and the urgency flag came off in transit.</dd>
+        <dd>Staff weren't using a single urgency scale. They were answering two separate questions at once — <em>is this urgent</em> and <em>is this mine</em>.</dd>
 
-        <dt>What I recommended</dt>
+        <dt>Recommendation</dt>
         <dd>Separate urgency and responsibility into independent fields. Replace strict role-based routing with shared team visibility plus delegation. Give distress statements their own escalation path instead of a slot on the priority scale.</dd>
-
-        <dt>What happened</dt>
-        <dd>The follow-on pilot kept urgent and clinical requests on the existing call bell and tested only routine requests through the robot. The clinical and distress gap stayed open, and I kept it at the top of the biweekly product report until the team took it on. The broader reframe, from message relay to care coordination, became the team's working direction.</dd>
       </dl>
     </div>
 
     <h2 id="context">The problem</h2>
 
-    <p>Norbert is a semi-autonomous companion robot that moves through a skilled nursing facility, checks in with residents, and takes vitals. In the course of those interactions residents ask it for things — a blanket, water, help to the bathroom, a nurse. The robot was capturing those requests. Nobody had decided what should happen next.</p>
+    <p>Norbert is a semi-autonomous companion robot that moves through a skilled nursing facility, checks in with residents, and takes vitals. During its interactions with patients, patients ask it for things — a blanket, water, help to the bathroom, a nurse. The robot was capturing those requests, but there was no direction of what should happen next.</p>
 
-    <p>The proposed design was a ticketing system: every request gets an urgency score, gets routed to the right role, and shows up somewhere for that person to acknowledge and close. Reasonable on paper. But it rested on three assumptions nobody had tested — that clinical staff prioritize requests along a single urgency gradient, that requests belong to roles in a way a system can encode, and that staff want another screen in their shift.</p>
+    <p>The proposed design was a ticketing system: every request gets an urgency score, gets routed to the right role, and shows up somewhere for that person to acknowledge and close. However, this depended on three assumptions: clinical staff prioritize requests along a single urgency gradient, requests belong to roles in a binary way a system can encode, and that staff don't mind another screen or thing to keep track of in their shift.</p>
 
-    <p>There was also a real safety stake. If the robot relays a request badly, the failure isn't a bad user experience. It's a resident with chest pain whose report arrives somewhere quiet.</p>
+    <p>There was also a real safety stake. If the robot relays a request badly, the failure isn't a bad user experience, but real clinical risk.</p>
 
     <h2 id="questions">Research questions</h2>
 
@@ -97,13 +92,24 @@
       <li>Through what channel should requests be delivered?</li>
     </ol>
 
-    <p>I also wrote down the failure modes I was trying to catch before designing anything, and mapped each one to the activity that would surface it. Four mattered most: clinical risk being missed or delayed; a request captured but never acknowledged or never closed; staff burden high enough to erode trust in the system; and a small number of frequent requesters flooding the queue. Naming these up front is what kept the study from drifting into a general satisfaction survey.</p>
+    <p>I also wrote down the failure modes I was trying to catch before designing anything, and mapped each one to the activity that would surface it. Four mattered most: clinical risk being missed or delayed; a request captured but never acknowledged or never closed; staff burden high enough to erode trust in the system; and a small number of frequent requesters flooding the queue.</p>
 
     <h2 id="instrument">Building the instrument</h2>
 
-    <p>To answer the prioritization questions I needed a card sort. The constraints ruled out every off-the-shelf tool: participants were working nurses and aides who could give me five to twelve minutes mid-shift, standing up, usually in a hallway. I couldn't count on network access. I needed the same stimuli in the same order for every participant, and I needed to be able to hand a tablet to the next person without losing the last one's data.</p>
+    <p>To answer the prioritization questions, I needed a card sort. But participants were working nurses and CNAs who could give me only five to twelve minutes tops mid-shift, were standing up, and were usually in a hallway. I also couldn't count on network access, and I needed to be able to hand a tablet to the next person without losing the last one's data.</p>
 
-    <p>So I built one — a single-file web app that runs offline in a browser on a tablet.</p>
+    <p>So I built one: a single-file web app that runs offline in a browser on a tablet.</p>
+
+    <div class="instrument-shots" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0;align-items:start;">
+      <figure style="margin:0;">
+        <img src="../assets/img/norbert-relay-cardsort-intake.png" alt="Card sort intake screen asking for role (CNA, RN, Other), floor (1–14 or Other), and shift type before the sort begins." style="width:100%;height:auto;border:1px solid #e3e3e3;border-radius:8px;" loading="lazy">
+        <figcaption>Intake: role, floor, and shift, captured in a few taps.</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="../assets/img/norbert-relay-cardsort-board.png" alt="Card sort board with a deck of request cards on the left and four columns: highest priority, medium priority, low priority, and this is not my responsibility." style="width:100%;height:auto;border:1px solid #e3e3e3;border-radius:8px;" loading="lazy">
+        <figcaption>The sort: participants drag each request card into one of four buckets.</figcaption>
+      </figure>
+    </div>
 
     <h4>What it captures</h4>
     <ul>
@@ -114,23 +120,14 @@
       <li><strong>Role, unit, and shift</strong> for each session, plus an open text field at the end.</li>
     </ul>
 
-    <h4>Design decisions that mattered in the field</h4>
-    <ul>
-      <li>Runs entirely in local storage — no network dependency on a floor where I couldn't assume Wi-Fi.</li>
-      <li>Fully keyboard-accessible with live-region announcements, so drag-and-drop wasn't the only path through.</li>
-      <li>A review step before submission, where participants could see their whole sort and move anything before it was saved.</li>
-      <li>One-tap session reset and a CSV export per participant, so handing the tablet to the next participant took a second.</li>
-      <li>Stimuli hard-coded, configuration separated out — so the same instrument can be reused at another facility by editing units, roles, and shift patterns without touching the cards.</li>
-    </ul>
-
     <div class="cs-note">
-      <p><strong>Note on the sample.</strong> n=12 for the card sort (8 nursing assistants, 3 registered nurses, 1 licensed practical nurse) and 6 interviews. This is a small, single-site, convenience sample of the staff available during my visits. The percentages below describe this group and are not estimates of a wider population. I'm reporting them because the role-based splits were large and consistent enough to change a design decision, not because they'd survive inference to another facility.</p>
+      <p><strong>Note on the sample.</strong> n=12 for the card sort (8 nursing assistants, 3 registered nurses, 1 licensed practical nurse) and 6 interviews. This is a small, single-site, convenience sample of the staff available during my visits. The percentages below describe this group and are not estimates of a wider population. I'm reporting them because the role-based splits were large and consistent enough to change a design decision, not because it's translatable to another facility.</p>
     </div>
 
     <h2 id="findings">Findings</h2>
 
     <div class="finding">
-      <h3>1. Prioritization is binary, not a gradient</h3>
+      <h3>1. Staff didn't triage on a scale. They made two separate calls.</h3>
 
       <p>Around 71% of all card placements landed at one of two poles: <em>highest priority</em> or <em>this is not my responsibility</em>. Medium and low were comparatively unused.</p>
 
@@ -156,9 +153,8 @@
       </div>
       <p class="bar-legend">Share of 132 card placements across 12 participants.</p>
 
-      <p>Staff weren't triaging along one urgency scale. They were making two separate judgment calls — <em>is this urgent?</em> and <em>is this even mine to act on?</em> — and the category "mine, but not urgent" was the one they reached for least.</p>
+      <p>Staff were answering two questions at once: <em>is this urgent?</em> and <em>is this mine?</em> The product's single priority field could only hold one of those answers, which is the root of the next finding.</p>
 
-      <p>The product's single priority field could only express one of those two judgments. That's the root of the next finding.</p>
     </div>
 
     <div class="finding">
@@ -178,9 +174,7 @@
         </tbody>
       </table>
 
-      <p>Every nurse placed both cards as highest priority, at "very sure" confidence, without exception. Five of eight nursing assistants routed both cards to "not my responsibility" and assigned them to the RN.</p>
-
-      <p>The telemetry is what made this legible. Those ten "not my responsibility" placements had a median latency of roughly one second. This was fast and confident, not hesitant. Escalating is the correct action and staff described it as such:</p>
+      <p>Every nurse placed both cards as highest priority, "very sure." Five of eight nursing assistants routed both to the nurse as "not my responsibility," and they did it fast, with a median of about one second. That was a confident decision, not hesitation, and escalating is the right instinct:</p>
 
       <blockquote>
         <p>That's for the CNA — we have to pass that to the nurse. And that is high. You don't know what's going on there.</p>
@@ -192,15 +186,13 @@
         <cite>Nursing assistant</cite>
       </blockquote>
 
-      <p>So the mental model is right and the instinct is right. The problem is that the tool made staff choose. Forced to pick one bucket, a nursing assistant who knows chest pain is both urgent <em>and</em> not theirs picks the routing answer — because routing is the action they're about to take. The urgency comes off in the hand-off.</p>
-
-      <p>If the robot's routing logic mirrored that mental model, an urgent clinical symptom would reach the nurse with no urgency marker attached. This is a system gap, not a staff judgment problem, and it was the single most consequential thing the study found.</p>
+      <p>The problem was the forced choice. A nursing assistant who knows chest pain is both urgent <em>and</em> not theirs picks the routing answer, because routing is what they're about to do. If the robot copied that logic, an urgent symptom would reach the nurse with no urgency attached. That's a system gap, not a staff judgment problem, and it was the most consequential finding of the study.</p>
     </div>
 
     <div class="finding">
       <h3>3. One request produced the widest disagreement and the lowest confidence in the study</h3>
 
-      <p>A card combining a wish to go home with an expressed wish to die had the lowest consensus in the dataset — its top bucket drew only a third of placements — and one of the highest revision counts, with five changes across participants. People reconsidered this card more than almost any other.</p>
+      <p>A card combining a wish to go home with a wish to die had the lowest consensus in the study (no bucket drew more than a third of placements) and one of the highest revision counts. People kept changing their minds about it.</p>
 
       <table class="cs-table">
         <caption>Placement of the distress statement card</caption>
@@ -215,33 +207,29 @@
         </tbody>
       </table>
 
-      <p>All three nurses placed it as highest priority at "very sure" confidence. Nursing assistants split across all four buckets.</p>
-
-      <p>The interviews explained why. Most staff defaulted to an interpretation of confusion or homesickness — residents say this often, and it usually doesn't mean what the words mean:</p>
+      <p>All three nurses placed it as highest priority at "very sure" confidence. CNAs split across all four buckets. The interviews explained why.</p>
 
       <blockquote>
-        <p>This is still not priority because usually patients will say that — they're confused.</p>
+        <p>This is still not a priority because usually patients will say that — they're confused.</p>
         <cite>Licensed practical nurse</cite>
       </blockquote>
 
-      <p>A minority treated it as an unambiguous safety signal, with clinical reasoning attached:</p>
+      <p>A minority treated it as a safety signal:</p>
 
       <blockquote>
         <p>The fact that they say they will die … you don't know what plan they have.</p>
         <cite>Registered nurse</cite>
       </blockquote>
 
-      <p>Two nursing assistants on the same floor both placed it in "not my responsibility" — and both said out loud, more than once, that they really didn't know. The instrument recorded a routing decision. What I heard was uncertainty. That gap between the record and the room is the strongest argument for the instrument change I describe at the end: a card like this shouldn't have to be either urgent or someone else's.</p>
-
-      <p>The divergence here isn't about card phrasing. It's a genuine gap in mental models between roles, and it means the outcome for a resident who says this depends on who happens to hear it. That is exactly the class of problem a system should absorb rather than delegate.</p>
+      <p>Two nursing assistants placed it in "not my responsibility" while saying aloud that they really didn't know. The tool recorded a routing decision; what I heard was uncertainty. Right now, what happens to a resident who says this depends on who happens to hear it. That's a risk the system should absorb, not leave to whoever is on shift.</p>
     </div>
 
     <div class="finding">
-      <h3>4. There were two clear routing pathways, but responsibility was fluid in practice</h3>
+      <h3>4. While there were two clear routing pathways, everyone was responsible.</h3>
 
-      <p>Clinical and symptom requests routed to the nurse unanimously — 100% of "not mine" placements on those cards went to the RN. Administrative and social requests routed outward to food service, environmental services, or social work.</p>
+      <p>Clinical and symptom requests routed to the nurse unanimously: 100% of "not mine" placements on those cards went to the RN. Administrative and social requests routed outward to food service, environmental services, or social work.</p>
 
-      <p>But the research team's starting hypothesis — that requests should auto-route by job title — didn't survive the interviews. Participants consistently described care as collaborative, and nurses were explicit that they triage on who's free, not on whose job it officially is:</p>
+      <p>But the starting hypothesis that requests should auto-route by job title didn't hold. Staff described care as collaborative, and nurses were explicit that they triage on who's free, not on whose job it officially is:</p>
 
       <blockquote>
         <p>It doesn't matter if I'm a nurse or CNA. Somebody said they need water, I have to get the water.</p>
@@ -253,131 +241,64 @@
         <cite>Registered nurse</cite>
       </blockquote>
 
-      <p>Nurses described doing tasks nominally listed as an aide's when that's who was free. Hard role locks would fight the way the floor actually works, and staff would route around them.</p>
     </div>
 
-    <div class="finding">
-      <h3>5. Unit and resident context change how the same words get read</h3>
 
-      <p>One nurse walked me through her whole triage approach before she'd looked at a single card, and it was organized entirely around which kind of unit she was on — post-acute rehabilitation, memory care, or mixed acuity — because the same sentence means something different in each.</p>
+    <h2 id="baseline">The real gap/h2>
 
-      <p>The "resident is confused" framing then came up independently on nearly every floor, and always as the reason for <em>downgrading</em> a request: applied to going-home statements, to requests to contact family, and to general expressions of distress.</p>
+    <p>The card sort told me how staff think about requests. It didn't tell me what they were working with. Semi-structured interviews told me the following:</p>
 
-      <p>This is a real clinical judgment, and prioritization that ignores it will be wrong often. But I flagged it in the memo with an explicit warning attached, because the same logic is a mechanism for systematically deprioritizing legitimate distress from residents with dementia — the population least able to escalate for themselves. Context-aware prioritization needs a floor under it, not just a model.</p>
-    </div>
+    <p><strong>The existing request system is entirely analogue.</strong> There was no call bell integration with the electronic medical record, with text, or with any digital system at all. Requests arrive as ceiling lights and alarms outside each room, and staff physically walk to find out what's wanted.</p>
 
-    <div class="finding">
-      <h3>6. Physical comfort and daily living requests were the one area of real consensus</h3>
+    <p><strong>The nurses' station's unused phone.</strong>With the station phone, staff could ask a resident what they needed and make a single trip. But staff didn't reach for this due to it being outdated and hard to use.</p>
 
-      <p>Water, urgent bathroom needs, and help getting into bed had the highest agreement in the sort (75%, 67%, and 67% respectively). Staff treated them as immediate — and even those who routed them to an aide gave a clinical reason for speed rather than a courtesy one:</p>
-
-      <blockquote>
-        <p>If I leave them, they may want to do it by themselves and they may have a fracture. It's better I help them immediately.</p>
-        <cite>Registered nurse</cite>
-      </blockquote>
-
-      <p>This matters for scoping. It's also the highest-volume category — the clinical operations lead estimated that around nine in ten call bells are simple fetch requests — which makes it precisely the category a robot could intercept without touching clinical judgment at all.</p>
-    </div>
-
-    <div class="finding">
-      <h3>Two secondary findings</h3>
-
-      <p><strong>Visibility beat filtering, but not unanimously.</strong> Several nurses wanted to see every request rather than have the system hide low-priority ones, because they wanted to delegate. Others wanted only what they could act on. The resolution isn't a filter setting — it's prioritized queues with visual urgency and delegation support, so the same view serves both.</p>
-
-      <p><strong>Some staff didn't want the layer at all.</strong> A couple of senior nurses, asked whether they'd want a live list of incoming requests, said they already track priorities in their heads and saw little added value. That's an adoption risk worth naming rather than designing around: the tool has to demonstrably reduce missed or delayed requests, not just digitize a mental model that staff feel already works.</p>
-    </div>
-
-    <h2 id="baseline">The communication baseline</h2>
-
-    <p>The card sort told me how staff think about requests. It didn't tell me what they were working with. About five weeks later, ahead of a pilot, I went back and ran semi-structured interviews with a nurse on each of five floors plus a facility administrator, and observed how call bells actually came in. I'd do this in the opposite order next time; it changed how I read everything above.</p>
-
-    <p><strong>The existing request system is entirely analogue.</strong> No unit had call bell integration with the electronic medical record, with text, or with any digital system at all. Requests arrive as ceiling lights outside each room, tones at the nursing station, and staff physically walking to find out what's wanted.</p>
-
-    <p><strong>Capability varied enormously within one building.</strong> Where the station phone had two-way audio, staff could ask a resident what they needed, collect the item, and make a single trip. Elsewhere a call came in as a single tone, and staff walked to the room to learn what was needed, then walked back to get it. One nurse described that double trip as her biggest frustration. Her first wish was a speaker at the front desk; for robot-relayed requests, she wanted an alert on the station screen, because that's where staff always end up.</p>
+    <p>With the current request workflow, staff walked to the room to learn what was needed, then walked back to get it, and back to the patient. One nurse described that double trip as her biggest frustration.</p>
 
     <blockquote>
       <p>I'm always on a computer. If [it] can be connected [to my existing system], that would be great.</p>
       <cite>Registered nurse</cite>
     </blockquote>
 
-    <p><strong>Staff-to-staff communication was often worse than the bells.</strong> Two units coordinated through an informal group chat, room numbers only, no resident names, with staff citing HIPAA. Others had nothing — no phone line, no chat. On one floor the nurse's sharpest complaint wasn't the call bell at all but the total absence of a way to reach colleagues; finding someone meant walking the floor looking for them. Requests got delayed when she was mid-medication-pass, and an aide forgetting to relay something was a live failure mode.</p>
+    <p><strong>There was no existing staff-to-staff communication for requests.</strong> Some coordinated through an informal group chat, some room numbers only, no resident names, or HIPAA concerns. Others had nothing at all. They described they wanted something that surfaces needs, flags the safety-critical ones, supports delegation, and lives inside the tools they already use. The team had started by asking <em>how do we relay patient requests?</em> The research pointed to a different question:</p>
 
-    <p>This changed my read of the opportunity. The team had framed the problem as "how do we deliver requests." The floors were telling me the deeper gap was that there was no communication substrate to deliver them <em>into</em>.</p>
-
-    <h2 id="tension">The unresolved tension</h2>
-
-    <p>The clearest disagreement in the study was about delivery channel, and I did not resolve it.</p>
-
-    <p>Three unit nurses independently asked for a dashboard at the nursing station, each with a specific workflow reason: that's where documentation happens after medication passes, and phones go unchecked for hours mid-shift. One was blunt that she'd simply miss a text.</p>
-
-    <p>A facility administrator with a cross-floor view was emphatic in the opposite direction. Nobody sits at the nursing station — it's occupied mainly by supervisors and physicians — so a screen there would be ignored. She wanted requests pushed to phones.</p>
-
-    <p>Both are describing something true. Nurses do end up at the station, and requests do arrive while they're moving. Notably, no one wanted patient requests as phone <em>calls</em>.</p>
-
-    <p>I wrote this up as an open question with two candidate answers — a hybrid of station display plus phone push, or per-floor configuration — rather than picking one. The honest state of the evidence was a genuine conflict between the people closest to the work and the person with the widest view, and flattening that into a recommendation would have hidden the most useful thing I'd learned.</p>
+    <blockquote>
+      <p>How can the system coordinate patient needs while preserving clinician oversight, reducing communication gaps, and improving patient safety?</p>
+    </blockquote>
+  
 
     <h2 id="recs">Recommendations</h2>
 
     <ol>
       <li><strong>Separate urgency from responsibility.</strong> Two independent fields, not one forced choice, so a nursing assistant can flag something as both "not my task" and "still urgent." This directly closes the gap in finding 2.</li>
-      <li><strong>Give distress statements their own escalation path,</strong> outside the general priority scale — an automatic charge-nurse or supervisor flag plus a prompt for closer observation, rather than leaving the outcome to whoever happens to receive it.</li>
-      <li><strong>Replace strict role-based routing with availability-based routing</strong> for lower-acuity requests, reserving hard role locks for tasks with genuine scope-of-practice or physical-safety requirements.</li>
-      <li><strong>Design for context-aware prioritization, with guardrails.</strong> Resident and unit context should inform triage, but with an explicit floor that prevents confusion or memory-care status from systematically downgrading real distress.</li>
-      <li><strong>Support team-based care.</strong> Make requests visible across the care team with claim-and-hand-off, rather than routing to one person's queue. In practice: a shared prioritized queue on a station display, plus a widget inside the system staff already have open.</li>
+      <li><strong>Give distress statements their own escalation path,</strong> outside the general priority scale. An automatic charge-nurse or supervisor flag plus a prompt for closer observation, rather than leaving the outcome to whoever happens to receive it.</li>
+      <li><strong>Replace strict role-based routing with availability-based routing</strong> for lower-acuity requests.</li>
+      <li><strong>Support team-based care.</strong> Make requests visible across the care team with claim-and-hand-off, rather than routing to one person's queue. In practice: a shared prioritized queue on a station display.</li>
     </ol>
 
-    <h2 id="after">What happened next</h2>
+    <h2 id="after">Next steps</h2>
 
-    <p><strong>The pilot narrowed the scope on purpose.</strong> The follow-on plan was a two-week crossover across six floors, comparing a station desktop view against a tablet view, measuring follow-up rate, coverage (the share of requests anyone ever saw), and time to acknowledge. It kept urgent and clinical requests on the existing call bell, which stayed the primary channel. That was the right call for a first pilot — it kept the robot away from the requests where a miss is dangerous — but it also meant the finding I cared most about, urgency falling off in transit, was deliberately out of scope. Phone push wasn't an arm, so the channel disagreement is still open.</p>
+    <p><strong>The team is now designing the request system from these findings.</strong> With testing next, the questions I want to answer are:</p>
 
-    <p><strong>The safety gap showed up in the data anyway.</strong> I write the biweekly product report for leadership, and the same problem kept surfacing there: residents were telling the robot about clinical symptoms and saying things like <em>I want to go home</em>, and none of it reached the request dashboard. In one five-week window there were four verbal clinical reports that we found only by reading transcripts by hand. I listed raising clinical concerns into the dashboard, and a real-time escalation trigger for distress language, as the top-priority items in consecutive reports. In September the team reframed the work as a call-bell response system, with the robot estimating urgency and expected response time — which puts urgency back at the center of the design. Whether it carries through a hand-off is the thing I'd test first.</p>
-
-    <p><strong>Capture quality turned out to be its own problem.</strong> A team review of 46 captured requests found about three in four were accurate where they could be judged, and roughly one in five couldn't be judged at all, mostly because of unclear transcription. The failures were TV and bystander audio captured as requests, and residents talking to staff rather than to the robot. None of the prioritization work matters if the request that arrives isn't the one the resident made.</p>
-
-    <h2 id="reframe">Reframing the problem</h2>
-
-    <p>Nearly every participant validated the core concept — a request relay between residents and staff is something they want. (One nurse was skeptical of the robot overall and raised a trust concern about its vital-sign readings; that belongs in the adoption risks above.) But the research kept pointing past message delivery. Staff described the system they wanted as something that surfaces needs, marks the safety-critical ones, supports delegation, and lives inside the workflow they already have.</p>
-
-    <p>The question the team started with was <em>how do we relay patient requests?</em> The question the research supported was:</p>
-
-    <blockquote>
-      <p>How can the system coordinate patient needs while preserving clinician oversight, reducing communication gaps, and improving patient safety?</p>
-    </blockquote>
-
-    <p>That's a different product. It's also the one the floors were already describing.</p>
-
-    <h4>Cross-interview prioritization summary</h4>
-    <table class="cs-table">
-      <caption>Request categories by consistency of prioritization across interviews</caption>
-      <thead>
-        <tr><th scope="col">Consistently high</th><th scope="col">Context dependent</th><th scope="col">Generally lower</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Chest pain</td><td>Water</td><td>Cafeteria requests</td></tr>
-        <tr><td>Bathroom urgency</td><td>Blanket</td><td>Contacting family</td></tr>
-        <tr><td>Nausea and dizziness</td><td>Social worker timing</td><td></td></tr>
-        <tr><td>Help getting into bed</td><td>Therapy preparation</td><td></td></tr>
-        <tr><td></td><td>Going-home statements</td><td></td></tr>
-      </tbody>
-    </table>
-
+    <ul>
+      <li><strong>Does urgency survive the hand-off?</strong> When a CNA passes a clinical symptom to a nurse, does it still arrive marked as urgent?</li>
+      <li><strong>How fast is fast enough?</strong> The card sort couldn't measure acceptable response time for each urgency level. That needs observation or real usage data.</li>
+    </ul>
+    
     <h2 id="reflection">What I'd do differently</h2>
 
     <ul>
-      <li><strong>The forced choice was a design flaw in my own instrument.</strong> Putting "not my responsibility" in the same set as three urgency levels is what surfaced finding 2 — but only because I captured latency and confidence alongside it. Next version separates the two dimensions and asks both, which is a cleaner measurement and mirrors the fix I recommended for the product.</li>
-      <li><strong>I never got to the timing question.</strong> Acceptable speed-to-handle per tier was one of my six research questions and the study didn't answer it. Card sorting is the wrong method for it; that needs observation with a stopwatch, or log data once the system is live.</li>
-      <li><strong>The sample was one afternoon, mostly evening shift.</strong> Nine of twelve card-sort participants were evening-shift staff, all recruited in a single visit, and nobody from night shift took part. Staffing is thinnest overnight, which likely changes both prioritization and channel preference. A follow-up needs night-shift participants.</li>
-      <li><strong>I ran the baseline interviews second.</strong> Learning that there was no digital communication layer at all would have shaped the card sort — I'd have asked about hand-off, not just priority.</li>
-      <li><strong>I'd pre-register the analysis next time.</strong> I set the failure modes in advance but not the thresholds. Deciding beforehand what level of role divergence would be enough to change the routing model would have made the recommendation harder to argue with.</li>
+      <li><strong>The forced choice was my own design flaw.</strong> Putting "not my responsibility" in the same set as three urgency levels is what surfaced finding 2.</li>
+      <li><strong>Explore timing.</strong> Acceptable speed-to-handle was one of my six research questions and the study didn't answer it. This can be answered by log data once the system is live.</li>
+      <li><strong>The sample was one afternoon, mostly evening shift.</strong> Nine of twelve card-sort participants were evening-shift staff, all recruited in a single visit, and nobody from night shift took part. Staffing is thinnest overnight, which likely changes both prioritization and channel preference.</li>
     </ul>
 
     <div class="cs-note">
-      <p><strong>On confidentiality.</strong> This write-up is de-identified. Staff names and floor labels have been removed and the facility is not named. The request cards were paraphrased from real requests the robot had captured; no resident names, rooms, or other identifying details appear here. Quotes are lightly edited for readability, with additions in brackets. Some internal product detail has been withheld.</p>
+      <p><strong>On confidentiality.</strong> This write-up is de-identified. Some internal product detail has been withheld.</p>
     </div>
 
     <div class="cs-next">
       <p>Next</p>
-      <a href="voice-agent-depression-screener.html">Designing a voice agent for older adults and residents with dementia</a>
+      <a href="voice-agent-depression-screener.html">Designing a voice agent for senior and dementia patients</a>
     </div>
 
   </article>
@@ -387,7 +308,7 @@
 
 <footer class="foot">
   <div class="shell foot-inner">
-    <span>Grace Liu — product &amp; UX research</span>
+    <span>Grace Liu</span>
     <span><a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a></span>
   </div>
 </footer>
