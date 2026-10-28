@@ -6,7 +6,7 @@ five years, and you can fix a typo from your phone.
 
 ```
 portfolio/
-├── index.html          Home: hero, filterable Selected Work grid, About
+├── index.html          Home: hero + photo, tabbed Work section, About
 ├── styles.css          All styling for every page
 ├── work/               One page per case study
 │   ├── norbert-request-relay.html
@@ -46,8 +46,8 @@ sentence.
 
 | To change | Open |
 |---|---|
-| A card in the Selected Work grid | `index.html` → the `PROJECTS` list near the bottom |
-| The homepage headline, intro, or About section | `index.html` → the `<main>` block |
+| A card in one of the Work tabs | `index.html` → the `PROJECTS` list near the bottom |
+| The homepage headline, intro, At-a-glance strip, or About section | `index.html` → the `<main>` block |
 | Anything inside a case study | that page in `work/` or `writing/` |
 | Colours, fonts, spacing | `styles.css` → the `:root` block at the top |
 
@@ -107,7 +107,7 @@ the list is order on the page.
 ```js
 /*
 {
-  title: "Content design at Workiva",
+  title: "Some project you want to hide",
   ...
 },
 */
@@ -152,29 +152,44 @@ The link at the bottom of each page is one of three shapes:
 
 ## Adding or editing a project
 
-Everything in the Selected Work grid comes from one array. Open `index.html`, scroll
-to the `PROJECTS` list near the bottom, and copy an existing block:
+The Work section has four tabs: Product Research, Academic Research, Case Studies,
+Writing. The first three come from the `PROJECTS` list in `index.html`; Writing comes
+from the `WRITING` list. Copy an existing block:
 
 ```js
 {
-  title: "Voice agent discovery with older adults",
-  tags: ["product"],                    // "product" | "academic" | "case" | "writing"
-  href: "work/voice-agent.html",        // or null if not written yet
-  wide: false,                          // true = spans two columns
-  blurb: "One or two sentences on what you found, not what the topic was.",
-  meta: ["Field research", "Norbert Health"]
+  cat: "academic",                       // "product" | "academic" | "case"
+  title: "How facial impressions shape memory",
+  href: "work/facial-impressions-memory.html",   // or null if not written yet
+  featured: true,                        // optional: card spans two columns
+  context: "Master's thesis · Columbia, 2025",   // small line above the title
+  finding: "ONE sentence: the result, not the topic.",
+  methods: ["fMRI", "Mixed-effects models", "n=31"]  // 3–4 short chips
 },
 ```
 
 Notes:
 
-- **`tags` can hold more than one.** `tags: ["writing", "academic"]` makes the item
-  appear under both filters. The filter counts update automatically.
-- **`href: null`** renders the card as "Write-up in progress" with no link. Useful for
-  claiming the work now and writing it later.
-- **`wide: true`** should stay rare. One, maybe two. Its whole job is to signal which
-  project you want read first, and that stops working if everything is wide.
-- **Order in the array is the order on the page.** Most recent and most relevant first.
+- **Order in the list is the order in the tab.**
+- **`href: null`** shows the card dashed, as "Write-up in progress".
+- **`featured: true`** only where the count works out: featured + 1 + 3 fills two
+  rows of three. With three cards in a tab, leave it off.
+- **Tab intro lines and labels** are in `CATEGORIES` at the top of the script.
+- **Linking straight to a tab:** `index.html#academic` (or `#product`, `#case`,
+  `#writing`) opens that tab. Each case study's "Back" link uses this.
+- **"Next" links** at the bottom of each case study follow the tab order, then roll
+  into the next tab. If you reorder projects, update those links to match.
+
+## Photos
+
+All images live in `assets/img/`:
+
+- `grace-portrait.jpg` — the homepage photo (cropped 4:5, location data stripped).
+- `about-1.jpg` (tall, left), `about-2.jpg`, `about-3.jpg` — the About collage.
+  To swap one, replace the file **keeping the same name**, then update its `alt`
+  text in `index.html`. Aim for ~1000px on the long side and under ~300 KB.
+  Export from your phone's photo app rather than uploading the original, so the
+  GPS location isn't embedded.
 
 ## Adding a new case study page
 
@@ -271,7 +286,22 @@ page and get a live site, with no git involved. Same result, slightly less contr
 - [ ] Replace the `og:` meta tags if you want a specific link preview image
 - [ ] Check it on your phone
 
+## Slide deck viewer
+
+`work/msk-llm-evaluation.html` has a click-through viewer for the MSK presentation
+(arrows, keyboard, swipe, thumbnails, full screen). It's powered by `deck.js` and
+reusable on any page:
+
+1. Export the deck to images: in PowerPoint or Keynote, **File → Export → JPEG**
+   (about 1600px wide). Rename them `slide-01.jpg`, `slide-02.jpg`, … and put them
+   in a new folder such as `assets/my-deck-slides/`.
+2. Copy the `<div class="deck" …>` block from the MSK page, and change
+   `data-count` (number of slides) and `data-path` (the folder + `slide-`).
+3. Add `<script src="../deck.js"></script>` just before `</body>`.
+
 ## What's not built yet
 
-One card is still `href: null`: the LLM medical-QA evaluation. The Cantonese and
-Mandarin language-routing card was removed on purpose.
+- No resume PDF yet (there's a commented-out button for it in the hero).
+
+Removed on purpose: the market-landscape card (Precision client work) and the
+Workiva writing sample (no public pages could be confirmed as yours).
