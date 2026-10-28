@@ -13,6 +13,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..700;1,8..60,200..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* Hero photo: no offset color box behind it, and zoomed in a bit */
+  .hero-photo::before { display: none; }
+  .hero-photo { overflow: hidden; }
+  .hero-photo img { transform: scale(1.18); transform-origin: 50% 35%; }
+</style>
 </head>
 <body>
 
@@ -25,6 +31,7 @@
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="mailto:grace20029@gmail.com">Contact</a>
+      <a href="https://www.linkedin.com/in/graceeliu/" target="_blank" rel="noopener">LinkedIn</a>
     </nav>
   </div>
 </header>
@@ -42,8 +49,7 @@
       </div>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#work">See my work</a>
-        <a class="btn" href="mailto:grace20029@gmail.com">Get in touch</a>
-        <a class="btn" href="https://www.linkedin.com/in/graceeliu/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a>
         <!-- Add your resume here once it's in assets/:
         <a class="btn" href="assets/grace-liu-resume.pdf">Resume (PDF)</a>
         -->
