@@ -103,7 +103,7 @@
     <div class="instrument-shots" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0;align-items:start;">
       <figure style="margin:0;">
         <img src="../assets/img/norbert-relay-cardsort-intake.png" alt="Card sort intake screen asking for role (CNA, RN, Other), floor (1–14 or Other), and shift type before the sort begins." style="width:100%;height:auto;border:1px solid #e3e3e3;border-radius:8px;" loading="lazy">
-        <figcaption>Intake: role, floor, and shift, captured in a few taps.</figcaption>
+        <figcaption>Intake: role, floor, and shift.</figcaption>
       </figure>
       <figure style="margin:0;">
         <img src="../assets/img/norbert-relay-cardsort-board.png" alt="Card sort board with a deck of request cards on the left and four columns: highest priority, medium priority, low priority, and this is not my responsibility." style="width:100%;height:auto;border:1px solid #e3e3e3;border-radius:8px;" loading="lazy">
@@ -113,11 +113,10 @@
 
     <h4>What it captures</h4>
     <ul>
-      <li><strong>Eleven request cards</strong> drawn from real requests the robot had captured, sorted into four buckets: highest priority, medium, low, and <em>this is not my responsibility</em>.</li>
+      <li><strong>Request cards</strong> drawn from real requests the robot had captured, sorted into four buckets: highest priority, medium, low, and <em>this is not my responsibility</em>.</li>
       <li><strong>A confidence rating for each priority placement</strong> — not sure, somewhat sure, very sure — so a fast confident call could be told apart from a guess.</li>
-      <li><strong>Role attribution</strong> for anything placed in "not my responsibility," so I could see where staff thought a request should go rather than just that it wasn't theirs.</li>
+      <li><strong>Role attribution</strong> for anything placed in "not my responsibility," to see where staff thought a request should go rather than just that it wasn't theirs.</li>
       <li><strong>Behavioral telemetry</strong>: placement latency and how many times a card was moved before the participant settled. This is the part I'd have lost with paper cards, and it's what let me distinguish a fast confident routing decision from genuine hesitation.</li>
-      <li><strong>Role, unit, and shift</strong> for each session, plus an open text field at the end.</li>
     </ul>
 
     <div class="cs-note">
@@ -126,7 +125,6 @@
 
     <h2 id="findings">Findings</h2>
 
-    <div class="finding">
       <h3>1. Staff didn't triage on a scale. They made two separate calls.</h3>
 
       <p>Around 71% of all card placements landed at one of two poles: <em>highest priority</em> or <em>this is not my responsibility</em>. Medium and low were comparatively unused.</p>
@@ -155,10 +153,9 @@
 
       <p>Staff were answering two questions at once: <em>is this urgent?</em> and <em>is this mine?</em> The product's single priority field could only hold one of those answers, which is the root of the next finding.</p>
 
-    </div>
 
     <div class="finding">
-      <h3>2. Clinical symptom requests split sharply by role, in a way that strips urgency</h3>
+      <h3>2. Clinical symptom requests split sharply by role, in a way that strips urgency.</h3>
 
       <p>The two clinical cards — chest pain, and nausea with dizziness — produced the most role-divergent result in the dataset, and the one with the most direct patient-safety relevance.</p>
 
@@ -174,7 +171,7 @@
         </tbody>
       </table>
 
-      <p>Every nurse placed both cards as highest priority, "very sure." Five of eight nursing assistants routed both to the nurse as "not my responsibility," and they did it fast, with a median of about one second. That was a confident decision, not hesitation, and escalating is the right instinct:</p>
+      <p>Every nurse placed both cards as highest priority, "very sure." Five of eight nursing assistants routed both to the nurse as "not my responsibility," and they did it fast. That was a confident decision, not hesitation, and escalating is the right instinct:</p>
 
       <blockquote>
         <p>That's for the CNA — we have to pass that to the nurse. And that is high. You don't know what's going on there.</p>
@@ -190,9 +187,9 @@
     </div>
 
     <div class="finding">
-      <h3>3. One request produced the widest disagreement and the lowest confidence in the study</h3>
+      <h3>3. One request produced the widest disagreement and the lowest confidence in the study.</h3>
 
-      <p>A card combining a wish to go home with a wish to die had the lowest consensus in the study (no bucket drew more than a third of placements) and one of the highest revision counts. People kept changing their minds about it.</p>
+      <p>A card combining a wish to go home with a wish to die had the lowest consensus in the study and one of the highest revision counts. People kept changing their minds about it.</p>
 
       <table class="cs-table">
         <caption>Placement of the distress statement card</caption>
@@ -221,7 +218,7 @@
         <cite>Registered nurse</cite>
       </blockquote>
 
-      <p>Two nursing assistants placed it in "not my responsibility" while saying aloud that they really didn't know. The tool recorded a routing decision; what I heard was uncertainty. Right now, what happens to a resident who says this depends on who happens to hear it. That's a risk the system should absorb, not leave to whoever is on shift.</p>
+      <p>Two nursing assistants placed it in "not my responsibility" while saying aloud that they really didn't know. Right now, what happens to a resident who says this depends on who happens to hear it. That's a risk the system should absorb, not leave to whoever is on shift.</p>
     </div>
 
     <div class="finding">
@@ -229,7 +226,7 @@
 
       <p>Clinical and symptom requests routed to the nurse unanimously: 100% of "not mine" placements on those cards went to the RN. Administrative and social requests routed outward to food service, environmental services, or social work.</p>
 
-      <p>But the starting hypothesis that requests should auto-route by job title didn't hold. Staff described care as collaborative, and nurses were explicit that they triage on who's free, not on whose job it officially is:</p>
+      <p>The starting hypothesis that requests should auto-route by job title didn't hold. Staff described care as collaborative, and nurses were explicit that they triage on who's free, not on whose job it officially is:</p>
 
       <blockquote>
         <p>It doesn't matter if I'm a nurse or CNA. Somebody said they need water, I have to get the water.</p>
@@ -244,13 +241,13 @@
     </div>
 
 
-    <h2 id="baseline">The real gap/h2>
+    <h2 id="baseline">The real gap</h2>
 
     <p>The card sort told me how staff think about requests. It didn't tell me what they were working with. Semi-structured interviews told me the following:</p>
 
     <p><strong>The existing request system is entirely analogue.</strong> There was no call bell integration with the electronic medical record, with text, or with any digital system at all. Requests arrive as ceiling lights and alarms outside each room, and staff physically walk to find out what's wanted.</p>
 
-    <p><strong>The nurses' station's unused phone.</strong>With the station phone, staff could ask a resident what they needed and make a single trip. But staff didn't reach for this due to it being outdated and hard to use.</p>
+    <p><strong>The nurses' station's unused phone.</strong> With the phone, staff could ask a resident what they needed and make a single trip. But staff didn't reach for this due to it being outdated and hard to use.</p>
 
     <p>With the current request workflow, staff walked to the room to learn what was needed, then walked back to get it, and back to the patient. One nurse described that double trip as her biggest frustration.</p>
 
@@ -259,7 +256,7 @@
       <cite>Registered nurse</cite>
     </blockquote>
 
-    <p><strong>There was no existing staff-to-staff communication for requests.</strong> Some coordinated through an informal group chat, some room numbers only, no resident names, or HIPAA concerns. Others had nothing at all. They described they wanted something that surfaces needs, flags the safety-critical ones, supports delegation, and lives inside the tools they already use. The team had started by asking <em>how do we relay patient requests?</em> The research pointed to a different question:</p>
+    <p><strong>There was no existing staff-to-staff communication for requests.</strong> Some coordinated through an informal group chat, with room numbers only and no resident names. Others had nothing at all. They described that they wanted something that surfaces needs, flags the safety-critical ones, supports delegation, and works with tools they're already familiar with. The team had started by asking <em>how do we relay patient requests?</em> The research surfaced a different question:</p>
 
     <blockquote>
       <p>How can the system coordinate patient needs while preserving clinician oversight, reducing communication gaps, and improving patient safety?</p>
@@ -271,7 +268,7 @@
     <ol>
       <li><strong>Separate urgency from responsibility.</strong> Two independent fields, not one forced choice, so a nursing assistant can flag something as both "not my task" and "still urgent." This directly closes the gap in finding 2.</li>
       <li><strong>Give distress statements their own escalation path,</strong> outside the general priority scale. An automatic charge-nurse or supervisor flag plus a prompt for closer observation, rather than leaving the outcome to whoever happens to receive it.</li>
-      <li><strong>Replace strict role-based routing with availability-based routing</strong> for lower-acuity requests.</li>
+      <li><strong>Replace strict role-based routing with availability-based routing.</strong></li>
       <li><strong>Support team-based care.</strong> Make requests visible across the care team with claim-and-hand-off, rather than routing to one person's queue. In practice: a shared prioritized queue on a station display.</li>
     </ol>
 
@@ -288,12 +285,12 @@
 
     <ul>
       <li><strong>The forced choice was my own design flaw.</strong> Putting "not my responsibility" in the same set as three urgency levels is what surfaced finding 2.</li>
-      <li><strong>Explore timing.</strong> Acceptable speed-to-handle was one of my six research questions and the study didn't answer it. This can be answered by log data once the system is live.</li>
+      <li><strong>Explore timing.</strong> Acceptable speed-to-handle was one of my research questions and the study didn't answer it. This can be answered by log data once the system is live.</li>
       <li><strong>The sample was one afternoon, mostly evening shift.</strong> Nine of twelve card-sort participants were evening-shift staff, all recruited in a single visit, and nobody from night shift took part. Staffing is thinnest overnight, which likely changes both prioritization and channel preference.</li>
     </ul>
 
     <div class="cs-note">
-      <p><strong>On confidentiality.</strong> This write-up is de-identified. Some internal product detail has been withheld.</p>
+      <p>This write-up is de-identified. Some internal product detail has been withheld.</p>
     </div>
 
     <div class="cs-next">
