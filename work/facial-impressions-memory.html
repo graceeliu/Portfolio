@@ -103,6 +103,11 @@
 
     <p>Thirty-one participants learned behavioral statements paired with eight male faces (four Black, four White) while in the scanner, then picked which face each statement belonged to. I used each face's normative trustworthiness and dominance ratings to test whether first impressions shaped what people remembered, using mixed-effects logistic regression on trial-level accuracy and ROI analyses of hippocampus and amygdala activity.</p>
 
+    <figure>
+      <img src="../assets/img/facial-impressions-task-design.png" width="1562" height="900" alt="Three-phase trial structure: encoding (a face for 3 seconds, a fixation cross for 2 to 6 seconds, then the face with a behavioral statement for 7 seconds), a 60-second dot array distractor task, and retrieval (the statement for 7 seconds, a fixation cross, then a grid of eight faces to choose from for 6 seconds)." style="width:100%;height:auto;" loading="lazy">
+      <figcaption>Computer task design</figcaption>
+    </figure>
+
     <h4>Why the error structure was the useful part</h4>
 
     <p>Errors split usefully into two: picking the wrong face of the same race, or of the other race. Same-race confusions were far more common, replicating a well-known pattern: people confuse individuals within a social category more easily than across one.</p>
@@ -152,7 +157,17 @@
         </tbody>
       </table>
 
+      <figure>
+        <img src="../assets/img/facial-impressions-interaction-all.png" width="952" height="824" alt="Line chart of predicted probability of a correct response against centered trustworthiness at three dominance levels. At low dominance accuracy rises with trustworthiness, at high dominance it falls, and at average dominance it stays flat; the lines cross near mean trustworthiness." style="width:100%;max-width:560px;height:auto;" loading="lazy">
+        <figcaption>Interaction between trustworthiness and dominance on recall accuracy of all faces</figcaption>
+      </figure>
+
       <p>The slopes cross near mean trustworthiness, which means dominance matters most at the extremes of the trustworthiness dimension and barely at all in the middle.</p>
+
+      <figure>
+        <img src="../assets/img/facial-impressions-interaction-by-race.png" width="1990" height="860" alt="Two line charts of the same trustworthiness by dominance interaction. For Black male faces the three dominance lines stay roughly parallel; for White male faces the low- and high-dominance lines cross sharply, as in the pooled model." style="width:100%;height:auto;" loading="lazy">
+        <figcaption>Interactions between trustworthiness and dominance on recall accuracy, shown separately for Black male faces only (left) and White male faces only (right)</figcaption>
+      </figure>
 
     </div>
 
@@ -161,6 +176,17 @@
     <p>The central neural hypothesis didn't hold. Activity during learning didn't predict what was remembered, in either the hippocampus or the amygdala, and people whose memory was more sensitive to trustworthiness didn't show stronger neural sensitivity to it. This was likely caused by the small sample, few trials per condition, and averaging activity over whole brain regions, which can wash out localized effects.</p>
 
     <p>However, in the localizer task, the amygdala showed trait-related differences that ran in opposite directions for Black and White faces: greater activation for trustworthy-rated Black faces, and greater activation for untrustworthy-rated White faces. Neither pattern appeared when faces were pooled, and the hippocampus showed nothing at any level. Since this was an unplanned race-specific analysis, it should be treated as exploratory only.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:2rem 0;">
+      <figure style="margin:0;">
+        <img src="../assets/img/facial-impressions-amygdala-black.png" width="984" height="586" alt="Scatterplot of each participant's behavioral trustworthiness slope against amygdala activation difference (trustworthy minus untrustworthy) for Black male faces, with a slightly positive fitted line." style="width:100%;height:auto;" loading="lazy">
+        <figcaption>Amygdala brain-behavior correlation (Black males only)</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="../assets/img/facial-impressions-amygdala-white.png" width="1034" height="584" alt="Scatterplot of each participant's behavioral trustworthiness slope against amygdala activation difference (trustworthy minus untrustworthy) for White male faces, with a slightly negative fitted line." style="width:100%;height:auto;" loading="lazy">
+        <figcaption>Amygdala brain-behavior correlation (White males only)</figcaption>
+      </figure>
+    </div>
 
     <h2 id="nulls">Conclusion</h2>
 
