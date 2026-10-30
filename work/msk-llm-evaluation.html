@@ -30,16 +30,15 @@
 <div class="cs-head shell">
   <a class="cs-back" href="../index.html#academic">← Back to Academic Research</a>
   <h1>Memorial Sloan Kettering: general vs. domain-specific LLMs on medical questions</h1>
-  <p class="cs-standfirst">Both models wrote answers that sounded right, and a standard similarity metric scored them almost identically. Only the metrics that checked facts could tell them apart. The medical-domain model hallucinated less and covered more of the expert answer, but neither was close to safe to use unsupervised.</p>
+  <p class="cs-standfirst">Both the general and the domain-specific model wrote answers that sounded right, and a standard similarity metric scored them almost identically. Only the metrics that checked facts could tell the outputs apart. The medical-domain model hallucinated less and covered more of the expert answer, but neither was close to safe to use unsupervised.</p>
 
   <dl class="cs-meta">
-    <div><dt>Partner</dt><dd>Memorial Sloan Kettering Cancer Center, through a Columbia QMSS graduate course</dd></div>
-    <div><dt>Team</dt><dd>Six researchers</dd></div>
-    <div><dt>My role</dt><dd>Market research on available LLMs, data cleaning, and model comparison; supported the technical evaluation</dd></div>
-    <div><dt>Timeline</dt><dd>Fall 2024, one semester</dd></div>
+    <div><dt>Team</dt><dd>Six researchers, equal contribution</dd></div>
+    <div><dt>Role</dt><dd>Market research on available LLMs, data cleaning, and model comparison; supported the technical evaluation</dd></div>
+    <div><dt>Type</dt><dd>Graduate practicum in partnership with Memorial Sloan Kettering Cancer Center, Columbia University</dd></div>
     <div><dt>Data</dt><dd>MedQuAD (141 hand-verified Q&amp;A pairs), MIMIC-III clinical notes</dd></div>
     <div><dt>Methods</dt><dd>4-bit quantized inference, BERTScore, DeepEval G-Eval, manual hallucination and factoid scoring</dd></div>
-    <div><dt>Full paper</dt><dd><a href="../assets/msk-llm-evaluation-paper.pdf">Results paper (PDF)</a></dd></div>
+    <div><dt>Full paper</dt><dd><a href="../assets/msk-llm-evaluation-paper.pdf">PDF</a></dd></div>
   </dl>
 </div>
 
@@ -48,38 +47,26 @@
   <nav class="cs-toc" aria-label="On this page">
     <p>On this page</p>
     <ol>
-      <li><a href="#deck">The deck</a></li>
-      <li><a href="#pivot">The pivot</a></li>
-      <li><a href="#data">Data</a></li>
-      <li><a href="#models">Models</a></li>
-      <li><a href="#measuring">Measuring "correct"</a></li>
       <li><a href="#results">Results</a></li>
       <li><a href="#meaning">What it means</a></li>
-      <li><a href="#limits">Limitations</a></li>
     </ol>
   </nav>
 
   <article class="cs-body" id="body">
 
     <div class="cs-tldr">
-      <h2>The short version</h2>
+      <h2>TLDR</h2>
       <dl>
         <dt>The question</dt>
-        <dd>LLMs are being adopted for clinical documentation, patient communication, and decision support, but they produce fluent answers that can be factually wrong. Does a medical-domain model actually answer medical questions better than a strong general-purpose one?</dd>
+        <dd>LLMs write fluent answers that can be factually wrong. Does a medical-domain model answer medical questions more accurately than a strong general-purpose one?</dd>
 
         <dt>What we did</dt>
-        <dd>The original plan was to fine-tune a model on clinical text. Without enough GPU access, we turned it into a head-to-head evaluation: Llama 3.1 (general) against Asclepius (medical), both 8B and quantized to 4-bit, answering 141 expert-verified medical questions. We scored the answers three ways.</dd>
+        <dd>The plan was to fine-tune a model on clinical notes, but without enough GPU access we pivoted to a head-to-head test: Llama 3.1 (general) vs. Asclepius (medical), both 8B and 4-bit quantized, on 141 hand-verified medical questions, scored three different ways.</dd>
 
         <dt>What we found</dt>
-        <dd>Semantic similarity couldn't separate the models (F1 ≈ 0.83 for both). The correctness metrics could. Asclepius gave hallucination-free answers 78% of the time vs. 67% for Llama, scored higher on model-graded correctness (0.61 vs. 0.52), and captured more of the expert answer's facts (0.43 vs. 0.38).</dd>
-
-        <dt>Why it matters</dt>
-        <dd>A model can sound right without being right, and the most common off-the-shelf metric rewards sounding right. For a medical use case, evaluation has to check facts directly.</dd>
+        <dd>A standard similarity metric couldn't tell the models apart. Fact-checking metrics could: Asclepius hallucinated less and covered more of the expert answers, but neither was safe to use unsupervised.</dd>
       </dl>
     </div>
-
-    <h2 id="deck">The deck</h2>
-    <p>Our final presentation to the MSK team. Use the arrows (or your keyboard's arrow keys) to click through, or jump to any slide from the strip below.</p>
 
     <div class="deck" id="deck-viewer" data-count="26" data-path="../assets/msk-slides/slide-" aria-roledescription="carousel" aria-label="MSK final presentation">
       <div class="deck-stage">
@@ -94,103 +81,33 @@
       <div class="deck-thumbs" role="list"></div>
     </div>
 
-    <h2 id="pivot">The pivot</h2>
-    <p>The project began as fine-tuning: take an existing model, train it further on real clinical text, and show how much domain data improves accuracy. That needs serious GPU capacity, which we couldn't get. So we kept the question and changed the method: evaluate what's already available. We compared a general model against one built for medicine, using memory-efficient 4-bit quantization so both could run on the hardware we had.</p>
-    <p>That reframing turned out to be useful in its own right. Before anyone invests in fine-tuning, the prior question is whether domain-specific training is buying anything at all, and how you'd even measure that.</p>
-
-    <h2 id="data">Data</h2>
-    <h3>MIMIC-III: cleaned, then set aside</h3>
-    <p>MIMIC-III is a public database of de-identified ICU records. Its NOTEEVENTS file holds more than two million free-text clinical notes: nursing notes, radiology reports, discharge summaries. We wrote regex-based segmentation to split those notes into structured sections (demographics, medical history, clinical observations) for training.</p>
-    <p>The data fought back. The notes vary widely in headers, abbreviations, and typos, and the file's format changes after row 100,000, leaving about 40,000 usable rows out of roughly 400,000. Once fine-tuning was off the table, this cleaned data couldn't feed the final evaluation, but the work mapped out what a future fine-tuning effort would face.</p>
-
-    <h3>MedQuAD: the benchmark</h3>
-    <p>MedQuAD contains 47,457 question-answer pairs drawn from NIH and other trusted medical sources. We hand-checked pairs against their source pages, removed the many duplicates, and selected 141 varied questions, which was as many as we could run locally.</p>
-    <p>Many questions were phrased so a model could answer "yes" and stop, which tells you nothing about accuracy. We rewrote those to require a substantive answer:</p>
-    <div class="compare">
-      <div><h4>Original</h4><p>"Do you have information about pulling a patient up in bed?"</p></div>
-      <div><h4>Rewritten</h4><p>"What is the correct method for safely pulling or moving a patient up in bed, including steps to protect the patient's skin and shoulders, prevent caregiver injury, and use appropriate equipment like slide sheets?"</p></div>
-    </div>
-
-    <h2 id="models">Models</h2>
-    <table class="cs-table">
-      <caption>Both models were run at 8B parameters, quantized to 4-bit normal float.</caption>
-      <thead><tr><th></th><th>Llama 3.1</th><th>Asclepius</th></tr></thead>
-      <tbody>
-        <tr><td>Type</td><td>General-purpose, open source (Meta)</td><td>Medical-domain, built on Llama 3</td></tr>
-        <tr><td>Training</td><td>Broad web-scale text</td><td>Pre-trained on synthetic clinical notes generated from published case reports, then instruction-tuned on clinical tasks</td></tr>
-        <tr><td>Why it's here</td><td>Strong, accessible general baseline</td><td>Fills the domain-knowledge gap; avoids real patient notes, sidestepping HIPAA</td></tr>
-      </tbody>
-    </table>
-    <p>Both models got the same instruction: answer the medical question in detail, with all necessary and accurate information, while being concise.</p>
-
-    <h2 id="measuring">Measuring "correct"</h2>
-    <p>"Is this answer good?" splits into separate questions, so we used three metrics that each answer a different one.</p>
-
-    <div class="finding">
-      <h3>1. BERTScore: does it mean the same thing?</h3>
-      <p>BERTScore compares the model's answer with the expert answer using contextual embeddings, and reports precision, recall, and F1. It measures semantic similarity, not truth: a confident wrong answer about the right topic can still score well.</p>
-    </div>
-    <div class="finding">
-      <h3>2. DeepEval G-Eval: is it factually correct?</h3>
-      <p>GPT-4o acted as the judge, using chain-of-thought steps to check whether the answer contradicted any facts in the expert answer. Leaving out minor detail and vague wording were allowed; contradictions and missing important detail were penalized.</p>
-    </div>
-    <div class="finding">
-      <h3>3. Manual review: did it make things up, and how much did it cover?</h3>
-      <p>We built two hand-scored measures. The <strong>hallucination score</strong> checked every answer against Mayo Clinic: any incorrect or incoherent claim, however small, counted. The <strong>factor score</strong> counted how many of the expert answer's individual facts appeared in the model's answer.</p>
-      <p>For example, MedQuAD's answer on polycystic ovary syndrome contains five facts. Asclepius's answer was accurate but covered two of them, so it scored no hallucination and a factor score of 2/5.</p>
-    </div>
-
     <h2 id="results">Results</h2>
 
-    <h3>Semantic similarity: a tie</h3>
-    <div class="bar-row"><span>Llama 3.1</span><span class="bar-track"><span class="bar-fill" style="width:83.8%;--bar:var(--ink-faint)"></span></span><span class="bar-val">0.838</span></div>
-    <div class="bar-row"><span>Asclepius</span><span class="bar-track"><span class="bar-fill" style="width:83.3%;--bar:var(--cat-academic)"></span></span><span class="bar-val">0.833</span></div>
-    <p class="bar-legend">BERTScore F1, averaged over 141 answers</p>
-
-    <h3>Model-graded correctness</h3>
-    <div class="bar-row"><span>Llama 3.1</span><span class="bar-track"><span class="bar-fill" style="width:52.3%;--bar:var(--ink-faint)"></span></span><span class="bar-val">0.523</span></div>
-    <div class="bar-row"><span>Asclepius</span><span class="bar-track"><span class="bar-fill" style="width:61.2%;--bar:var(--cat-academic)"></span></span><span class="bar-val">0.612</span></div>
-    <p class="bar-legend">DeepEval G-Eval correctness, averaged (0–1)</p>
-
-    <h3>Answers with no hallucination</h3>
-    <div class="bar-row"><span>Llama 3.1</span><span class="bar-track"><span class="bar-fill" style="width:66.7%;--bar:var(--ink-faint)"></span></span><span class="bar-val">67%</span></div>
-    <div class="bar-row"><span>Asclepius</span><span class="bar-track"><span class="bar-fill" style="width:78%;--bar:var(--cat-academic)"></span></span><span class="bar-val">78%</span></div>
-    <p class="bar-legend">Manual check against Mayo Clinic: 94 of 141 vs. 110 of 141 answers fully correct</p>
-
-    <h3>Coverage of the expert answer</h3>
-    <div class="bar-row"><span>Llama 3.1</span><span class="bar-track"><span class="bar-fill" style="width:37.7%;--bar:var(--ink-faint)"></span></span><span class="bar-val">0.38</span></div>
-    <div class="bar-row"><span>Asclepius</span><span class="bar-track"><span class="bar-fill" style="width:43.1%;--bar:var(--cat-academic)"></span></span><span class="bar-val">0.43</span></div>
-    <p class="bar-legend">Factor score: share of the reference answer's facts present in the model's answer</p>
+    <table class="cs-table">
+      <thead>
+        <tr><th scope="col">Metric</th><th scope="col">What it checks</th><th scope="col" class="num">Llama 3.1</th><th scope="col" class="num">Asclepius</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>BERTScore F1</td><td>Does it mean the same thing as the expert answer?</td><td class="num">0.84</td><td class="num">0.83</td></tr>
+        <tr><td>G-Eval correctness</td><td>Does GPT-4o judge it factually correct?</td><td class="num">0.52</td><td class="num"><strong>0.61</strong></td></tr>
+        <tr><td>No hallucination</td><td>Manually checked against Mayo Clinic</td><td class="num">67%</td><td class="num"><strong>78%</strong></td></tr>
+        <tr><td>Fact coverage</td><td>Share of the expert answer's facts included</td><td class="num">0.38</td><td class="num"><strong>0.43</strong></td></tr>
+      </tbody>
+    </table>
 
     <h2 id="meaning">What it means</h2>
     <ul>
-      <li><strong>Domain training helped where it counts.</strong> Asclepius led on every measure that checked facts: 16 fewer hallucinated answers out of 141, higher model-graded correctness, and better coverage.</li>
-      <li><strong>Fluency hides the gap.</strong> On semantic similarity the two models were indistinguishable. A team benchmarking only with BERTScore would have concluded domain training adds nothing.</li>
-      <li><strong>Neither model is ready to stand alone.</strong> Even the better model hallucinated in more than one answer in five and captured under half of the expert answer's facts on average.</li>
-      <li><strong>Pick the evaluation before the model.</strong> G-Eval tracked our manual review most closely, which makes it a practical, scalable first pass for future fine-tuning work. Manual spot checks stay in the loop.</li>
-    </ul>
-    <p>That last point is the one I carry into product research. A plausible-but-wrong answer is the dangerous failure for a clinician or a patient, because nothing about it signals that it's wrong. Evaluation has to be designed around that failure, not around how fluent the output sounds.</p>
-
-    <h2 id="limits">Limitations</h2>
-    <ul>
-      <li><strong>Small sample.</strong> 141 questions, limited by what could run locally, and no significance testing on the differences.</li>
-      <li><strong>Quantized models.</strong> Both ran at 4-bit precision, so the results describe compressed models, not full-precision ones.</li>
-      <li><strong>An LLM grading LLMs.</strong> G-Eval relies on GPT-4o's own judgment, which brings its own errors and biases.</li>
-      <li><strong>Strict hallucination scoring.</strong> One small inaccuracy marked a whole answer as hallucinated. That's appropriate for medicine, but it compresses very different severities into one number.</li>
+      <li><strong>Fluency hides the gap.</strong> On semantic similarity, the models tied. Relying only on that metric would conclude domain training adds nothing.</li>
+      <li><strong>Domain training helped where it counts.</strong> Asclepius led on every metric that checked facts.</li>
+      <li><strong>Neither model is ready to stand alone.</strong> Even the better one hallucinated in more than one answer in five. For clinicians and patients, a plausible-but-wrong answer is the dangerous failure, so evaluation has to check facts directly.</li>
     </ul>
 
     <div class="cs-cta">
-      <a href="../assets/msk-llm-evaluation-paper.pdf">Read the full results paper</a>
-      <span>PDF &middot; 20 pages &middot; literature review, methods, appendix tables</span>
+      <a href="../assets/msk-llm-evaluation-paper.pdf">Read the full paper</a>
     </div>
 
     <div class="cs-note">
-      <p>Graduate course project conducted in partnership with Memorial Sloan Kettering Cancer Center. All data are publicly available, de-identified datasets (MIMIC-III, MedQuAD). Findings are the team's own and do not represent MSK.</p>
-    </div>
-
-    <div class="cs-next">
-      <p>Next</p>
-      <a href="multisensory-recognition-memory.html">Does pairing a face with a sound help you remember it?</a>
+      <p>Conducted in partnership with Memorial Sloan Kettering Cancer Center (MSKCC). All data are publicly available, de-identified datasets (MIMIC-III, MedQuAD). Findings are the team's own and do not represent MSKCC.</p>
     </div>
 
   </article>
@@ -200,7 +117,7 @@
 
 <footer class="foot">
   <div class="shell foot-inner">
-    <span>Grace Liu — product &amp; UX research</span>
+    <span>Grace Liu</span>
     <span><a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a></span>
   </div>
 </footer>
