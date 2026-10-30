@@ -46,9 +46,8 @@
   <nav class="cs-toc" aria-label="On this page">
     <p>On this page</p>
     <ol>
-      <li><a href="#deck">The deck</a></li>
-      <li><a href="#recs">Pain points by app</a></li>
-      <li><a href="#takeaways">What I took from it</a></li>
+      <li><a href="#recs">Findings</a></li>
+      <li><a href="#takeaways">What we took from it</a></li>
     </ol>
   </nav>
 
@@ -58,18 +57,16 @@
       <h2>TLDR</h2>
       <dl>
         <dt>The question</dt>
-        <dd>How can NLP identify UX pain points in trading apps from negative App Store reviews, and do those pain points differ across a traditional broker, a commission-free app, a crypto exchange, and a newer entrant?</dd>
+        <dd>How can NLP identify UX pain points in trading apps from negative App Store reviews, and do those pain points differ across a traditional broker, a commission-free app, a crypto exchange, and a newer platform?</dd>
 
         <dt>What we did</dt>
         <dd>Scraped 1,000 reviews per app, scored sentiment with VADER, then ran TF-IDF and LDA topic modeling on the negative reviews to surface each app's top problems.</dd>
 
         <dt>What we found</dt>
-        <dd>The biggest complaints were about money and access (withdrawals, account locks, verification, slow support), not interface layout. And star ratings were a poor stand-in for sentiment: people often wrote complaints and still left high ratings.</dd>
+        <dd>The biggest complaints were about money and access (withdrawals, account locks, verification, slow support), not interface layout. And star ratings were not an accurate representation of sentiment: people often wrote complaints and still left high ratings.</dd>
       </dl>
     </div>
 
-    <h2 id="deck">The deck</h2>
-    <p>Our final presentation. Use the arrows (or your keyboard's arrow keys) to click through, or jump to any slide from the strip below.</p>
 
     <div class="deck" id="deck-viewer" data-count="28" data-path="../assets/nlp-slides/slide-" aria-roledescription="carousel" aria-label="Trading app NLP final presentation">
       <div class="deck-stage">
@@ -79,12 +76,11 @@
       </div>
       <div class="deck-bar">
         <span class="deck-count" aria-live="polite">1 / 28</span>
-        <button class="deck-full" type="button">Full screen</button>
       </div>
       <div class="deck-thumbs" role="list"></div>
     </div>
 
-    <h2 id="recs">Pain points by app</h2>
+    <h2 id="recs">Findings</h2>
 
     <table class="cs-table">
       <thead>
@@ -101,7 +97,7 @@
     <h2 id="takeaways">What I took from it</h2>
 
     <ul>
-      <li><strong>Star ratings aren't sentiment.</strong> A classifier predicting stars from review text barely beat baseline outside of 1- and 5-star reviews. Review text tells you far more than the number.</li>
+      <li><strong>Star ratings aren't sentiment.</strong> A classifier predicting stars from review text barely beat baseline outside of 1- and 5-star reviews. Review text tells you way more than simple star ratings.</li>
       <li><strong>Validate against ground truth, not a proxy.</strong> We tuned sentiment thresholds to match star ratings after showing ratings were unreliable. Next time I'd hand-label a sample of reviews and use that instead.</li>
       <li><strong>Reviews show severity, not prevalence.</strong> People who write reviews skew toward strong complaints, so this method is good for finding serious failures, not for estimating how common they are.</li>
     </ul>
@@ -112,12 +108,7 @@
     </div>
 
     <div class="cs-note">
-      <p>Graduate coursework project. Analysis based on publicly posted App Store reviews; no reviewer identities are reproduced here. Recommendations are inferences from public review text and are not affiliated with or endorsed by any of the companies named.</p>
-    </div>
-
-    <div class="cs-next">
-      <p>Next</p>
-      <a href="msk-llm-evaluation.html">Memorial Sloan Kettering: general vs. domain-specific LLMs on medical questions</a>
+      <p>Analysis based on publicly posted App Store reviews; no reviewer identities are reproduced here.</p>
     </div>
 
   </article>
@@ -127,7 +118,7 @@
 
 <footer class="foot">
   <div class="shell foot-inner">
-    <span>Grace Liu — product &amp; UX research</span>
+    <span>Grace Liu</span>
     <span><a href="mailto:grace20029@gmail.com">grace20029@gmail.com</a></span>
   </div>
 </footer>
