@@ -79,8 +79,8 @@
 
 <div class="cs-head shell">
   <a class="cs-back" href="../index.html#product">← Back to Product Research</a>
-  <h1>Prompt personaliation: what makes patients talk to a robot</h1>
-  <p class="cs-standfirst">Nursing-home residents were noticing our care robot, but saying nothing. I ran a crossover experiment to test whether a personalized first question would get them talking. Response rates were about even, but the conversations weren't: questions about the present opened people up, while questions asking them to remember the past met with silence.</p>
+  <h1>Prompt personalization: what makes patients talk to a robot</h1>
+  <p class="cs-standfirst">Nursing-home residents were noticing our care robot, but saying nothing. I ran a crossover experiment to test whether a personalized first question would get them talking. Response rates were about even, but the conversations weren't: questions about the present opened people up, while questions asking them to remember the past were met with silence.</p>
 
   <dl class="cs-meta">
     <div><dt>Role</dt><dd>Product &amp; user researcher: experiment design, fieldwork, analysis, readout</dd></div>
@@ -98,11 +98,11 @@
     <ol>
       <li><a href="#problem">The problem</a></li>
       <li><a href="#experiment">The experiment</a></li>
-      <li><a href="#tie">The headline: a tie</a></li>
+      <li><a href="#tie">The result: a tie</a></li>
       <li><a href="#moments">What patients said next</a></li>
       <li><a href="#present">Present beats recall</a></li>
-      <li><a href="#outcome">What I recommended</a></li>
-      <li><a href="#limits">Limits and open questions</a></li>
+      <li><a href="#outcome">Recommendations</a></li>
+      <li><a href="#limits">Limitations and open questions</a></li>
     </ol>
   </nav>
 
@@ -112,13 +112,13 @@
       <h2>TLDR</h2>
       <dl>
         <dt>The problem</dt>
-        <dd>Patients looked at Norbert far more often after a summer release, but only about 1 in 10 visits got a spoken response.</dd>
+        <dd>Patients acknowledged the robot during ~70% of visits, but only by looking. Only about 10% of visits got a spoken response.</dd>
 
         <dt>The test</dt>
-        <dd>Each patient heard a generic check-in one day and a personalized opener the other, in random order, so every patient was their own control.</dd>
+        <dd>Patients heard a generic check-in one day and a personalized opener the other, in random order, so every patient was their own control.</dd>
 
         <dt>What we found</dt>
-        <dd>Response rates were close (52% vs. 45%). The difference was in what came next: present-anchored questions ("How was your nap?") converted <strong>65%</strong> of the time; questions requiring recall converted <strong>32%</strong>.</dd>
+        <dd>Response rates to the generic versus personalized openers were close (52% vs. 45%). The difference was in what came next: present-anchored questions ("How was your nap?") converted <strong>65%</strong> of the time; questions requiring recall converted <strong>32%</strong>.</dd>
 
         <dt>What changed</dt>
         <dd>A phrasing rule (<em>ask about now, then follow their lead</em>), an icebreaker library operators use today, and designs for present-anchored prompt buttons and a patient profile log.</dd>
@@ -129,15 +129,15 @@
 
     <p>Norbert is a care robot that visits patients in a skilled nursing facility, steered by remote operators. Nurses wanted to know one thing before trusting it at the bedside: <em>will my patients be comfortable with it?</em> Comfort shows up as conversation, and conversation is clinical data. A patient who talks tells us what they need: a request, a pain level, their mood.</p>
 
-    <p>After the team shipped waving and eye contact in July, patients noticed Norbert much more. They still didn't talk to it.</p>
+    <p>After the team shipped waving and eye contact in July, patients noticed Norbert much more. But they still didn't talk to it.</p>
 
     <div class="pp-stats">
-      <div class="pp-stat" style="--bar:var(--cat-academic)"><b>+69%</b><span>visits where patients acknowledged Norbert (since the week of 7/20)</span></div>
+      <div class="pp-stat" style="--bar:var(--cat-academic)"><b>+69%</b><span>visits where patients acknowledged Norbert</span></div>
       <div class="pp-stat" style="--bar:var(--cat-academic)"><b>+30%</b><span>visits with any response over the same period</span></div>
-      <div class="pp-stat" style="--bar:var(--cat-product)"><b>~10%</b><span>of visits got a spoken response, and that number stayed flat</span></div>
+      <div class="pp-stat" style="--bar:var(--cat-product)"><b>~10%</b><span>of visits got a spoken response</span></div>
     </div>
 
-    <p>The funnel was breaking between <strong>noticing</strong> and <strong>talking</strong>. The step right after acknowledgment is Norbert's first question, which was a generic "How are you today?" That made the opener the obvious lever to test.</p>
+    <p>The funnel was breaking between <strong>noticing</strong> and <strong>talking</strong>. The step right after acknowledgment is Norbert's first question, which was a generic "How are you today?" So this is what we tested.</p>
 
     <h2 id="experiment">The experiment</h2>
 
@@ -146,7 +146,7 @@
     <div class="compare">
       <div>
         <h4>Arm A · Generic check-in</h4>
-        <p>"Good morning! How are you today?"</p>
+        <p>"Good morning, [NAME]! How are you today?"</p>
       </div>
       <div>
         <h4>Arm B · Personalized opener</h4>
@@ -165,7 +165,7 @@
     </ul>
     <p class="pp-key"><i style="background:var(--cat-product)"></i>Mostly answerable from the present <i style="background:var(--cat-academic)"></i>Mostly requires recall</p>
 
-    <p><strong>Why within-subject?</strong> In this population, differences between patients (cognition, hearing, mood, acuity) are far larger than any plausible prompt effect. So each patient heard both openers on consecutive days, with order randomized (Group 1: A then B; Group 2: B then A), and served as their own control.</p>
+    <p><strong>Why within-subject?</strong> In this population, differences between patients (cognition, hearing, mood, acuity) are larger than any plausible prompt effect. So each patient heard both openers on consecutive days, with order randomized (Group 1: A then B; Group 2: B then A), and served as their own control.</p>
 
     <details>
       <summary>Decision rules I set before launch</summary>
@@ -178,10 +178,9 @@
           <tr><td>No difference</td><td>Phrasing isn't the bottleneck; look at voice, pacing, turn-taking</td></tr>
         </tbody>
       </table>
-      <p>Built-in checks: an <strong>order check</strong> (a win only after patients warmed up on Arm A means "two questions beat one," not "personalization works") and a <strong>consistency check</strong> ("one floor or two enthusiastic patients carrying the average is an iterate, not a ship").</p>
     </details>
 
-    <h2 id="tie">The headline: a tie</h2>
+    <h2 id="tie">The result: a tie</h2>
 
     <div class="bar-row">
       <span>Generic check-in</span>
@@ -193,11 +192,11 @@
       <span class="bar-track"><span class="bar-fill" style="width:45%;--bar:var(--cat-product)"></span></span>
       <span class="bar-val">45%</span>
     </div>
-    <p class="bar-legend">Share of visits with a verbal response. Generic: 25 of 48 visits. Personalized: 22 of 49 visits. Floors with recorded outcomes: 3.</p>
+    <p class="bar-legend">Share of visits with a verbal response. Generic: 25 of 48 visits. Personalized: 22 of 49 visits.</p>
 
-    <p>By the pre-set rules, personalization didn't earn a ship. Both arms also ran well above the ~10% baseline, most likely because a researcher attended every visit and directed operators, so I didn't count that as a win either.</p>
+    <p>Following the pre-set rules, personalization didn't earn a ship. Both arms also ran well above the ~10% baseline, most likely because a researcher attended every visit and directed operators, so I didn't count that as a win either.</p>
 
-    <p>The yes/no column only told me <em>whether</em> a patient spoke. The transcripts showed what they said, and that's where the two openers differed.</p>
+    <p>The yes/no column only told me <em>whether</em> a patient spoke. The transcripts showed <strong>what they said, and that's where the two openers differed.</strong></p>
 
     <h2 id="moments">What patients said next</h2>
 
@@ -206,23 +205,23 @@
     <div class="pp-moments">
       <div class="pp-moment">
         <p class="q">"What are you reading right now?"</p>
-        <p class="a">She held up her drawing to show Norbert, and kept showing it for the rest of the visit.</p>
+        <p class="a">Patient held up her drawing to show Norbert and kept showing it for the rest of the visit.</p>
         <p class="why"><strong>Joint attention.</strong> A question about something in the room gives patient and robot a shared object to connect over.</p>
       </div>
       <div class="pp-moment">
         <p class="q">"I like your denim jacket." <span style="font-weight:400;color:var(--ink-faint)">(operator improvised)</span></p>
-        <p class="a">A patient who openly mocked the robot asked, surprised, "You can see me?" She answered and waved at it for the first time.</p>
-        <p class="why"><strong>Reciprocity.</strong> A sincere compliment is a small gift, and people instinctively give something back (Cialdini).</p>
+        <p class="a">A patient who previously openly mocked the robot asked, surprised, "You can see me?" She answered and waved at Norbert for the first time.</p>
+        <p class="why"><strong>Reciprocity.</strong> A sincere compliment is a small gift, and people instinctively give something back.</p>
       </div>
       <div class="pp-moment">
         <p class="q">"Did you play any sports when you were young?"</p>
-        <p class="a">Later in the visit he brought up basketball on his own, and that he's a Lakers fan.</p>
-        <p class="why"><strong>Talking about yourself is rewarding.</strong> Self-disclosure activates the brain's reward system (Tamir &amp; Mitchell, 2012).</p>
+        <p class="a">Later in the visit, the patient brought up basketball on his own. He's a Lakers fan.</p>
+        <p class="why"><strong>Talking about yourself is rewarding.</strong> Self-disclosure activates the brain's reward system.</p>
       </div>
       <div class="pp-moment">
         <p class="q">"Do you remember… Puerto Rico?"</p>
-        <p class="a">She opened up about missing her family and wanting to go home, then offered to take Norbert there.</p>
-        <p class="why"><strong>Old memories last longest.</strong> Recent memories fade first (Ribot's law), which is why reminiscence is standard in dementia care.</p>
+        <p class="a">Patient opened up about missing her family and wanting to go home, then offered to take Norbert there.</p>
+        <p class="why"><strong>Old memories last longest.</strong> Recent memories fade first, which is why reminiscence is standard in dementia care.</p>
       </div>
     </div>
 
@@ -249,7 +248,7 @@
       <span class="bar-track"><span class="bar-fill" style="width:32%;--bar:var(--cat-academic)"></span></span>
       <span class="bar-val">32%</span>
     </div>
-    <p class="bar-legend">Response rate by what the opener asked for. Present-anchored: 13 of 20 prompts. Recall: 7 of 22 prompts.</p>
+    <p class="bar-legend">Response rate. Present-anchored: 13 of 20 prompts. Recall: 7 of 22 prompts.</p>
 
     <div class="pp-vs">
       <div style="--c:var(--cat-product)">
@@ -258,17 +257,17 @@
         <p>"You have a lot of hats. Which one is your favorite?"</p>
       </div>
       <div style="--c:var(--cat-academic)">
-        <h4>Didn't</h4>
+        <h4>Didn't work</h4>
         <p>"Have you seen your brother recently?"</p>
         <p>"I like your shirt, where'd you get it from?"</p>
       </div>
     </div>
 
-    <p>This also explained a puzzle in the data: vision-based openers split into winners and losers. "Which hat is your favorite?" asks a patient to <em>describe</em> something present. "Where'd you get your shirt?" asks them to <em>recall</em> a fact about it. For older adults, many with memory impairment, recall is hard work and recent memory goes first.</p>
+    <p>"Which hat is your favorite?" asks a patient to <em>describe</em> something present. "Where'd you get your shirt?" asks them to <em>recall</em> a fact about it. For older adults, many with memory impairment, recall is hard work and recent memory goes first.</p>
 
     <p>Past topics weren't useless, though. Reminiscence worked well once a patient was already engaged, which is where the Lakers and Puerto Rico conversations came from. The order matters: <strong>start in the present, then follow them into the past.</strong></p>
 
-    <h2 id="outcome">What I recommended</h2>
+    <h2 id="outcome">Recommendations</h2>
 
     <p>We kept the generic check-in as the default for now. Personalization didn't fail; this round's real output was a phrasing principle, not a single winning script. I turned that principle into a visit flow:</p>
 
@@ -276,23 +275,23 @@
       <li><strong>Sound familiar</strong>A calm, warm voice in the patient's language</li>
       <li><strong>Keep it short</strong>One idea, 5–9 words</li>
       <li><strong>Ask about now</strong>The meal, the nap, the hat</li>
-      <li><strong>Follow their lead</strong>Then the past: family, hometown, the Lakers</li>
+      <li><strong>Follow their lead</strong>Then the past: family, hometown, past experiences</li>
       <li><strong>Listen long</strong>Wait 3–5 seconds before trying again</li>
     </ol>
 
     <ul>
-      <li><strong>Icebreaker library (live).</strong> All 42 tested openers, with exact wording, category, outcome, and transcript notes. Operators use it today to pick an opener that has already worked with real patients.</li>
+      <li><strong>Icebreaker library.</strong> All 42 tested openers, with exact wording, category, outcome, and transcript notes. Operators use it today to pick an opener that has already worked with real patients. This saves them time and effort from having to conjure up an opener on the spot.</li>
       <li><strong>Present-anchored prompt buttons.</strong> "Ask about the meal" (adapts to breakfast or lunch by time of day), "Ask about what's visible," and "Ask how they feel right now," so operators don't have to remember which category converts.</li>
       <li><strong>A patient profile log.</strong> Hobbies, hometowns, and family that come up in conversation get saved, so later callbacks are about things the patient actually shared.</li>
       <li><strong>A shared role split.</strong> The operator spots what's in the room and improvises; the voice agent delivers at an older-adult pace and carries the second turn; the library remembers what works for each patient.</li>
     </ul>
 
-    <p>The pacing and voice side of the flow became its own study: <a href="voice-agent-update.html">Designing a voice agent for senior populations</a>.</p>
+    <p>The pacing and voice side of the flow became its own study: <a href="voice-agent-update.html">Designing a voice agent for senior populations and patients with dementia</a>.</p>
 
-    <h2 id="limits">Limits and open questions</h2>
+    <h2 id="limits">Limitations and open questions</h2>
 
     <ul>
-      <li><strong>It's small.</strong> About 100 visits and 42 personalized prompts. The present-vs-recall split is directional, not a confirmed effect.</li>
+      <li><strong>Small sample size.</strong> About 100 visits and 42 personalized prompts. The present-vs-recall split is directional, not a confirmed effect.</li>
       <li><strong>The coding came after the data.</strong> Present vs. recall emerged from the transcripts. The next round should test it as a pre-registered hypothesis.</li>
       <li><strong>Researcher presence inflated both arms</strong>, and operators differed by floor. Personalized openers depend on operator skill more than the generic check-in does.</li>
       <li><strong>The sample leaned engaged.</strong> Many enrolled patients already talked to Norbert; the silent patients who motivated the study were the hardest to reach (asleep, door closed, declined).</li>
@@ -301,18 +300,14 @@
     <p>The questions I left the team with:</p>
     <ul>
       <li>How can we help operators spot what's in the room?</li>
-      <li>How can Norbert remember what patients share and bring it back later?</li>
-      <li>How do we move from small talk to a pain or mood check without it feeling like a test?</li>
-      <li>How do we win over patients who haven't said a word yet?</li>
+      <li>How can we help Norbert remember what patients share, for it to refer to this moment in the future?</li>
+      <li>How do we move from casual small talk to a pain or mood check without it feeling like a test? How do we make it genuine?</li>
+      <li>How do we approach conversations where patients share very private information?</li>
+      <li>How can we win over patients who haven’t said a word yet?</li>
     </ul>
 
     <div class="cs-note">
-      <p>This write-up is de-identified: no patient names or identifying details appear, and some internal product detail has been withheld.</p>
-    </div>
-
-    <div class="cs-next">
-      <p>Next · Academic Research</p>
-      <a href="facial-impressions-memory.html">How facial impressions shape memory</a>
+      <p>This write-up is de-identified. Some internal product detail has been withheld.</p>
     </div>
 
   </article>
