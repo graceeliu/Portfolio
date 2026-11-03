@@ -9,6 +9,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..700;1,8..60,200..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
+<style>
+  .piece-intro { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 3rem; align-items: start; }
+  .piece-photos { margin: 0.35rem 0 0; }
+  .piece-photos img { display: block; width: 100%; height: auto; border: 0; }
+  .piece-photos img + img { margin-top: 0.75rem; }
+  .piece-photos figcaption { margin-top: 0.6rem; font-size: 0.875rem; color: var(--ink-faint); }
+  @media (max-width: 760px) {
+    .piece-intro { grid-template-columns: 1fr; gap: 2rem; }
+    .piece-photos { max-width: 360px; }
+  }
+</style>
 </head>
 <body>
 
@@ -34,14 +45,22 @@
     <div><dt>Role</dt><dd>Chief copy editor</dd></div>
     <div><dt>Duration</dt><dd>Four years</dd></div>
     <div><dt>Publication</dt><dd>UC Santa Barbara's independent student newspaper</dd></div>
-    <div><dt><a href="https://dailynexus.com">Visit the Daily Nexus</dt><dd>Publication site &middot; copy desk work is not individually bylined.</dd></div>
+    <div><dt><a href="https://dailynexus.com">Visit the Daily Nexus</a></dt><dd>Publication site &middot; copy desk work is not individually bylined.</dd></div>
   </dl>
 </div>
 
 <div class="shell">
+  <div class="piece-intro">
   <div class="piece-body" id="body">
     <p>I spent four years on the copy desk at the Daily Nexus, UCSB's independent, entirely student-run paper.</p>
     <p>Copy editing is the least visible job in a newsroom and the one that taught me the most about writing. You read other people's work on deadline, in volume, across every section - news, opinion, arts, sports, comedy — and you have to decide quickly which problems are actually problems. I edited articles for clarity, grammar, and fact-checking, especially focusing on sentences that read smoothly but made a claim the reporting doesn't support; those are the ones that really need attention.</p>
+  </div>
+
+    <figure class="piece-photos">
+      <img src="../assets/img/daily-nexus-signing.jpeg" alt="Graduating editorial staff signing the Daily Nexus newsroom wall">
+      <img src="../assets/img/daily-nexus-signature.jpeg" alt="My signature!">
+      <figcaption>Graduating editorial staff signing our beloved newsroom.</figcaption>
+    </figure>
   </div>
 
 </div>
