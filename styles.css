@@ -787,5 +787,3 @@ figcaption { font-family: var(--sans); font-size: 0.8125rem; color: var(--ink-fa
 .cs-cta a:hover { text-decoration: underline; }
 .cs-cta span { font-size: 0.8125rem; color: var(--ink-faint); }
 
-/* Extra space above the footer on Writing pages */
-main:has(.cs-back[href$="#writing"]) { padding-bottom: clamp(4rem, 8vw, 6rem); }
