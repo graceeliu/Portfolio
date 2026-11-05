@@ -9,6 +9,86 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..700;1,8..60,200..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
+<style>
+  /* MedCheck case study components */
+  .callout { margin: 1.75rem 0; padding: 1.1rem 1.35rem; background: var(--paper-2); border-left: 4px solid var(--cat-case); }
+  .cs-body .callout p:last-child { margin-bottom: 0; }
+  .cs-body .mc-label { margin: 0 0 0.35rem; font-family: var(--sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); }
+
+  .cs-body .mc-quote { margin: 0.9rem 0; padding: 0.1rem 0 0.1rem 1.1rem; border-left: 2px solid var(--cat-case); font-size: 1.0625rem; line-height: 1.55; }
+  .mc-quotes { margin: 1rem 0 0; }
+
+  .mc-finding { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+  .cs-body .mc-finding h4 { display: flex; gap: 0.75rem; align-items: baseline; margin: 0 0 0.6rem; font-size: 1.125rem; line-height: 1.35; }
+  .mc-n { flex: none; width: 1.7rem; height: 1.7rem; border-radius: 50%; display: inline-grid; place-items: center; background: var(--ink); color: var(--paper-2); font-size: 0.8125rem; font-weight: 650; transform: translateY(-0.1rem); }
+  .cs-body .mc-eyebrow { margin: 0 0 0.25rem; font-family: var(--sans); font-size: 0.75rem; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cat-case); }
+  .mc-takeaways { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin: 1.25rem 0 0; }
+  .mc-takeaways > div { padding: 0.9rem 1rem; background: var(--paper-2); border: 1px solid var(--rule); }
+  .mc-takeaways > div.is-imp { border-top: 3px solid var(--cat-case); }
+  .cs-body .mc-takeaways p { margin: 0; font-size: 0.96875rem; line-height: 1.55; }
+  .cs-body .mc-takeaways p.mc-label { margin-bottom: 0.35rem; font-size: 0.75rem; }
+
+  .mc-fig { margin: 1.5rem 0 1.75rem; }
+  .mc-fig a { display: block; }
+  .mc-fig img { width: 100%; height: auto; }
+  .mc-phones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .mc-phones .mc-fig, .mc-compare .mc-fig { margin: 0; }
+  .mc-phones img { border: 0; }
+  .mc-compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+  .cs-body .mc-compare .mc-label { margin-bottom: 0.5rem; }
+
+  .mc-rows { margin: 1rem 0 1.5rem; border: 1px solid var(--rule); background: var(--paper-2); }
+  .mc-rows > div { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 0.75rem; padding: 0.8rem 1rem; border-top: 1px solid var(--rule-soft); align-items: baseline; }
+  .mc-rows > div:first-child { border-top: 0; }
+  .mc-rows dt { justify-self: start; padding: 0.1rem 0.45rem; border-radius: 4px; background: var(--paper-tint); color: var(--cat-case); font-family: var(--sans); font-size: 0.75rem; font-weight: 650; }
+  .mc-rows dd { margin: 0; font-size: 0.96875rem; line-height: 1.55; }
+
+  .mc-persona { margin: 1.25rem 0 1.5rem; padding: clamp(1.25rem, 3vw, 1.75rem); background: var(--paper-2); border: 1px solid var(--rule); border-top: 4px solid var(--cat-case); }
+  .mc-persona-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule-soft); font-family: var(--sans); }
+  .mc-avatar { flex: none; width: 3.25rem; height: 3.25rem; border-radius: 50%; display: grid; place-items: center; background: var(--paper-tint); color: var(--cat-case); font-size: 1.125rem; font-weight: 700; letter-spacing: 0.02em; }
+  .cs-body .mc-persona-name { margin: 0; font-size: var(--step-1); font-weight: 700; line-height: 1.2; color: var(--ink); }
+  .cs-body .mc-persona-meta { margin: 0.2rem 0 0; font-size: var(--step--1); color: var(--ink-faint); }
+  .mc-persona-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem 2rem; margin-top: 1.1rem; }
+  .cs-body .mc-persona-cols ul { margin: 0; font-size: 0.96875rem; }
+  .cs-body .mc-persona-cols li { margin-bottom: 0.35rem; }
+
+  .mc-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.85rem; margin: 1.25rem 0 1.5rem; }
+  .mc-card { padding: 1rem 1.1rem; background: var(--paper-2); border: 1px solid var(--rule); }
+  .cs-body .mc-card p { margin: 0 0 0.6rem; font-size: 0.96875rem; line-height: 1.55; }
+  .cs-body .mc-card p:last-child { margin-bottom: 0; }
+  .cs-body .mc-card ul { margin: 0; font-size: 0.96875rem; }
+  .mc-card.is-p0 { border-top: 3px solid var(--cat-case); }
+
+  .mc-pairs { margin: 1.25rem 0 1.5rem; }
+  .mc-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid var(--rule); background: var(--paper-2); margin-bottom: 0.85rem; }
+  .mc-pair > div { padding: 1rem 1.1rem; }
+  .mc-pair > div + div { border-left: 1px solid var(--rule); background: var(--paper-tint); }
+  .cs-body .mc-pair p { margin: 0; font-size: 0.96875rem; line-height: 1.55; }
+  .cs-body .mc-pair p.mc-label { margin-bottom: 0.35rem; font-size: 0.75rem; }
+
+  .mc-phases { list-style: none; counter-reset: phase; display: grid; gap: 0.75rem; margin: 1rem 0 1.5rem; padding: 0; }
+  .cs-body .mc-phases > li { counter-increment: phase; position: relative; margin: 0; padding: 0.95rem 1.1rem 0.95rem 3.6rem; background: var(--paper-2); border: 1px solid var(--rule); }
+  .mc-phases > li::before { content: counter(phase); position: absolute; left: 1.1rem; top: 0.95rem; width: 1.7rem; height: 1.7rem; border-radius: 50%; display: grid; place-items: center; background: var(--cat-case); color: #fff; font-family: var(--sans); font-size: 0.8125rem; font-weight: 650; }
+  .mc-phases strong { display: block; margin-bottom: 0.3rem; font-family: var(--sans); }
+  .cs-body .mc-phases ul { margin: 0; font-size: 0.96875rem; }
+  .cs-body .mc-phases ul li { margin-bottom: 0.3rem; }
+
+  .mc-limits div { padding: 0.9rem 0; border-bottom: 1px solid var(--rule-soft); }
+  .mc-limits div:last-child { border-bottom: 0; }
+  .mc-limits dt { margin-bottom: 0.25rem; font-family: var(--sans); font-weight: 650; }
+  .mc-limits dd { margin: 0; }
+  .cs-body .mc-pull { margin: 1.75rem 0; padding: 0 0 0 1.25rem; border-left: 3px solid var(--cat-case); font-size: var(--step-1); line-height: 1.45; font-style: italic; }
+
+  .cs-toc > ol > li > a { color: var(--ink-soft); font-weight: 600; }
+  .cs-toc ol ol { border-left: 0; margin: 0 0 0.35rem; }
+  .cs-toc ol ol a { padding: 0.22rem 0 0.22rem 1.6rem; font-size: 0.78125rem; }
+
+  @media (max-width: 760px) {
+    .mc-takeaways, .mc-persona-cols, .mc-cards, .mc-pair, .mc-compare { grid-template-columns: 1fr; }
+    .mc-pair > div + div { border-left: 0; border-top: 1px solid var(--rule); }
+    .mc-phones { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+  }
+</style>
 </head>
 <body>
 
@@ -46,22 +126,42 @@
   <nav class="cs-toc" aria-label="On this page">
     <p>On this page</p>
     <ol>
-      <li><a href="#question">The question</a></li>
-      <li><a href="#discovery">Phase 1: discovery</a></li>
-      <li><a href="#findings1">What people told me</a></li>
-      <li><a href="#design">From findings to a flow</a></li>
-      <li><a href="#usability">Phase 2: usability testing</a></li>
-      <li><a href="#findings2">What testing found</a></li>
-      <li><a href="#recs">Recommendations</a></li>
-      <li><a href="#limits">Limitations</a></li>
-      <li><a href="#learned">What I learned</a></li>
+      <li><a href="#overview">Project overview</a></li>
+      <li><a href="#objectives">Research objectives &amp; questions</a></li>
+      <li><a href="#discovery">Phase 1: Discovery research</a>
+        <ol>
+          <li><a href="#method1">Method</a></li>
+          <li><a href="#findings1">Key interview findings</a></li>
+          <li><a href="#empathy">Empathy maps</a></li>
+          <li><a href="#painpoints">User pain points</a></li>
+          <li><a href="#personas">Personas</a></li>
+          <li><a href="#stories">User stories</a></li>
+          <li><a href="#statements">Problem &amp; hypothesis statements</a></li>
+          <li><a href="#value">Value proposition</a></li>
+        </ol>
+      </li>
+      <li><a href="#wireframes">Initial lo-fi wireframes</a>
+        <ol>
+          <li><a href="#flow">User flow</a></li>
+          <li><a href="#wires">Wireframes</a></li>
+        </ol>
+      </li>
+      <li><a href="#validation">Phase 2: Concept validation</a>
+        <ol>
+          <li><a href="#method2">Method</a></li>
+          <li><a href="#findings2">Key study findings</a></li>
+          <li><a href="#recs">Recommendations</a></li>
+        </ol>
+      </li>
+      <li><a href="#iterated">Iterated lo-fi wireframes</a></li>
+      <li><a href="#reflection">Reflection</a></li>
     </ol>
   </nav>
 
   <article class="cs-body" id="body">
 
     <div class="cs-tldr">
-      <h2>The short version</h2>
+      <h2>TLDR</h2>
       <dl>
         <dt>The obvious problem</dt>
         <dd>Medical check-in is repetitive. Everyone knows this. It wasn't worth a study on its own.</dd>
@@ -77,248 +177,538 @@
       </dl>
     </div>
 
-    <h2 id="question">The question</h2>
+    <h2 id="overview">Project overview</h2>
 
-    <p>Checking in for a medical appointment means redundant paperwork, unclear expectations about what happens next, and forms that don't adapt to why you're actually there. I ran a two-phase study — foundational research to understand the experience, then evaluative research on a prototype — around one question:</p>
+    <p><strong>Background:</strong> The check-in process for a medical appointment is often a frustrating and time-consuming experience for patients: redundant paperwork, unclear expectations and next steps, and forms that don't include all scenarios or adapt to individual health needs. I conducted foundational and evaluative research to better understand the patient check-in experience and inform the design of a mobile check-in app that reduces friction, builds trust, and meets diverse user needs.</p>
 
-    <blockquote>
-      <p>How might we redesign medical check-in to reduce repetition, build trust, and adapt to diverse patient needs?</p>
-    </blockquote>
+    <div class="callout">
+      <p class="mc-label">Central question</p>
+      <p>How might we redesign the medical check-in experience to reduce repetition, build trust, and adapt to diverse patient needs?</p>
+    </div>
 
-    <p>The research questions underneath it:</p>
+    <h2 id="objectives">Research objectives &amp; questions</h2>
 
+    <p>To inform the design of a mobile medical appointment check-in app, I conducted foundational research to understand how patients currently experience the check-in process, what barriers prevent a smooth experience, and what features and functionality would make an intuitive and efficient check-in experience.</p>
+
+    <p><strong>Research questions:</strong></p>
     <ol>
-      <li>What are the most common pain points during in-person check-in, and which of them actually drive demand for an alternative?</li>
-      <li>What do patients expect or want to complete before arriving?</li>
-      <li>Among people who've used digital check-in tools, what works, what doesn't, and what's missing?</li>
-      <li>What would most influence the decision to use a mobile check-in instead of the traditional process?</li>
+      <li>What are the most common pain points users encounter during in-person medical appointment check-in? Which are most likely to drive demand for an alternative solution?</li>
+      <li>What tasks do patients expect or want to complete before arriving at an appointment?</li>
+      <li>Among patients who have used existing digital check-in tools, what features do they find most and least useful, and what’s missing?</li>
+      <li>What factors (e.g., time saving, reduced paperwork, appointment reminders, clarity about next steps) would influence a patient’s decision the most to use a mobile check-in app instead of the traditional, in-person check-in process?</li>
     </ol>
 
-    <p>That first question has a second clause for a reason. Pain points are easy to collect and most of them don't matter. The useful question is which complaint is load-bearing.</p>
+    <h2 id="discovery">Phase 1: Discovery research</h2>
 
-    <h2 id="discovery">Phase 1: discovery</h2>
+    <h3 id="method1">Method: Foundational user interviews</h3>
 
-    <p>Semi-structured interviews, 15 minutes, remote or in person. I recruited for variation on the three dimensions I expected to change the experience — how complex someone's health situation is, how often they go, and how comfortable they are with technology — rather than for demographic spread.</p>
+    <p>To understand current check-in experiences across a range of patient types, I conducted semi-structured interviews.</p>
+
+    <p><strong>Participants:</strong> 4 participants (2 male, 2 female), ages 22-61, representing a range of health complexity, visit frequency, and technology comfort levels. Recruited through personal networks and public communities.</p>
 
     <table class="cs-table">
-      <caption>Discovery participants (n=4)</caption>
       <thead>
-        <tr><th scope="col">Participant</th><th scope="col">Age</th><th scope="col">Health complexity</th><th scope="col">Visit frequency</th><th scope="col">Tech comfort</th></tr>
+        <tr><th scope="col">Participant</th><th scope="col">Age</th><th scope="col">Health Complexity</th><th scope="col">Visit Frequency</th><th scope="col">Tech Comfort</th></tr>
       </thead>
       <tbody>
-        <tr><td>P1</td><td>61</td><td>Low</td><td>2–4 / year</td><td>Low</td></tr>
-        <tr><td>P2</td><td>22</td><td>Low</td><td>1 / year</td><td>Advanced</td></tr>
-        <tr><td>P3</td><td>23</td><td>High, chronic conditions</td><td>4–6 / year</td><td>Intermediate</td></tr>
-        <tr><td>P4</td><td>37</td><td>Moderate</td><td>4–6 / year</td><td>Advanced</td></tr>
+        <tr><td>P1</td><td>61</td><td>Low</td><td>2-4 times/year</td><td>Low</td></tr>
+        <tr><td>P2</td><td>22</td><td>Low</td><td>1 time/year</td><td>Advanced</td></tr>
+        <tr><td>P3</td><td>23</td><td>High (chronic conditions)</td><td>4-6 times/year</td><td>Intermediate</td></tr>
+        <tr><td>P4</td><td>37</td><td>Moderate (family planning)</td><td>4-6 times/year</td><td>Advanced</td></tr>
       </tbody>
     </table>
 
-    <p>I covered the process from arrival to seeing the doctor, what intake asks, how form completion feels, digital versus paper experiences, moments of friction, and what they wished were different.</p>
+    <p><strong>Format:</strong> 15-minute semi-structured interviews, conducted synchronously via Zoom or in-person (located in the United States)</p>
 
-    <h2 id="findings1">What people told me</h2>
+    <p><strong>Interview focus areas:</strong></p>
+    <ul>
+      <li>Current check-in process from arrival to seeing the doctor</li>
+      <li>Types of questions asked during intake</li>
+      <li>Feelings about form completion (ease, relevance, repetitiveness)</li>
+      <li>Experiences with digital vs. paper check-in</li>
+      <li>Moments of confusion, frustration, or friction</li>
+      <li>Unmet needs and desired improvements</li>
+    </ul>
 
-    <div class="finding">
-      <h3>1. Repetition was universal — and it's a trust problem, not a time problem</h3>
+    <h3 id="findings1">Key interview findings</h3>
 
-      <p>All four participants raised having to answer identical questions visit after visit, whether or not anything had changed.</p>
-
-      <blockquote>
-        <p>I feel like I answer the same questions every year, even though nothing has changed. I wish they'd remember my last answers unless something's new.</p>
-        <cite>P2, 22</cite>
-      </blockquote>
-
-      <blockquote>
-        <p>I shouldn't have to start from scratch every time — I have the same conditions, the same meds. Can't the system remember me?</p>
-        <cite>P3, 23</cite>
-      </blockquote>
-
-      <p>What made this more than a complaint about efficiency was where participants went next. They didn't say the forms took too long. They said they doubted anyone was reading them. Being asked the same question twice is inferential evidence that the first answer went nowhere.</p>
-
-      <p>That reframing is what drove the rest of the design. Reducing the number of fields is an efficiency fix. Showing someone that their prior answers persisted — and that a human opened them — is a trust fix. They're solved by different features, and only the second one addresses what participants were actually upset about.</p>
-    </div>
-
-    <div class="finding">
-      <h3>2. Standardized forms have nowhere to put context</h3>
-
-      <p>Participants with chronic conditions, language barriers, or specific care goals couldn't communicate the information that mattered most through fixed-choice fields.</p>
-
-      <blockquote>
-        <p>There's no space to explain that my waist pain only hurts after work. I try to tell the nurse later.</p>
-        <cite>P1, 61</cite>
-      </blockquote>
-
-      <blockquote>
-        <p>When I say I'm gluten-free, there's nowhere to explain if it's an allergy, intolerance, or autoimmune thing. When I say yes to fatigue, there's no way to explain context.</p>
-        <cite>P3, 23</cite>
-      </blockquote>
-
-      <p>The second quote is a clean example of a form losing clinically relevant information at the point of capture. Three conditions with different implications collapse into one checkbox, and the patient knows it's happening.</p>
-    </div>
-
-    <div class="finding">
-      <h3>3. Discontinuity across visits erodes trust fastest for ongoing care</h3>
-
-      <p>The participant planning a family had disclosed that goal, then received generic intake forms that didn't reflect it — inconsistently, so sometimes the question appeared and sometimes it didn't.</p>
-
-      <blockquote>
-        <p>Sometimes I get forms in advance, sometimes I don't. Sometimes they ask about family planning, sometimes they don't — even though I mentioned it last visit.</p>
-        <cite>P4, 37</cite>
-      </blockquote>
-
-      <p>The inconsistency is worse than a consistent gap would be. A form that never asks is a form; a form that asks intermittently signals that your record isn't being maintained.</p>
-    </div>
-
-    <div class="finding">
-      <h3>4. Existing digital tools often add a step instead of replacing one</h3>
-
-      <p>Participants who had used tablets or portals described logging out, lag, and — most damagingly — checking in digitally in advance and then being handed a tablet on arrival to do it again. A digital tool that doesn't replace the paper process is a second process.</p>
-    </div>
-
-    <h2 id="design">From findings to a flow</h2>
-
-    <p>I mapped a four-phase flow, structured to separate what the check-in mechanically requires from what participants needed emotionally.</p>
-
-    <ol>
-      <li><strong>Find the appointment.</strong> Before asking anyone to commit to an account.</li>
-      <li><strong>Lightweight identity verification.</strong> Not full onboarding.</li>
-      <li><strong>Pre-visit requirements.</strong> Insurance and screening, with autofill from prior visits.</li>
-      <li><strong>Confirmation.</strong> Deliberately separating the user's action from the system's state, so "I submitted" and "they received it" are two visible things.</li>
-    </ol>
-
-    <p>The ordering principle I committed to was <strong>verify first, authenticate later</strong> — let someone confirm their appointment details and begin before requiring a login, so the app proves it's relevant to them before asking for commitment. One-time users and people who've forgotten their portal password are the same problem, and both are lost at a login wall.</p>
-
-    <p>Phase 4 exists entirely because of a discovery finding that wasn't in my research questions. Participants could all complete check-in; what they described was uncertainty about whether they'd done it right and what happened next. Design here isn't only about task completion, it's about perceived control.</p>
-
-    <h2 id="usability">Phase 2: usability testing</h2>
-
-    <p>Moderated sessions on a clickable low-fidelity prototype, 10 minutes each, think-aloud with scenario-based tasks and a post-task interview. Five participants, ages 20 to 68, recruited for range in technical comfort and daily context — including one who prefers paper check-in, because a prototype that only works for people who want it isn't tested.</p>
-
-    <h4>Tasks</h4>
-    <ol>
-      <li>Check in using your confirmation number.</li>
-      <li>You've lost your confirmation number. Check in using only your appointment details.</li>
-      <li>Reschedule your appointment.</li>
-      <li>Autofill your information on the screening survey.</li>
-    </ol>
-
-    <p>Task 2 was the one I expected to be a formality. It produced the most consistent complaint in the study.</p>
-
-    <h2 id="findings2">What testing found</h2>
-
-    <div class="finding">
-      <h3>Autofill worked, and taught me the least</h3>
-
-      <p>All five participants noticed the autofill and were visibly relieved by it. One hesitated before confirming pre-filled information, and one raised security unprompted — worth noting, because trust in autofill is exactly the thing a low-fidelity prototype with placeholder data can't properly test.</p>
-
-      <p>It's the feature I designed the study around and it passed on contact. Useful confirmation, no new information. The findings that mattered came from the tasks I considered secondary.</p>
-    </div>
-
-    <div class="finding">
-      <h3>Rescheduling failed for all five participants</h3>
-
-      <p>Every participant was confused, struggled, or was dissatisfied with the rescheduling workflow. The control was buried too deep and appeared too late in the flow.</p>
-
-      <blockquote>
-        <p>This should be on the main page — it's too many taps.</p>
-        <cite>P4, 38</cite>
-      </blockquote>
-
-      <p>This is the clearest result in the study and it wasn't a hypothesis. Rescheduling is common and time-sensitive — often the reason someone opens the app at all — and I had treated it as a secondary path. Unanimity at n=5 on a task I under-weighted is the most useful thing testing gave me.</p>
-    </div>
-
-    <div class="finding">
-      <h3>Manual appointment lookup annoyed everyone</h3>
-
-      <p>All five found typing full appointment details a friction point when they couldn't produce a confirmation number.</p>
-
-      <blockquote>
-        <p>Honestly, my upcoming appointment information should already be somewhere on the platform so I wouldn't even have to type in a confirmation number.</p>
-        <cite>P3, 20</cite>
-      </blockquote>
-
-      <p>This one is a design error I can trace to a specific decision. "Verify first, authenticate later" was the right principle, but I implemented it as manual entry — which is worse than a login for anyone who has an account. The fix is name and date of birth, or portal credentials, to look the appointment up. Same principle, better execution.</p>
-    </div>
-
-    <div class="finding">
-      <h3>Text size was an accessibility barrier</h3>
-
-      <p>Two of five struggled to read the interface.</p>
-
-      <blockquote>
-        <p>Oh boy, these letters are small.</p>
-        <cite>P2, 68</cite>
-      </blockquote>
-
-      <p>Two of five is enough given that the population using this skews older than my sample did. Recruiting a 68-year-old is why this surfaced at all — a sample of people in their twenties and thirties would have returned a clean result and shipped an unusable app.</p>
-    </div>
-
-    <div class="finding">
-      <h3>Navigation was clear; one participant wanted progress cues</h3>
-
-      <p>Four of five moved through without confusion. One wanted to know how many steps remained. That's a single participant, so I've kept it as a low-priority recommendation rather than promoting it to a finding — but it's consistent with the uncertainty theme from discovery, which is why it stayed on the list at all.</p>
-    </div>
-
-    <div class="finding">
-      <h3>Time on task: 3–4 minutes</h3>
-
-      <p>All five completed the full flow in three to four minutes. Discovery participants had described the paper and tablet process as taking five to ten.</p>
-
-      <div class="cs-note">
-        <p><strong>I don't treat this as a measured improvement,</strong> and I'd flag it the same way to a stakeholder. Three to four minutes is observed time on a low-fidelity prototype with placeholder data and no real insurance fields; five to ten minutes is what a different group of people recalled about a different process. Two different measurement methods, one of them retrospective self-report. What the number is good for is a baseline to hold future iterations against — not evidence that the design is twice as fast.</p>
+    <div class="mc-finding">
+      <h4><span class="mc-n">1</span>Repetitiveness is the biggest pain point across all users.</h4>
+      <p>Every participant expressed frustration with having to answer the same questions visit after visit, regardless of whether their health information had changed.</p>
+      <div class="mc-quotes">
+        <blockquote class="mc-quote"><p>I feel like I answer the same questions every year, even though nothing has changed. I wish they'd remember my last answers unless something's new.</p><cite>P2, age 22</cite></blockquote>
+        <blockquote class="mc-quote"><p>I shouldn't have to start from scratch every time—I have the same conditions, the same meds. Can't the system remember me?</p><cite>P3, age 23</cite></blockquote>
+        <blockquote class="mc-quote"><p>There's got to be a smarter way to streamline it.</p><cite>P4, age 37</cite></blockquote>
       </div>
     </div>
 
-    <h2 id="recs">Recommendations</h2>
+    <div class="mc-finding">
+      <h4><span class="mc-n">2</span>Forms lacked space for context and customization, making it difficult for participants to detail their unique health needs.</h4>
+      <p>Participants with chronic conditions, language barriers, or specific goals (i.e., family planning) struggled to communicate important context through standardized forms.</p>
+      <div class="mc-quotes">
+        <blockquote class="mc-quote"><p>There's no space to explain that my waist pain only hurts after work. I try to tell the nurse later.</p><cite>P1, age 61</cite></blockquote>
+        <blockquote class="mc-quote"><p>When I say I'm gluten-free, there's nowhere to explain if it's an allergy, intolerance, or autoimmune thing. When I say yes to fatigue, there's no way to explain context—like 'I just started a new medication' vs. 'I'm struggling.'</p><cite>P3, age 23</cite></blockquote>
+      </div>
+    </div>
 
-    <h4>Priority 0</h4>
+    <div class="mc-finding">
+      <h4><span class="mc-n">3</span>Lack of continuity across visits erodes trust, especially for patients with long-term, ongoing care goals.</h4>
+      <p>Participants who had shared specific health information in previous visits, such as family planning intentions, were frustrated when that information didn't carry forward and they had to repeat themselves during their next visit — making them doubt that providers were reading their information.</p>
+      <div class="mc-quotes">
+        <blockquote class="mc-quote"><p>I don't mind checking in. I just want it to make sense for why I'm here and not waste my time with questions that don't apply.</p><cite>P4, age 37</cite></blockquote>
+        <blockquote class="mc-quote"><p>The inconsistency across visits is frustrating. Sometimes I get forms in advance, sometimes I don't. Sometimes they ask about family planning, sometimes they don't — even though I mentioned it last visit.</p><cite>P4, age 37</cite></blockquote>
+      </div>
+    </div>
+
+    <div class="mc-finding">
+      <h4><span class="mc-n">4</span>Digital check-in tools are inconsistent and sometimes unreliable.</h4>
+      <p>Participants who had used tablets or apps reported technical issues or redundant processes.</p>
+      <div class="mc-quotes">
+        <blockquote class="mc-quote"><p>The tech works okay, but sometimes it logs out, lags, or the UI is just not that pleasing, which makes an already boring, technical process even more frustrating.</p><cite>P3, age 23</cite></blockquote>
+        <blockquote class="mc-quote"><p>Sometimes I check in ahead of the appointment through a digital link, and then they also make me do it on the iPad in person, so it gets repetitive.</p><cite>P4, age 37</cite></blockquote>
+      </div>
+    </div>
+
+    <h3 id="empathy">Empathy maps</h3>
+
+    <p>I created empathy maps for each participant to organize what they said, thought, felt, and did during the check-in process.</p>
+
+    <figure class="mc-fig">
+      <a href="../assets/img/medcheck-empathy-maps.png" target="_blank" rel="noopener"><img src="../assets/img/medcheck-empathy-maps.png" alt="Empathy maps for the four discovery interview participants, organized by what each said, thought, felt, and did" loading="lazy"></a>
+    </figure>
+
+    <h3 id="painpoints">User pain points</h3>
+
+    <dl class="mc-rows">
+      <div><dt>P1</dt><dd>Language barriers, limited space to explain, uncertainty about whether answers are seen.</dd></div>
+      <div><dt>P2</dt><dd>Lack of personalization, irrelevant questions for routine visits, doubt about provider engagement with responses</dd></div>
+      <div><dt>P3</dt><dd>Time-consuming repetition, no space for health context, mental health screening feels vague, must repeat full history every visit</dd></div>
+      <div><dt>P4</dt><dd>Lack of continuity, previous visit goals get lost, inconsistent digital/paper processes, forms don't adapt to visit type</dd></div>
+    </dl>
+
+    <h3 id="personas">Personas</h3>
+
+    <p>Based on interview data, I developed three personas representing distinct user archetypes:</p>
+
+    <article class="mc-persona">
+      <div class="mc-persona-head">
+        <span class="mc-avatar" aria-hidden="true">MC</span>
+        <div>
+          <p class="mc-persona-name">Manya Chung</p>
+          <p class="mc-persona-meta">Age 61 · Administrative Assistant · Bay Area, CA</p>
+        </div>
+      </div>
+      <p>Manya is an immigrant mother who coordinates healthcare visits for herself and her husband. Her English is functional but not fluent, and she relies on her daughter for translation support when available. She's familiar with the check-in process after years of repetition, but struggles when forms require detailed explanations of health conditions.</p>
+        <blockquote class="mc-quote"><p>I just want to make sure everything is accurate and nothing is missing. The forms are always the same—but sometimes it's hard to be detailed, especially with my limited English.</p></blockquote>
+      <div class="mc-persona-cols">
+        <div>
+          <p class="mc-label">Goals</p>
+          <ul>
+            <li>Accurately report health information even when her daughter isn't there to translate</li>
+            <li>Understand the purpose of the questions being asked</li>
+          </ul>
+        </div>
+        <div>
+          <p class="mc-label">Pain Points</p>
+          <ul>
+            <li>Repetitive forms</li>
+            <li>Unsure if her answers reach the doctor</li>
+            <li>No space to explain context, compounded by language barriers</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="mc-persona">
+      <div class="mc-persona-head">
+        <span class="mc-avatar" aria-hidden="true">MR</span>
+        <div>
+          <p class="mc-persona-name">Melissa Robbins</p>
+          <p class="mc-persona-meta">Age 23 · High School Teacher · Nashville, TN</p>
+        </div>
+      </div>
+      <p>Melissa visits the doctor frequently to manage digestive issues, anxiety, depression, and food sensitivities. She's frustrated by systems that aren't built for patients with complex, ongoing health needs and often feels like she's starting from scratch every visit.</p>
+        <blockquote class="mc-quote"><p>I shouldn't have to start from scratch every time—I have the same conditions, the same meds. Can't the system remember me?</p></blockquote>
+      <div class="mc-persona-cols">
+        <div>
+          <p class="mc-label">Goals</p>
+          <ul>
+            <li>Save time by avoiding redundant forms</li>
+            <li>Receive nuanced care that considers both mental and physical health</li>
+            <li>Communicate changes clearly without repeating her entire history</li>
+          </ul>
+        </div>
+        <div>
+          <p class="mc-label">Pain Points</p>
+          <ul>
+            <li>Emotionally drained by re-entering health history</li>
+            <li>Unsure if form responses are reviewed</li>
+            <li>Limited space to clarify conditions or medication context</li>
+            <li>No system memory across visits</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="mc-persona">
+      <div class="mc-persona-head">
+        <span class="mc-avatar" aria-hidden="true">WK</span>
+        <div>
+          <p class="mc-persona-name">Warren Khan</p>
+          <p class="mc-persona-meta">Age 37 · Chief Business Officer · Brooklyn, NY</p>
+        </div>
+      </div>
+      <p>Warren is a tech-savvy professional who's been visiting his doctor more frequently as he and his partner plan to start a family. He expects modern, efficient systems and gets frustrated when healthcare tools feel outdated, irrelevant, or disconnected from his stated care goals.</p>
+        <blockquote class="mc-quote"><p>I don't mind checking in—I just want it to make sense for why I'm here and not waste my time with questions that don't apply.</p></blockquote>
+      <div class="mc-persona-cols">
+        <div>
+          <p class="mc-label">Goals</p>
+          <ul>
+            <li>Pre-fill and sync past information to save time</li>
+            <li>Receive visit-specific, relevant health questions</li>
+            <li>Track family planning and personal health records across visits</li>
+          </ul>
+        </div>
+        <div>
+          <p class="mc-label">Pain Points</p>
+          <ul>
+            <li>Frustrated by repeating medical history</li>
+            <li>Inconsistent check-in methods (iPad vs. paper)</li>
+            <li>Family planning details get missed or not followed up on</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <h3 id="stories">User stories</h3>
+
+    <div class="mc-cards">
+      <div class="mc-card">
+        <p><strong>As</strong> an immigrant mother of two who is responsible for my household’s healthcare,</p>
+        <p><strong>I want</strong> to be able to accurately report and understand health information,</p>
+        <p><strong>so that</strong> I can fill things out correctly and confidently.</p>
+      </div>
+      <div class="mc-card">
+        <p><strong>As</strong> someone with a complex medical history and a frequent patient,</p>
+        <p><strong>I want</strong> the system to remember my medical conditions,</p>
+        <p><strong>so that</strong> I don’t have to re-enter the same information each time.</p>
+      </div>
+      <div class="mc-card">
+        <p><strong>As</strong> a patient planning a family,</p>
+        <p><strong>I want</strong> the system to track that goal,</p>
+        <p><strong>so that</strong> my visits feel connected to what I’ve already shared and I know my information has been received.</p>
+      </div>
+    </div>
+
+    <h3 id="statements">Problem &amp; hypothesis statements</h3>
+
+    <div class="mc-pairs">
+      <div class="mc-pair">
+        <div><p class="mc-label">Problem</p><p>Manya is a low-tech immigrant patient who needs a simple, language-accessible way to check in at her doctor's office because she doesn't want language ability to cause her to miss important health details.</p></div>
+        <div><p class="mc-label">Hypothesis</p><p>If Manya is given the option to check in using a bilingual form and the reviewing staff can access that language, then she will feel more confident and complete the process without confusion.</p></div>
+      </div>
+      <div class="mc-pair">
+        <div><p class="mc-label">Problem</p><p>Melissa is a frequent patient with complex health needs who needs a personalized, adaptive check-in experience that remembers her health history because she's tired of re-entering the same information and frustrated when there's no space to explain what's changed.</p></div>
+        <div><p class="mc-label">Hypothesis</p><p>If the check-in system automatically remembers Melissa's health history and includes open-answer sections, then she will feel heard, less frustrated, and have more efficient visits.</p></div>
+      </div>
+      <div class="mc-pair">
+        <div><p class="mc-label">Problem</p><p>Warren is a tech-savvy professional planning for a family who needs a check-in system that retains and acknowledges his visit goals because he's repeatedly shared his plans, but still receives generic intake forms that don't reflect his ongoing care needs.</p></div>
+        <div><p class="mc-label">Hypothesis</p><p>If the check-in system retains and displays past and current visit goals like family planning, then Warren will trust the system more and feel acknowledged.</p></div>
+      </div>
+    </div>
+
+    <h3 id="value">Value proposition</h3>
+
+    <p>Based on research findings, I defined the core value proposition for the mobile check-in app:</p>
+
+    <p><strong>Product Features:</strong></p>
     <ul>
-      <li>Redesign rescheduling with prominent, early placement.</li>
-      <li>Increase text size and contrast; simplify dense screens.</li>
-      <li>Replace manual appointment entry with lookup by identity.</li>
+      <li>Adaptive screening forms that remember previous answers and adjust based on visit type</li>
+      <li>Easy access to previous forms from prior visits</li>
+      <li>Language and accessibility support (translations, adaptable text sizes)</li>
+      <li>Free-text fields for patients to explain unique health contexts</li>
+      <li>Visible confirmation that forms were opened and reviewed by providers</li>
     </ul>
 
-    <h4>Priority 1</h4>
+    <div class="callout">
+      <p class="mc-label">Value statement</p>
+      <p>This app reduces friction, builds trust, and saves time for patients with diverse needs. By connecting the check-in experience to each patient's unique health journey, the app transforms a generic, repetitive administrative process into a thoughtful, personalized moment of care.</p>
+    </div>
+
+    <h2 id="wireframes">Initial lo-fi wireframes</h2>
+
+    <p><strong>Goal:</strong> Design a check-in experience that:</p>
     <ul>
-      <li>Keep the confirmation-number flow as the fast path.</li>
-      <li>Extend autofill to insurance, pharmacy, and emergency contacts.</li>
-      <li>Add a progress indicator.</li>
+      <li>Reduces cognitive load</li>
+      <li>Minimizes redundant effort</li>
+      <li>Reduces uncertainty during the waiting period</li>
     </ul>
 
-    <h4>Priority 2</h4>
+    <p><strong>Design principles that guided the flow:</strong></p>
+    <ol>
+      <li>Reduce anxiety at every step</li>
+      <li>Respect users' time</li>
+      <li>Verify first, authenticate later<br>Let users confirm their appointment details and start check-in before asking them to login, so that one-time and returning users can prove the app's relevance to them before committing to authentication.</li>
+    </ol>
+
+    <h3 id="flow">User flow</h3>
+
+    <p>Based on research insights, I mapped the intended user flow for the mobile check-in experience.</p>
+
+    <figure class="mc-fig">
+      <a href="../assets/img/medcheck-user-flow.png" target="_blank" rel="noopener"><img src="../assets/img/medcheck-user-flow.png" alt="User flow for the MedCheck mobile check-in experience, from finding an appointment through check-in confirmation" loading="lazy"></a>
+    </figure>
+
+    <p><strong>Four phases of the check-in process:</strong></p>
+    <ol class="mc-phases">
+      <li><strong>Find appointment</strong>
+        <ul>
+          <li>Reduces friction for one-time users, patients who don't remember their accounts, and those in a rush</li>
+          <li>This proves the app's relevance before asking for the user's commitment</li>
+        </ul>
+      </li>
+      <li><strong>Identity verification</strong>
+        <ul>
+          <li>Lightweight verification rather than full onboarding</li>
+          <li>This is flexible for 1) returning users who want to check in quickly 2) first-time users who are unsure about creating an account and 3) frequent patients who prefer long-term convenience</li>
+        </ul>
+      </li>
+      <li><strong>Pre-visit requirements</strong>
+        <ul>
+          <li>Both insurance and screening information pages include autofill to reduce friction</li>
+        </ul>
+      </li>
+      <li><strong>Check-in confirmation &amp; reduce uncertainty</strong>
+        <ul>
+          <li>I intentionally separated user action from the system state</li>
+        </ul>
+      </li>
+    </ol>
+
+    <p>Having the distinct four phases allowed me to separate the physical must-haves of the check-in process from the emotional needs (i.e., reduce uncertainty, mitigate friction), ensuring that I could address everything.</p>
+
+    <h3 id="wires">Wireframes</h3>
+
+    <figure class="mc-fig">
+      <a href="../assets/img/medcheck-wireframes.png" target="_blank" rel="noopener"><img src="../assets/img/medcheck-wireframes.png" alt="Initial low-fidelity wireframes of the MedCheck check-in screens" loading="lazy"></a>
+    </figure>
+
+    <h2 id="validation">Phase 2: Concept validation</h2>
+
+    <h3 id="method2">Method: Moderated usability testing</h3>
+
+    <p>To validate whether the check-in experience was intuitive and efficient, I conducted a moderated usability study using a clickable low-fidelity prototype.</p>
+
+    <p><strong>Participants:</strong> 5 participants recruited through personal networks and public communities (3 male, 2 female), ages 20–68, with varying levels of technical comfort.</p>
+
+    <table class="cs-table">
+      <thead>
+        <tr><th scope="col">Participant</th><th scope="col">Age</th><th scope="col">Tech Comfort</th><th scope="col">Background</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>P1</td><td>40</td><td>Intermediate</td><td>Working white-collar adult. They use their phone daily and prefer to check in to appointments on their phone while on the go. While they don't have trouble with navigating most apps, they are also not incredibly familiar with advanced apps (they aren't interested in tech or work in the industry).</td></tr>
+        <tr><td>P2</td><td>68</td><td>Low</td><td>Retired senior citizen. They use a smartphone mainly for calls and messages only, and prefer to use a laptop for doctor appointment portals when necessary. However, they favor the traditional paper check-in process.</td></tr>
+        <tr><td>P3</td><td>20</td><td>Advanced</td><td>College student entering the tech industry. They use their phone daily for all everyday tasks, if possible. They are quick with technology and understand modern UX patterns.</td></tr>
+        <tr><td>P4</td><td>38</td><td>Intermediate</td><td>Parent of multiple kids, is often on-the-go and juggling multiple tasks at once. They need everything to be fast, streamlined, and obvious.</td></tr>
+        <tr><td>P5</td><td>30</td><td>Advanced</td><td>Working white-collar adult. They work in finance and enjoys clean, logical flows. Because of the nature of their work, they appreciate structure and efficiency in all of their tasks, especially monotonous ones.</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Format:</strong> 10-minute sessions, synchronous remote via Zoom or in-person (located in the United States)</p>
+
+    <p><strong>Methodology:</strong></p>
     <ul>
-      <li>Helper text for complex fields.</li>
+      <li>Think-aloud protocol during task completion</li>
+      <li>Scenario-based tasks using a clickable Figma prototype</li>
+      <li>Post-task interview</li>
     </ul>
 
-    <p>The prototype was revised against Priority 0 and the flow retested informally. The trust-facing recommendation from discovery — visible confirmation that a provider opened and reviewed your forms — is specified but untested, because a low-fidelity prototype can't produce the thing it would need to test.</p>
+    <p><strong>Research Questions:</strong></p>
+    <ol>
+      <li>How long does it take a user to complete the check-in process?</li>
+      <li>Do users notice and use the "auto-fill from last visit" feature? Do they find it useful and trustworthy, or do they prefer to fill everything in manually?</li>
+      <li>What can we learn from the steps users take to check in for a health appointment?</li>
+    </ol>
 
-    <h2 id="limits">Limitations</h2>
+    <p><strong>Tasks:</strong></p>
+    <ol>
+      <li>Check in using your confirmation number.</li>
+      <li>You lost your confirmation number. Check in using only your appointment details.</li>
+      <li>Reschedule your appointment.</li>
+      <li>Autofill your information on the screening survey page</li>
+    </ol>
 
-    <p>Stated plainly, because they bound what the findings support:</p>
+    <h3 id="findings2">Key study findings</h3>
 
-    <ul>
-      <li><strong>Small convenience sample.</strong> Nine participants total across both phases, recruited through personal networks and public communities. I recruited for variation on the dimensions I thought mattered, but they still came from adjacent communities and share overlapping profiles. These are directional findings, not estimates.</li>
-      <li><strong>Hypothetical scenario.</strong> Nobody was checking in for a real appointment, which affects urgency, emotional investment, and how much attention they paid knowing I was watching.</li>
-      <li><strong>Low fidelity.</strong> The wireframes tested flow and comprehension only. Visual design, accessibility beyond text size, perceived trustworthiness, and performance were all out of reach.</li>
-      <li><strong>Placeholder data.</strong> Which means the autofill finding is the weakest one in the study, despite reading as the strongest. You can't measure whether someone trusts pre-filled health information when it isn't their health information.</li>
-      <li><strong>Personas outran the data.</strong> Three personas from four interviews is close enough to one-to-one that they function as participant profiles. They were useful for holding the design accountable to specific needs; they aren't a synthesis.</li>
-    </ul>
+    <div class="mc-phones">
+      <figure class="mc-fig">
+      <a href="../assets/img/medcheck-prototype-1.png" target="_blank" rel="noopener"><img src="../assets/img/medcheck-prototype-1.png" alt="MedCheck prototype screen 1" loading="lazy"></a>
+    </figure>
+      <figure class="mc-fig">
+      <a href="../assets/img/medcheck-prototype-2.png" target="_blank" rel="noopener"><img src="../assets/img/medcheck-prototype-2.png" alt="MedCheck prototype screen 2" loading="lazy"></a>
+    </figure>
+      <figure class="mc-fig">
+      <a href="../assets/img/medcheck-prototype-3.png" target="_blank" rel="noopener"><img src="../assets/img/medcheck-prototype-3.png" alt="MedCheck prototype screen 3" loading="lazy"></a>
+    </figure>
+    </div>
 
-    <h2 id="learned">What I learned</h2>
+    <div class="mc-finding">
+      <p class="mc-eyebrow">Finding 1</p>
+      <h4>Auto-fill was immediately noticed and appreciated — but trust varies.</h4>
+      <p>5 out of 5 participants noticed the auto-fill feature and expressed relief at not having to re-enter information. This means that they enjoyed the efficiency and time saver of autofill. However, 1 participant hesitated before confirming the pre-filled information.</p>
+      <div class="mc-quotes">
+        <blockquote class="mc-quote"><p>Great — that saved a ton of time.</p><cite>P1, age 40</cite></blockquote>
+        <blockquote class="mc-quote"><p>Love that. Should be default.</p><cite>P3, age 20</cite></blockquote>
+        <blockquote class="mc-quote"><p>Thank God there's autofill. I don't have the time to type everything out.</p><cite>P4, age 38</cite></blockquote>
+        <blockquote class="mc-quote"><p>Autofill is great — hoping it's secure.</p><cite>P5, age 30</cite></blockquote>
+      </div>
+      <div class="mc-takeaways">
+        <div><p class="mc-label">Insight</p><p>Users value automation that removes repetitive data entry. This aligns with discovery research findings, where all participants cited repetitiveness as a major pain point.</p></div>
+        <div class="is-imp"><p class="mc-label">Design implication</p><p>Since autofill was universally praised, make it the default for the screening surveys and expand autofill capabilities where possible (e.g., pre-populate insurance information, pharmacy details, emergency contacts from previous visits).</p></div>
+      </div>
+    </div>
 
-    <p>Three things, in order of how much they changed how I work.</p>
+    <div class="mc-finding">
+      <p class="mc-eyebrow">Finding 2</p>
+      <h4>Text size and readability created a significant accessibility barrier.</h4>
+      <p>2 out of 5 participants struggled to read the small text. This means that the text size and UI need to be updated to be more accessible for all.</p>
+      <div class="mc-quotes">
+        <blockquote class="mc-quote"><p>Oh boy, these letters are small.</p><cite>P2, age 68</cite></blockquote>
+      </div>
+      <div class="mc-takeaways">
+        <div><p class="mc-label">Insight</p><p>Text size and UI elements need to be updated to ensure accessibility for all users, regardless of visual ability.</p></div>
+        <div class="is-imp"><p class="mc-label">Design implication</p><p>Increase font size throughout the app, strengthen contrast, and simplify dense screens to reduce cognitive load for all users. Consider adding a text size adjustment option in settings to ensure accessibility for all users.</p></div>
+      </div>
+    </div>
 
-    <p><strong>Silence is a technique.</strong> Scripting the interviews made me aware of how easily a question implies a correct answer, and how quickly participants look to me for validation if I'm warm enough to give it. I'm a talkative person, so my instinct is to fill gaps and follow up. I moved to neutral prompts — "how confident do you feel right now," "can you tell me more about what you're thinking" — and to letting pauses run. The shift was recognizing I wasn't having a conversation, I was conducting a structured observation.</p>
+    <div class="mc-finding">
+      <p class="mc-eyebrow">Finding 3</p>
+      <h4>Requiring manual appointment entry was a major pain point.</h4>
+      <p>5 out of 5 participants were mildly annoyed with having to input all of their appointment details if they were unable to find their confirmation number to proceed with check-in. Users found this to be time-consuming and created friction.</p>
+      <div class="mc-quotes">
+        <blockquote class="mc-quote"><p>Typing all this is a lot… but okay.</p><cite>P2, age 68</cite></blockquote>
+        <blockquote class="mc-quote"><p>Honestly, my upcoming appointment information should already be auto-filled/somewhere on the platform so I wouldn't even have to type in a confirmation number, much less the details manually to find my appointment.</p><cite>P3, age 20</cite></blockquote>
+        <blockquote class="mc-quote"><p>Can’t it just find my appointment automatically?</p><cite>P3, age 20</cite></blockquote>
+      </div>
+      <div class="mc-takeaways">
+        <div><p class="mc-label">Insight</p><p>Users need a more efficient way to fill in appointment details when they don't have their confirmation number readily available.</p></div>
+        <div class="is-imp"><p class="mc-label">Design implication</p><p>Allow users to verify their identity, such as requiring their name &amp; date of birth or their patient portal login, so the system can automatically look up upcoming appointments without requiring confirmation numbers or full manual entry. Reduce the number of required fields where possible.</p></div>
+      </div>
+    </div>
 
-    <p><strong>Synthesis is a step, not a formatting exercise.</strong> Earlier attempts at research went straight from interview notes to recommendations. Here I forced a stage in between: separate isolated comments from recurring patterns, weigh severity against frequency, then prioritize. That's the difference between the progress-indicator finding (one participant, low priority) and the rescheduling finding (five participants, blocking) being treated as equivalent complaints.</p>
+    <div class="mc-finding">
+      <p class="mc-eyebrow">Finding 4</p>
+      <h4>Rescheduling was too hidden, leading to confusion across all participants.</h4>
+      <p>5 out of 5 participants were confused, struggled, or dissatisfied with the rescheduling workflow. The rescheduling button was too hidden or didn’t appear in the workflow early enough.</p>
+      <div class="mc-quotes">
+        <blockquote class="mc-quote"><p>Hmm… I don’t see any obvious button for changing my appointment on the home screen.</p><cite>P1, age 40</cite></blockquote>
+        <blockquote class="mc-quote"><p>Let me check this… box? Oh — that’s a menu.</p><cite>P2, age 68</cite></blockquote>
+        <blockquote class="mc-quote"><p>Feels a little buried.</p><cite>P3, age 20</cite></blockquote>
+        <blockquote class="mc-quote"><p>This should be on the main page—it’s too many taps.</p><cite>P4, age 38</cite></blockquote>
+        <blockquote class="mc-quote"><p>I’d prefer a shortcut from the homepage.</p><cite>P5, age 30</cite></blockquote>
+      </div>
+      <div class="mc-takeaways">
+        <div><p class="mc-label">Insight</p><p>Users need a more obvious and immediate way to reschedule their appointment. The current placement creates unnecessary friction for a common and time-sensitive task.</p></div>
+        <div class="is-imp"><p class="mc-label">Design implication</p><p>Surface the reschedule option earlier in the flow — to either the home screen or the appointment overview screen — and increase its visual prominence through clear labeling so users can easily locate this.</p></div>
+      </div>
+    </div>
 
-    <p><strong>In healthcare, the emotional layer is the finding.</strong> Every participant could complete check-in. What they talked about was not knowing whether they'd done it right, what happened next, or how long it would take. That's not a usability problem in the task-completion sense, and it wouldn't show up in a success-rate metric. It's the thing I'd design the next study around.</p>
+    <div class="mc-finding">
+      <p class="mc-eyebrow">Finding 5</p>
+      <h4>Navigation was intuitive, but one participant expected a progress indicator.</h4>
+      <p>4 out of 5 participants moved through the flow without confusion. However, one participant wanted to know how many steps remained before submission.</p>
+      <div class="mc-quotes">
+        <blockquote class="mc-quote"><p>It'd be helpful to see how far through I am with checking in. That would make me feel more confident in working through the check-in process without feeling overwhelmed.</p><cite>P3, age 20</cite></blockquote>
+      </div>
+      <div class="mc-takeaways">
+        <div><p class="mc-label">Insight</p><p>While the overall navigation is clear, some users benefit from explicit progress cues to reduce uncertainty in how they're doing with the check-in.</p></div>
+        <div class="is-imp"><p class="mc-label">Design implication</p><p>Add a progress indicator (i.e., a progress bar or "Step 2 of 4") to help users understand where they are in the flow and how much remains.</p></div>
+      </div>
+    </div>
 
-    <h4>What I'd change</h4>
-    <ul>
-      <li>Test on a higher-fidelity prototype with real content, so trust and perceived accuracy become measurable instead of assumed.</li>
-      <li>Recruit systematically and larger, specifically for accessibility needs — visual, motor, language — since the two findings that mattered most came from the two participants least like me.</li>
-      <li>Run a competitive analysis. I went primary-research-only, and there are solved problems in existing check-in tools I reinvented badly.</li>
-    </ul>
+    <div class="mc-finding">
+      <p class="mc-eyebrow">Finding 6</p>
+      <h4>Average check-in time was 3-4 minutes, meeting efficiency goals.</h4>
+      <p>5 out of 5 participants completed the full check-in flow in an average of 3–4 minutes, compared to the 5–10 minutes reported in discovery interviews for paper and tablet forms.</p>
+
+      <div class="mc-takeaways">
+        <div><p class="mc-label">Insight</p><p>The current streamlined flow and autofill features successfully reduced time-on-task.</p></div>
+        <div class="is-imp"><p class="mc-label">Design implication</p><p>Since the efficiency goal was met, continue the streamlined flow in future iterations and use 3-4 minutes as the target.</p></div>
+      </div>
+    </div>
+
+    <h3 id="recs">Recommendations</h3>
+
+    <p>Based on discovery and usability research, I recommend the following for the next iteration:</p>
+
+    <div class="mc-cards">
+      <div class="mc-card is-p0">
+        <p class="mc-label">Priority 0</p>
+        <ul>
+          <li>Redesign the rescheduling workflow with prominent, early placement</li>
+          <li>Increase text size and readability</li>
+          <li>Replace manual detail lookup with loaded appointment details</li>
+        </ul>
+      </div>
+      <div class="mc-card">
+        <p class="mc-label">Priority 1</p>
+        <ul>
+          <li>Maintain the simple confirmation number check-in flow</li>
+          <li>Expand autofill to additional fields (insurance, pharmacy, emergency contacts)</li>
+          <li>Add a progress indicator to the check-in flow</li>
+        </ul>
+      </div>
+      <div class="mc-card">
+        <p class="mc-label">Priority 2</p>
+        <ul>
+          <li>Maintain clear labeling; add helper text for complex fields</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 id="iterated">Iterated lo-fi wireframes</h2>
+
+    <div class="mc-compare">
+      <div>
+        <p class="mc-label">Before</p>
+        <figure class="mc-fig">
+      <a href="../assets/img/medcheck-wireframes-before.png" target="_blank" rel="noopener"><img src="../assets/img/medcheck-wireframes-before.png" alt="Low-fidelity wireframes before usability testing" loading="lazy"></a>
+    </figure>
+      </div>
+      <div>
+        <p class="mc-label">After</p>
+        <figure class="mc-fig">
+      <a href="../assets/img/medcheck-wireframes-after.png" target="_blank" rel="noopener"><img src="../assets/img/medcheck-wireframes-after.png" alt="Low-fidelity wireframes iterated after usability testing" loading="lazy"></a>
+    </figure>
+      </div>
+    </div>
+
+    <h2 id="reflection">Reflection</h2>
+
+    <h3 id="change">What I'd change next time</h3>
+
+    <p>While the lo-fi prototype offered a solid baseline for users to interact with, I'd really like to perform a usability study with a more fleshed-out prototype next time so I can collect richer feedback from users. This includes real data or text instead of placeholder data, and also additional pages (i.e., insurance information, test results). I'd also like to recruit a larger, more diverse sample. Although the four discovery interviews and five usability participants provided useful directional insights, a larger sample would increase the confidence in findings and also expose edge cases that the sample size would have missed. Specifically, I'd hope to find participants with varying accessibility needs, whether that's visual, motor, cultural, or language preferences. This time around, I focused on primary research, but performing a competitive analysis of existing check-in apps would definitely help me identify useful features that I could recommend that I may not have thought of.</p>
+
+    <h3 id="limitations">Limitations</h3>
+
+    <dl class="mc-limits">
+      <div><dt>Convenience and small sampling</dt><dd>Participants were recruited through personal networks and public communities, which may mean users were more comfortable providing feedback and had similar demographic profiles. Although I tried to find diverse participants with different needs and backgrounds, they still had overlapping similarities as they came from the same or adjacent communities. A larger, more systematically recruited sample would increase the confidence in my findings and provide more representative findings.</dd></div>
+      <div><dt>Hypothetical scenario</dt><dd>Participants weren't actually checking in for a real appointment, which may affect their urgency while completing the tasks, decrease their emotional investment, or increase their attention to detail, knowing that I'm observing them (Hawthorne effect).</dd></div>
+      <div><dt>Low-fidelity</dt><dd>This case study was very simple — the wireframes only tested flow and comprehension, neglecting visual design, accessibility, perceived trustworthiness, or performance.</dd></div>
+      <div><dt>No real data</dt><dd>I used placeholder data/health information, so it's difficult to gauge how much users actually trust the autofill or the accuracy/reliability of the check-in process and flow.</dd></div>
+    </dl>
+
+    <h3 id="learned">What I learned</h3>
+
+    <p>This case study really showed me the importance and detail that goes into usability testing beyond simply identifying usability issues or figuring out the user journey. Specifically, I learned just how much the quality of insights is directly influenced by how thoughtfully the study is designed, from participant recruitment and persona synthesis to interview structure and analysis.</p>
+
+    <p>When I was scripting my interviews for both the foundational interviews and usability sessions, I became hyperaware of how easy subtle bias can creep into my questions and the overall conversation. I learned that even the smallest wording changes can imply a "correct" answer and that participants will look for validation from me if I unintentionally provide it or am being too friendly — so silence is sometimes the best way to go. I became more intentional about my neutral prompts, asking questions such as, "How confident do you feel right now?" or "Can you tell me more about what you're thinking?" I'm a chatty person, so I naturally would want to lead the conversation or ask too many questions, so although I realize that while open-ended interviews provide me with the most information, it was imperative to keep the conversation semi-structured to make sure we didn't stray off the path in conversation, or I didn't accidentally ask leading questions. Later on, I realized having this structure made it much easier to identify patterns across sessions, line up insights, and compare participant behaviors more consistently.</p>
+
+    <p class="mc-pull">I had to shift my mindset — I wasn't having a conversation, but conducting a structured observation.</p>
+
+    <p>When I first started conducting user research, I would go directly from interview findings to implementing the criticisms into my recommendations, calling it a day. This time around, I took the time to identify patterns across participants, distinguish between isolated comments and recurring patterns, determine the severity and frequency of insights, and prioritize findings based on impact. This extra effort in pattern-driven insight synthesis was one of the most meaningful improvements in my research process and made me more confident in my recommendations, ensuring that they were soundly justified and impact-focused.</p>
+
+    <p>Because this was a healthcare tech scenario, I became more aware of the emotional layer of the user's journey. In the discovery research interviews, I found that while all participants could, of course, complete whatever check-in process, they emphasized their uncertainty about whether they completed their check-in process correctly, what would happen after checking in, or how long the process would take — this told me that design is not only about task completion, but equally about perceived control and confidence. Going forward, I would conduct studies to further explore how certain design choices can impact anxiety, trust, etc.</p>
 
     <div class="cs-note">
       <p>Self-directed project. MedCheck is a concept app, not a shipped product; no real patient data was used at any stage. Participant quotes are de-identified.</p>
