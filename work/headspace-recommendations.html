@@ -25,13 +25,13 @@
   @media (max-width: 560px) { .persona-facts { grid-template-columns: 1fr; } }
 
   /* Case study components */
-  .cs-body .hyps, .cs-body .ideas, .cs-body .insights { list-style: none; padding: 0; margin: 1rem 0 1.6rem; }
+  .cs-body .hyps, .cs-body .ideas { list-style: none; padding: 0; margin: 1rem 0 1.6rem; }
   .cs-body .hyps li, .cs-body .ideas li { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr); gap: 0.9rem; align-items: baseline; margin: 0; padding: 0.8rem 0; border-bottom: 1px solid var(--rule-soft); }
   .cs-body .hyps li:last-child, .cs-body .ideas li:last-child { border-bottom: 0; }
   .tag-code { justify-self: start; font-family: var(--sans); font-size: 0.75rem; font-weight: 650; letter-spacing: 0.04em; color: var(--cat-case); background: var(--paper-tint); border-radius: 4px; padding: 0.15rem 0.45rem; white-space: nowrap; }
-  .cs-body .insights { counter-reset: insight; }
-  .cs-body .insights li { counter-increment: insight; display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.85rem; margin: 0 0 0.8rem; }
-  .cs-body .insights li::before { content: counter(insight); width: 1.6rem; height: 1.6rem; margin-top: 0.2rem; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--paper-2); font-family: var(--sans); font-size: 0.8125rem; font-weight: 650; }
+  .cs-toc > ol > li > a { color: var(--ink-soft); font-weight: 600; }
+  .cs-toc ol ol { border-left: 0; margin: 0 0 0.35rem; }
+  .cs-toc ol ol a { padding: 0.22rem 0 0.22rem 1.6rem; font-size: 0.78125rem; }
 
   .jtbd { margin: 1.25rem 0 1.5rem; border: 1px solid var(--rule); background: var(--paper-2); font-family: var(--sans); }
   .cs-body .jtbd-label { margin: 0; padding: 0.6rem 1.1rem; background: var(--paper-tint); border-bottom: 1px solid var(--rule); font-size: 0.8125rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); }
@@ -106,9 +106,20 @@
   <nav class="cs-toc" aria-label="On this page">
     <p>On this page</p>
     <ol>
-      <li><a href="#understanding">Understanding Users</a></li>
-      <li><a href="#deciding">Deciding the Feature</a></li>
-      <li><a href="#feasibility">Feasibility &amp; Viability</a></li>
+      <li><a href="#understanding">Understanding users</a>
+        <ol>
+          <li><a href="#segments">Part I: Identifying segments &amp; unmet needs</a></li>
+          <li><a href="#validating">Part II: Validating customer unmet needs</a></li>
+        </ol>
+      </li>
+      <li><a href="#deciding">Deciding the feature</a>
+        <ol>
+          <li><a href="#ideas">Part I: Idea generation</a></li>
+          <li><a href="#prioritization">Part II: Prioritization</a></li>
+          <li><a href="#finalizing">Part III: Finalizing the feature</a></li>
+        </ol>
+      </li>
+      <li><a href="#feasibility">Feasibility &amp; viability</a></li>
     </ol>
   </nav>
 
@@ -119,16 +130,16 @@
       <dl>
         <dt>The problem I landed on</dt>
         <dd>Headspace is a meditation app that makes evidence-based meditation and mindfulness tools, along with making mental health coaching, therapy, and psychiatry more accessible, to help create life-changing habits to support people's mental health journey. They believe in providing every person access to lifelong mental health support, regardless of background and experience.</dd>
-        <dd>People come to Headspace because they don't know how to manage their mental health, then face a large library and can't tell which session is right for them right now. Choice overload at the exact moment someone is least equipped to make a choice.</dd>
+        <p><dd>People come to Headspace because they don't know how to manage their mental health, then face a large library and can't tell which session is right for them right now. Choice overload at the exact moment someone is least equipped to make a choice.</dd></p>
 
         <dt>The feature</dt>
         <dd>A personalized recommendation system drawing on stated mood, wearable signals, and in-app history — turning a library into something that responds to your current state.</dd>
       </dl>
     </div>
 
-    <h2 id="understanding">Understanding Users</h2>
+    <h2 id="understanding">Understanding users</h2>
 
-    <h3>Part I: Identifying Segments &amp; Unmet Needs</h3>
+    <h3 id="segments">Part I: Identifying segments &amp; unmet needs</h3>
 
     <p>Before I can get started with feature brainstorming, I first identified the customer segment that uses Headspace, and why they use it:</p>
 
@@ -163,81 +174,77 @@
       </dl>
     </aside>
 
-    <p>After determining the customer segment for Headspace, I brainstormed the possible reasons why they use Headspace. I created 3 hypotheses of the unmet needs of that segment:</p>
+    <p>After determining the customer segment for Headspace, I brainstormed the possible reasons why they use Headspace. I created three hypotheses of the unmet needs of that segment:</p>
 
     <ul class="hyps">
-      <li><span class="tag-code">H1</span><span>Stress from work pressure, need to “stay on top of things” and overattachment to commitments.</span></li>
+      <li><span class="tag-code">H1</span><span>Stress from work pressure, a need to “stay on top of things,” and overattachment to commitments.</span></li>
       <li><span class="tag-code">H2</span><span>Feeling lost from not knowing how to manage mental health.</span></li>
       <li><span class="tag-code">H3</span><span>Lack of knowledge of how to make this habitual and track progress.</span></li>
     </ul>
 
-    <p>These hypotheses were then combined to create one, umbrella jobs-to-be-done (JTBD) statement to understand what customers are trying to achieve by using Headspace:</p>
+    <p>These hypotheses were then combined to create one umbrella jobs-to-be-done (JTBD) statement to understand what customers are trying to achieve by using Headspace:</p>
 
     <div class="jtbd">
       <dl>
-        <div><dt>Situation</dt><dd>When I feel overwhelmed by constant work demands</dd></div>
-        <div><dt>Motivation</dt><dd>I want to regain focus and calm my mind</dd></div>
-        <div><dt>Expected Outcome</dt><dd>So that I can be more productive and avoid burnout</dd></div>
+        <div><dt>Situation</dt><dd><strong>When I</strong> feel overwhelmed by constant work demands</dd></div>
+        <div><dt>Motivation</dt><dd><strong>I want</strong> to regain focus and calm my mind</dd></div>
+        <div><dt>Expected Outcome</dt><dd><strong>So that I can</strong> be more productive and avoid burnout</dd></div>
       </dl>
     </div>
 
-    <h3>Part II: Validating Customer Unmet Needs</h3>
+    <h3 id="validating">Part II: Validating customer unmet needs</h3>
 
     <p>Once I identified the customer segment and their unmet needs, I validated these ideas by conducting my own research. I interviewed Headspace users and consulted publicly available information to see what the mental health app's users thought of their experiences.</p>
 
-    <p><strong>Research approach:</strong> Interviews (N = 3), quick conversations (N = 5), and desk research (e.g., blogs, Reddit). Since this was a simple case study I did in my own time, I couldn't conduct real usability testing.</p>
+    <p><strong>Research approach:</strong> Interviews (N = 3), quick conversations (N = 5), and desk research (e.g., blogs, Reddit). Since this was a simple case study I did in my own time, I didn't conduct real usability testing.</p>
 
     <p>These were some of my conclusions:</p>
 
-    <ol class="insights">
-      <li>Users struggled to make meditation a regular habit in their daily lives, even while using Headspace</li>
-      <li>Users want to track and visualize their progress while meditating</li>
-      <li>Users struggled to find time to meditate given their busy schedules.</li>
-      <li>Users found it challenging to find the right content, and are looking for more search functionality and findability for the options available across teachers, different types of meditation, etc.</li>
-      <li>Users sometimes have quite specific problems regarding how to meditate more effectively (e.g., how to focus, how to meditate for longer periods)</li>
-      <li>Users have difficulty finding the right style of meditation for them across the different options available</li>
-      <li>Users struggle with feeling certain that they have chosen the right meditation style or the right teacher</li>
-      <li>Users struggle to re-learn a new meditation style once they are used to a certain style</li>
-      <li>Users struggled with the repetitiveness of meditation as they crave variety and new experiences</li>
-    </ol>
+    <ul>
+      <li><strong>Consistency.</strong> People couldn't make meditation habitual even while paying for an app designed to help them, and struggled to fit it into their schedules.</li>
+      <li><strong>Findability.</strong> Difficulty locating the right content across teachers, styles, and session types — and wanting better search.</li>
+      <li><strong>Confidence in the choice.</strong> This is the one I found most interesting. People weren't just failing to find content; they were unsure whether the style or teacher they'd picked was the right one, and reluctant to switch once habituated.</li>
+      <li><strong>Progress.</strong> Wanting to see and track what they'd done.</li>
+      <li><strong>Variety.</strong> Repetitiveness dulling the experience over time.</li>
+    </ul>
 
-    <p>Overall, users struggled to be consistent with their meditation, due to busy schedules and difficulty in finding the right content they needed in that moment. So, I redefined my JTBD statement according to my findings.</p>
+    <p>The findability and confidence items point at the same underlying condition. A large content library is a benefit if you know what you want and a cost if you don't — and someone opening a meditation app while overwhelmed is by definition in the second state. So, I redefined my JTBD statement according to my findings.</p>
 
     <div class="jtbd">
       <p class="jtbd-label">JTBD 1</p>
       <dl>
-        <div><dt>Situation</dt><dd>When I feel overwhelmed by problems in my life</dd></div>
-        <div><dt>Motivation</dt><dd>I want to regain focus, calm myself, and address the root cause of the problem</dd></div>
-        <div><dt>Expected Outcome</dt><dd>So that I can avoid burnout and live a better life</dd></div>
+        <div><dt>Situation</dt><dd><strong>When I</strong> feel overwhelmed by problems in my life</dd></div>
+        <div><dt>Motivation</dt><dd><strong>I want</strong> to regain focus, calm myself, and address the root cause of the problem</dd></div>
+        <div><dt>Expected Outcome</dt><dd><strong>So that I can</strong> avoid burnout and live a better life</dd></div>
       </dl>
     </div>
 
     <div class="jtbd">
-      <p class="jtbd-label">JTBD 2 <span>(targeting insight 3, 4 &amp; 5)</span></p>
+      <p class="jtbd-label">JTBD 2</p>
       <dl>
-        <div><dt>Situation</dt><dd>When I am feeling lost and don’t know how to start dealing with my stress</dd></div>
-        <div><dt>Motivation</dt><dd>I want to be able to find out what options are available easily</dd></div>
-        <div><dt>Expected Outcome</dt><dd>So that I can pick the most appropriate one to solve my issues quickly and with ease</dd></div>
+        <div><dt>Situation</dt><dd><strong>When I</strong> am feeling lost and don’t know how to start dealing with my stress</dd></div>
+        <div><dt>Motivation</dt><dd><strong>I want</strong> to be able to find out what options are available easily</dd></div>
+        <div><dt>Expected Outcome</dt><dd><strong>So that I can</strong> pick the most appropriate one to solve my issues quickly and with ease</dd></div>
       </dl>
     </div>
 
     <div class="jtbd">
-      <p class="jtbd-label">JTBD 3 <span>(targeting insights 2, 6 &amp; 8)</span></p>
+      <p class="jtbd-label">JTBD 3</p>
       <dl>
-        <div><dt>Situation</dt><dd>When I am new to meditation</dd></div>
-        <div><dt>Motivation</dt><dd>I want to follow a structured program, have access to help/assistance, and track my daily usage</dd></div>
-        <div><dt>Expected Outcome</dt><dd>So that I can stay accountable and measure my progress</dd></div>
+        <div><dt>Situation</dt><dd><strong>When I</strong> am new to meditation</dd></div>
+        <div><dt>Motivation</dt><dd><strong>I want</strong> to follow a structured program, have access to help/assistance, and track my daily usage</dd></div>
+        <div><dt>Expected Outcome</dt><dd><strong>So that I can</strong> stay accountable and measure my progress</dd></div>
       </dl>
     </div>
 
     <div class="callout">
-      <p><strong>Problem:</strong> Many users feel lost from not knowing how to manage their mental health, so they turn to Headspace. While Headspace has various great resources, users often feel overwhelmed and have a difficult time choosing the "right" meditation session for their current needs.</p>
-      <p><strong>Target customer segment:</strong> The target customer is either a current subscriber who values effectiveness, and wants to choose an appropriate session as soon as possible so as to reduce time spent searching, or a potential new user who wants to start meditation but feels intimidated by the amount of choices available.</p>
+      <p><strong>Problem:</strong> Many users feel lost because they don't know how to manage their mental health, so they turn to Headspace. While Headspace has various great resources, users often feel overwhelmed and have a difficult time choosing the "right" meditation session for their current needs.</p>
+      <p><strong>Target customer segment:</strong> The target customer is either a <strong>current subscriber who values effectiveness</strong>, and wants to choose an appropriate session as soon as possible so as to reduce time spent searching, or a <strong>potential new user</strong> who wants to start meditation but feels intimidated by the amount of choices available.</p>
     </div>
 
-    <h2 id="deciding">Deciding the Feature</h2>
+    <h2 id="deciding">Deciding the feature</h2>
 
-    <h3>Part I: Idea Generation</h3>
+    <h3 id="ideas">Part I: Idea generation</h3>
 
     <p>For the brainstorming process, I dumped any and all ideas that I had for a new feature that addresses users' pain points. I'll save you from having to interpret my very-much-everywhere thoughts. There are four categories: AR/VR immersive experiences, AI/ML features, improved UX, and wearables.</p>
 
@@ -245,7 +252,7 @@
       <h4>AR/VR immersive experiences</h4>
       <ul class="ideas">
         <li><span class="tag-code">MR1</span><span>AR/VR meditation experience to immerse users into different VR environments (e.g. forest, yoga room)</span></li>
-        <li><span class="tag-code">MR2</span><span>MixedReality/AR meditation experience (e.g., holographic instructor, posture advice, environment enhancement) to increase immersion</span></li>
+        <li><span class="tag-code">MR2</span><span>Mixed reality/AR meditation experience (e.g., holographic instructor, posture advice, environment enhancement) to increase immersion</span></li>
       </ul>
     </section>
 
@@ -255,15 +262,15 @@
         <li><span class="tag-code">AI1</span><span>AI/ GenAI-driven personalized recommendations/sessions: AI provides meditation and wellness suggestions or even tailored meditation sessions based on user input (e.g., mood, stress levels), physical data from wearable devices, and past user in-app history</span></li>
         <li><span class="tag-code">AI2</span><span>To assist the existing “get a coach” feature, using AI to collect users’ problems which will be shared with coaches to make the 1:1 coaching session more effective and efficient</span></li>
         <li><span class="tag-code">AI3</span><span>Voice-enabled AI allows users to have dialogues with virtual meditation coaches and provides personalized meditation experiences.</span></li>
-        <li><span class="tag-code">AI4</span><span>Usage of foundational LLMs to collect unstructured data regarding users outside the app to personalize meditation (for example, analyze user calendar and daily activities to suggest meditation sessions)</span></li>
+        <li><span class="tag-code">AI4</span><span>Usage of foundational LLMs to collect unstructured data regarding users outside the app to personalize meditation (e.g., analyze user calendar and daily activities to suggest meditation sessions)</span></li>
       </ul>
     </section>
 
     <section class="idea-group">
-      <h4>User Experience</h4>
+      <h4>User experience</h4>
       <ul class="ideas">
         <li><span class="tag-code">UX1</span><span>Digital journaling features (pre- and post-meditation sessions) to reflect on the meditation experience (with guided prompts and speech-to-text journaling to ease the process), and then AI analyzes the entries (text or voice using voice tone analysis) to detect mood changes and determine patterns over time</span></li>
-        <li><span class="tag-code">UX2</span><span>Better track meditation activity history by categorizing entries—such as for sleep-related issues or daily stress relief—instead of listing all sessions together</span></li>
+        <li><span class="tag-code">UX2</span><span>Better track meditation activity history by categorizing entries - such as for sleep-related issues or daily stress relief—instead of listing all sessions together</span></li>
         <li><span class="tag-code">UX3</span><span>In-app meditation ring (similar to Apple fitness ring) to set up personal meditation goals, track progress, and encourage consistent usage</span></li>
       </ul>
     </section>
@@ -275,11 +282,11 @@
       </ul>
     </section>
 
-    <p>Each feature idea in this case study was rooted in specific user insights gathered through interviews and desk research. For instance, the pain point of users struggling to find relevant meditation content directly inspired the AI-driven personalized recommendation system. Similarly, users’ desire to track progress led to the conceptualization of features like a meditation activity ring and enhanced journaling tools.</p>
+    <p>Each feature idea in this case study was rooted in specific user insights gathered through interviews and desk research. For example, the pain point of users struggling to find relevant meditation content directly inspired the AI-driven personalized recommendation system. Similarly, users’ desire to track progress led to the conceptualization of features like a meditation activity ring and enhanced journaling tools.</p>
 
-    <h3>Part II: Prioritization</h3>
+    <h3 id="prioritization">Part II: Prioritization</h3>
 
-    <p>I know, there are a LOT of ideas above — and this was after combining some and removing some. So, to help me determine which feature to decide on, I utilized the RICE prioritization framework. The RICE framework helped me rank the feature ideas based on four factors: Reach, Impact, Confidence, and Effort. Now, these four terms are quite subjective, so I started off by defining them:</p>
+    <p>To help me decide which feature to move forward with, I utilized the RICE prioritization framework. The RICE framework helped me rank the feature ideas based on four factors: <strong>Reach, Impact, Confidence, and Effort</strong>. Now, these four terms are quite subjective, so I started off by defining them:</p>
 
     <dl class="rice-defs">
       <div><dt><span class="rice-letter" aria-hidden="true">R</span>Reach</dt><dd>How many users do we estimate the feature would be used by?</dd></div>
@@ -288,7 +295,7 @@
       <div><dt><span class="rice-letter" aria-hidden="true">E</span>Effort</dt><dd>How much resources (dev time, people, cost) are required, adjusted for risk?</dd></div>
     </dl>
 
-    <p>The following tables show the ratings/judgments for each feature idea using RICE.</p>
+    <p>The following table shows the ratings/judgments for each feature idea using RICE.</p>
 
     <figure class="rice-figure">
       <a href="../assets/img/rice-framework.png" target="_blank" rel="noopener">
@@ -296,9 +303,9 @@
       </a>
     </figure>
 
-    <h3>Part III: Finalizing the Feature</h3>
+    <h3 id="finalizing">Part III: Finalizing the feature</h3>
 
-    <p>The winning feature (with high reach, high impact, high):</p>
+    <p>The winning feature (with high reach, high impact):</p>
 
     <div class="winner">
       <span class="tag-code">AI1</span>
@@ -306,27 +313,26 @@
     </div>
 
     <dl class="reasons">
-      <div><dt>High Reach</dt><dd>This feature has the potential to reach a large portion of the user base since it doesn’t require extra hardware and can be integrated seamlessly into the app.</dd></div>
-      <div><dt>High Impact</dt><dd>Personalized recommendations based on user behavior, mood, and needs can significantly enhance session quality metrics, affecting usage rates and/or total users. Tailoring meditation sessions to the user’s current state can make the experience more effective and sticky.</dd></div>
-      <div><dt>Justifying the High Effort</dt><dd>While the effort required to build and refine this feature is high (e.g., developing robust AI models, ensuring privacy, and integrating data), the potential increase in user retention and engagement rate makes it worthwhile. The ROI from personalized, AI-driven experiences can be substantial, as users are more likely to engage with content that feels customized to them.</dd></div>
-      <div><dt>Necessity of GenAI</dt><dd>With the growing trend of generative AI in consumer apps, there's a clear user demand for smarter, more personalized experiences. Building this capability now positions Headspace as a leader in the wellness space, offering innovative features that align with current expectations and trends.</dd></div>
+      <div><dt>High reach</dt><dd>This feature has the potential to reach a large portion of the user base since it doesn’t require extra hardware and can be integrated seamlessly into the app.</dd></div>
+      <div><dt>High impact</dt><dd>Personalized recommendations based on user behavior, mood, and needs can significantly enhance session quality metrics, affecting usage rates and/or total users. Tailoring meditation sessions to the user’s current state can make the experience more effective and sticky.</dd></div>
+      <div><dt>Justifying the high effort</dt><dd>While the effort required to build and refine this feature is high (e.g., developing robust AI models, ensuring privacy, and integrating data), the potential increase in user retention and engagement rate makes it worthwhile. The ROI from personalized, AI-driven experiences can be substantial, as users are more likely to engage with content that feels customized to them.</dd></div>
     </dl>
 
     <div class="callout">
       <p><strong>Future State:</strong> Through AI personalization, Headspace can quickly provide the ideal session for each person's needs — whether they're dealing with insomnia, managing stress, or seeking tranquility. It transforms Headspace from a mere meditation library into a responsive wellness companion that evolves with each individual.</p>
     </div>
 
-    <h2 id="feasibility">Feasibility &amp; Viability</h2>
+    <h2 id="feasibility">Feasibility &amp; viability</h2>
 
     <h3>Feasibility</h3>
 
-    <p>The proposed personalization feature is highly feasible, thanks to the increased precision available from today’s large language models (LLMs). A recommendation system relying on natural language processing (NLP) or machine learning (ML) can suggest specific sessions for Headspace users, similar to how existing chat-based LLMs tailor answers to users’ questions. Headspace does not need to build its own foundational model to do it; it can simply train a localized deployment of an existing open-source LLM and be more cost-effective. Headspace already has rich proprietary data (e.g., session history, preferences) and can access 3rd party data (e.g., health data from Apple Watch) with consent from users. Users can also be financially incentivized to give consent to external data to tailor the personalization even further, especially in a test group while the algorithm is still being fine-tuned. Headspace’s existing architecture already allows for scalable API-first build, as it has been built on AWS.</p>
+    <p>The proposed personalization feature is highly feasible, thanks to the increased precision available from today’s LLMs so that it the build doesn't require a foundational model. A localized deployment of an open-source model, fine-tuned, is more cost-effective and sufficient for session recommendation. Headspace already has the relevant proprietary data (session history, stated preferences) and can access third-party health data with user consent.</p>
 
-    <p>The main requirements would be (1) training a localized deployment of an LLM (e.g., LLama 3.2), (2) construction of an API to continue querying the parent model, (3) increased database and data warehousing requirements, (4) a new UX or front-end pages for this user flow.</p>
+    <p>The main requirements would be (1) training a localized deployment of an LLM (e.g., LLama 3.2), (2) construction of an API to continue querying the parent model, (3) increased database and data warehousing requirements, and (4) a new UX or front-end pages for this user flow.</p>
 
     <h3>Viability</h3>
 
-    <p>The new feature aligns with Headspace’s goals, as personalization is essential in wellness apps. Enhancing UX by creating emotional value for users boosts engagement and, hence, retention. This feature can also be a selling point to acquire new users. Hence, this leads to increased acquisition, retention, and brand differentiation vs. other wellness apps. It also offers an opportunity for tier-based pricing; hence, we see this as a strategic investment to boost revenue.</p>
+    <p>The new feature aligns with Headspace’s goals, as personalization is essential in wellness apps. Enhancing UX by creating emotional value for users boosts engagement and, therefore, retention. This feature can also be a selling point to acquire new users, leading to increased acquisition, retention, and brand differentiation against other wellness apps. It also offers an opportunity for tier-based pricing; this is a strategic investment to boost revenue.</p>
 
     <div class="cs-note">
       <p>Self-directed exercise, not affiliated with or commissioned by Headspace. Based on publicly available information and a small number of user conversations.</p>
