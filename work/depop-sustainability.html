@@ -142,7 +142,7 @@
   .cs-body .jtbd-list li:first-child { border-top: 0; }
   .jtbd-list .chip { justify-self: start; }
 
-  .before-after { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 2fr); gap: 1rem; align-items: center; max-width: 760px; width: 100%; margin: 0 auto; }
+  .before-after { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 1rem; align-items: center; max-width: 860px; width: 100%; margin: 0 auto; }
   .ba-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
   .cs-body .ba-col .dp-label { text-align: center; margin-bottom: 0.6rem; }
   .ba-arrow { font-family: var(--sans); font-size: 1.5rem; color: var(--cat-case); padding-top: 1.6rem; }
@@ -566,15 +566,20 @@
     <div class="concept is-double">
       <div>
         <p class="dp-label">Feature 1</p>
-        <h4>Item-level impact on the PDP</h4>
-        <p>An <strong>"Environmental Impact" module</strong> below the description showing the water and CO2 saved by buying this specific jacket secondhand, translated into everyday terms (water bottles, km of driving).</p>
+        <h4>Item-level impact on the product description page (PDP)</h4>
+        <p>An <strong>"Environmental Impact" module</strong> below the product description showing the water and CO2 saved by buying this specific jacket secondhand, translated into everyday terms (water bottles, km of driving).</p>
       </div>
       <div class="before-after">
         <div class="ba-col">
           <p class="dp-label">Before · Control</p>
-          <figure class="shot" data-placeholder="Image: PDP control screen">
+          <div class="ba-pair">
+            <figure class="shot" data-placeholder="Image: PDP control screen">
           <a href="../assets/img/depop-pdp-control.png" target="_blank" rel="noopener"><img src="../assets/img/depop-pdp-control.png" alt="Depop's current product page for a vintage denim jacket" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')"></a>
         </figure>
+            <figure class="shot" data-placeholder="Image: PDP control screen 2">
+          <a href="../assets/img/depop-pdp-control-2.png" target="_blank" rel="noopener"><img src="../assets/img/depop-pdp-control-2.png" alt="Depop's current product page for a vintage denim jacket, screen 2" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')"></a>
+        </figure>
+          </div>
         </div>
         <div class="ba-arrow" aria-hidden="true">→</div>
         <div class="ba-col">
@@ -778,13 +783,13 @@
 
     <p>This was my first UX research case study, and I went in with no prior knowledge of how to execute it, using UXR blogs and forums to guide me.</p>
 
-    <p>The biggest challenge was definitely figuring out where to start. Should I start with a clearly defined problem to tackle and then use interviews and surveys to see what users think about that specific issue? Or should I begin with open-ended research to explore user thoughts and behaviors, and only then pinpoint a problem and solution? I ended up taking a hybrid approach by starting with a loosely defined problem and refining it through research, but this process felt a bit messy at times. My psychology research background helped most in designing the survey.</p>
+    <p>The biggest challenge was definitely figuring out where to start. Should I start with a clearly defined problem to tackle and then use interviews and surveys to see what users think about that specific issue? Or should I begin with open-ended research to explore user thoughts and behaviors, and only then pinpoint a problem and solution? I ended up taking a hybrid approach by starting with a loosely defined problem and refining it through research, but this process felt a bit messy at times.</p>
     
-    <p>When I returned to the project, I changed that. I treated my original recommendation as a hypothesis, used the competitive analysis to generate concepts, and tested them before recommending anything. The biggest surprise was that sustainability moved trust and loyalty more than purchases, and that the tracker spoke to sellers, an audience my original research left out.</p>
+    <p>When I revisited this project, I changed that. I treated my original recommendation as a hypothesis, used the competitive analysis to generate concepts, and tested them before recommending anything. The biggest surprise was that sustainability moved trust and loyalty more than purchases, and that the tracker spoke to sellers, an audience my original research left out.</p>
 
     <p>I also learned how much the stimulus matters: one unbelievable number became the thing participants reacted to most. Next time, I'd sanity-check mockup data before testing, test one variable at a time, and recruit a larger, screened sample earlier.</p>
 
-    <p>Overall, this research project was exciting, yet unexpectedly challenging, shining a light on the nuances of UX research. I enjoyed seeing how my psychology background translated into product, especially in designing surveys and interpreting user insights.</p>
+    <p>This research project was exciting, yet unexpectedly challenging, shining a light on the nuances of UXR. I enjoyed seeing how my psychology background translated into product, especially in designing surveys and interpreting user insights.</p>
     
     <div class="cs-note">
       <p>Self-directed project, not affiliated with or commissioned by Depop. Participants are de-identified.</p>
