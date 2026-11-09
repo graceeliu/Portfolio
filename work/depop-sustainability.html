@@ -99,7 +99,7 @@
   .concept { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 1.75rem; align-items: start; margin: 1.5rem 0; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
   .concept.is-double { grid-template-columns: minmax(0, 1fr); }
   .cs-body .concept h4 { margin: 0 0 0.5rem; font-size: 1.125rem; }
-  .concept-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 560px; }
+  .concept-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 560px; width: 100%; margin: 0 auto; }
   .shot { margin: 0; }
   .shot a { display: block; }
   .shot img { width: 100%; height: auto; }
@@ -132,7 +132,7 @@
   .cs-body .kpi p:last-child { margin-bottom: 0; }
   .cs-body .kpi .why { padding-left: 0.9rem; border-left: 2px solid var(--rule); color: var(--ink-soft); }
 
-  .method-row { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 1.5rem; align-items: center; margin: 1.25rem 0 2rem; }
+  .method-row { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 1.75rem; align-items: center; margin: 1.25rem 0 2rem; }
   .method-row .stack { display: grid; gap: 0.85rem; }
   .cs-body .method-note { margin: 0.25rem 0 0; font-size: 0.9375rem; color: var(--ink-soft); }
   .shot.is-survey img { box-shadow: 0 6px 18px rgba(30, 20, 60, 0.12); }
@@ -142,11 +142,19 @@
   .cs-body .jtbd-list li:first-child { border-top: 0; }
   .jtbd-list .chip { justify-self: start; }
 
+  .before-after { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 2fr); gap: 1rem; align-items: center; max-width: 760px; width: 100%; margin: 0 auto; }
+  .ba-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+  .cs-body .ba-col .dp-label { text-align: center; margin-bottom: 0.6rem; }
+  .ba-arrow { font-family: var(--sans); font-size: 1.5rem; color: var(--cat-case); padding-top: 1.6rem; }
+  .before-after .shot.is-missing { min-height: 240px; }
+
   @media (max-width: 760px) {
     .grid-2, .grid-3, .persona-cols, .concept, .concept-pair { grid-template-columns: 1fr; }
+    .before-after { grid-template-columns: 1fr; max-width: 420px; }
+    .ba-arrow { transform: rotate(90deg); justify-self: center; padding-top: 0; }
     .method-row, .jtbd-list li { grid-template-columns: 1fr; }
     .cs-body .jtbd-list li { grid-template-columns: 1fr; gap: 0.35rem; }
-    .method-row .shot { max-width: 300px; margin: 0 auto; }
+    .method-row .shot { max-width: 420px; margin: 0 auto; }
     .persona-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .jtbd dl div, .platforms dl div, .verdicts > div { grid-template-columns: 1fr; gap: 0.25rem; }
     .concept .shot { max-width: 280px; }
@@ -176,8 +184,8 @@
   <p class="cs-standfirst">Depop's mission puts sustainability right next to style and value, but almost none of that work reaches the app. I explored how to bring it into the shopping experience, and learned that sustainability builds trust and loyalty far more than it sells clothes.</p>
 
   <dl class="cs-meta">
-    <div><dt>Role</dt><dd>User researcher — self-directed</dd></div>
-    <div><dt>Methods</dt><dd>Interviews (n=3), survey (n=4), competitive analysis (5 platforms), moderated concept testing (n=4)</dd></div>
+    <div><dt>Role</dt><dd>User researcher</dd></div>
+    <div><dt>Methods</dt><dd>Mixed-methods UX research (interviews (n=3), survey (n=4)), competitive analysis (5 platforms), moderated concept testing (n=4)</dd></div>
     <div><dt>Analysis</dt><dd>Open coding, thematic grouping, descriptive statistics, comparison matrices</dd></div>
     <div><dt>Output</dt><dd>Prioritized recommendations and success metrics</dd></div>
   </dl>
@@ -191,7 +199,7 @@
       <li><a href="#overview">Overview</a></li>
       <li><a href="#discovery">Phase 1: Discovery research</a>
         <ol>
-          <li><a href="#persona">Who is this for?</a></li>
+          <li><a href="#persona">Persona</a></li>
           <li><a href="#insights">Insights</a></li>
           <li><a href="#hypothesis">Initial hypothesis</a></li>
         </ol>
@@ -210,7 +218,7 @@
           <li><a href="#concepts">Concepts</a></li>
           <li><a href="#takeaways">Main takeaways</a></li>
           <li><a href="#across">Patterns across participants</a></li>
-          <li><a href="#connecting">Connecting back to discovery</a></li>
+          <li><a href="#connecting">Back to discovery</a></li>
         </ol>
       </li>
       <li><a href="#phase-4">Phase 4: Recommendations</a>
@@ -229,13 +237,13 @@
       <h2>TLDR</h2>
       <dl>
         <dt>The problem</dt>
-        <dd>Depop has rigorous sustainability infrastructure, but users never see it while they shop. They associate the app with affordability and unique finds, not impact.</dd>
+        <dd>Depop has emphasized sustainability on their desktop website, but users never see it while they shop. They associate the app with affordability and unique finds, not impact.</dd>
 
         <dt>What I did</dt>
         <dd>Discovery interviews and a survey, a competitive audit of five resale platforms, then concept testing of three low-fi features with Depop users.</dd>
 
         <dt>What I found</dt>
-        <dd>Across the category, sustainability is marketing, not merchandising — and Depop's gap is the largest. In testing, impact messaging lifted brand trust more than purchase intent, and only worked when the numbers were believable.</dd>
+        <dd>Across the category, sustainability is marketing, not merchandising, and Depop's gap is the largest. In testing, impact messaging lifted brand trust more than purchase intent, and only worked when the numbers were believable.</dd>
 
         <dt>What I recommend</dt>
         <dd>An item-level impact module on the product page with a clear comparison and visible methodology, followed by a personal impact tracker that credits selling as well as buying.</dd>
@@ -250,7 +258,7 @@
 
     <p>Depop backs this up. It offsets emissions from shipping, packaging, and operations and sets ambitious circular-fashion goals. But users mostly associate the app with affordability and unique finds, because nothing in the shopping experience shows them the impact of what they buy. This project asks how that information should be brought into the platform.</p>
 
-    <p>It ran in two rounds: discovery research first, then — returning to the question discovery left open — a competitive analysis and concept testing.</p>
+    <p>I investiged this in two phases: <strong>discovery reach</strong>, then <strong>a competitive analysis and concept testing</strong>.</p>
 
     <h2 id="discovery">Phase 1: Discovery research</h2>
 
@@ -271,7 +279,7 @@
         </figure>
     </div>
 
-    <h3 id="persona">Who is this for?</h3>
+    <h3 id="persona">Persona</h3>
 
     <div class="persona">
       <div class="persona-head">
@@ -386,21 +394,21 @@
 
     <p class="dp-label" style="margin-top: 1.75rem">Jobs to be done</p>
     <ul class="jtbd-list">
-      <li><span class="chip">Awareness</span><span>When I shop for secondhand items online, I want clear information about how my purchases benefit the environment, so I feel confident I'm making a positive impact.</span></li>
-      <li><span class="chip">Motivation</span><span>When I'm shopping for clothes, I want affordable, unique items while knowing my purchases support sustainability, so I can shop in line with my style and my values.</span></li>
-      <li><span class="chip">Tracking</span><span>When I shop secondhand, I want to see metrics like waste reduction or CO2 savings and track my total impact over time, so I stay motivated and see the bigger picture.</span></li>
+      <li><span class="chip">Awareness</span><span><strong>When I</strong> shop for secondhand items online, <strong>I want</strong> clear information about how my purchases benefit the environment, <strong>so I feel</strong> confident I'm making a positive impact.</span></li>
+      <li><span class="chip">Motivation</span><span><strong>When I'm</strong> shopping for clothes, <strong>I want</strong> affordable, unique items while knowing my purchases support sustainability, <strong>so I can</strong> shop in line with my style and my values.</span></li>
+      <li><span class="chip">Tracking</span><span><strong>When I</strong> shop secondhand, <strong>I want</strong> to see metrics like waste reduction or CO2 savings and track my total impact over time, <strong>so I can</strong> stay motivated and see the bigger picture.</span></li>
     </ul>
 
     <h3 id="hypothesis">Initial hypothesis</h3>
 
     <div class="card accent-top">
       <p class="dp-label">Sustainability metrics on product pages</p>
-      <p>Show CO2, water, or waste saved on every product page, e.g., "This purchase saves X lbs of CO2 compared to buying new." Users want simple, immediate data on the impact of individual purchases. Rather than treating this as the final answer, I treated it as a hypothesis to test.</p>
+      <p>Show CO2, water, or waste saved on every product page (e.g., "This purchase saves X lbs of CO2 compared to buying new.") Users want simple, immediate data on the impact of individual purchases.</p>
     </div>
 
     <h2 id="open-question">The open question</h2>
 
-    <p>Discovery told me users want sustainability information, but not how it should be presented. Insight 3 said metrics have to be "engaging and actionable to truly influence behavior," and my interviews couldn't tell me what that looks like in practice.</p>
+    <p>The discovery research told me users want sustainability information, but not how it should be presented. Insight 3 said metrics have to be "engaging and actionable to truly influence behavior," and my interviews couldn't tell me what that looks like in practice.</p>
 
     <div class="callout">
       <p class="dp-label">Research question</p>
@@ -428,8 +436,8 @@
         <ol>
           <li>Where does sustainability appear? (onboarding, product pages, cart, checkout, post-purchase, profile, content)</li>
           <li>What metrics or claims are used? (CO2, water, waste, generic "sustainable," none)</li>
-          <li>What kind of claim? Platform-level, purchase-level, or behavioral</li>
-          <li>Is it quantified or qualitative?</li>
+          <li>What kind of claim? Platform-level, purchase-level, or behavioral?</li>
+          <li>Is it quantitative or qualitative?</li>
           <li>What's the visual treatment, and how prominent is it?</li>
           <li>What's the tone? (educational, motivational, transactional, performative)</li>
           <li>Does it add friction? (interrupts the flow, sits alongside it, or hides behind a click)</li>
@@ -438,7 +446,7 @@
       </details>
     </div>
 
-    <h3 id="matrix-1">Matrix 1: Where does sustainability live?</h3>
+    <h3 id="matrix-1">Where does sustainability live?</h3>
 
     <div class="matrix-wrap">
       <table class="matrix">
@@ -455,7 +463,7 @@
       </table>
     </div>
 
-    <h3 id="matrix-2">Matrix 2: How is sustainability treated when it lives there?</h3>
+    <h3 id="matrix-2">How is sustainability treated when it lives there?</h3>
 
     <p class="dp-label">Select a platform to compare.</p>
 
@@ -527,7 +535,7 @@
     <h3 id="patterns">Patterns</h3>
 
     <ol class="numbered">
-      <li><strong>Sustainability is marketing, not merchandising.</strong> 4 of 5 platforms talk about it on About pages, blogs, and reports. Only ThredUp and TRR show it in the purchase flow — on the product page, below the fold.</li>
+      <li><strong>Sustainability is marketing, not merchandising.</strong> 4 of 5 platforms talk about it on About pages, blogs, and reports. Only ThredUp and TRR show it in the purchase flow: on the product page, below the fold.</li>
       <li><strong>Claims are mostly platform-level.</strong> Even ThredUp's per-item numbers are category-generic (all outerwear shows the same savings), which risks feeling performative. No platform shows users their own impact, though ThredUp and TRR already have the data.</li>
       <li><strong>Tangible framing stays in marketing copy.</strong> "Enough to fill 3,694 Olympic-size swimming pools" lives on marketing pages, while product pages show raw figures like "404L of water saved."</li>
       <li><strong>Messaging is tailored to each platform's user.</strong> TRR's luxury register works for TRR, but it would feel off-brand on Depop.</li>
@@ -553,32 +561,33 @@
 
     <h3 id="concepts">Concepts</h3>
 
-    <p>I turned the biggest gaps into three low-fi mockups in Depop's existing UI, plus a control.</p>
-
-    <div class="concept">
-      <div>
-        <p class="dp-label">Control</p>
-        <h4>Depop's current product page</h4>
-        <p>A vintage denim jacket, as Depop shows it today.</p>
-      </div>
-      <figure class="shot" data-placeholder="Image: PDP control screen">
-          <a href="../assets/img/depop-pdp-control.png" target="_blank" rel="noopener"><img src="../assets/img/depop-pdp-control.png" alt="Depop's current product page for a vintage denim jacket" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')"></a>
-        </figure>
-    </div>
+    <p>I turned the biggest gaps into three low-fi mockups in Depop's existing UI and tested each against Depop's current product page as a control.</p>
 
     <div class="concept is-double">
       <div>
         <p class="dp-label">Feature 1</p>
-        <h4>Item-level impact on the product page</h4>
-        <p>An "Environmental Impact" module below the description showing the water and CO2 saved by buying this specific jacket secondhand, translated into everyday terms (water bottles, km of driving).</p>
+        <h4>Item-level impact on the PDP</h4>
+        <p>An <strong>"Environmental Impact" module</strong> below the description showing the water and CO2 saved by buying this specific jacket secondhand, translated into everyday terms (water bottles, km of driving).</p>
       </div>
-      <div class="concept-pair">
-        <figure class="shot" data-placeholder="Image: PDP mockup 1">
+      <div class="before-after">
+        <div class="ba-col">
+          <p class="dp-label">Before · Control</p>
+          <figure class="shot" data-placeholder="Image: PDP control screen">
+          <a href="../assets/img/depop-pdp-control.png" target="_blank" rel="noopener"><img src="../assets/img/depop-pdp-control.png" alt="Depop's current product page for a vintage denim jacket" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')"></a>
+        </figure>
+        </div>
+        <div class="ba-arrow" aria-hidden="true">→</div>
+        <div class="ba-col">
+          <p class="dp-label">After · Feature 1</p>
+          <div class="ba-pair">
+            <figure class="shot" data-placeholder="Image: PDP mockup 1">
           <a href="../assets/img/depop-pdp-mockup-1.png" target="_blank" rel="noopener"><img src="../assets/img/depop-pdp-mockup-1.png" alt="Product page mockup with an Environmental Impact module, screen 1" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')"></a>
         </figure>
-        <figure class="shot" data-placeholder="Image: PDP mockup 2">
+            <figure class="shot" data-placeholder="Image: PDP mockup 2">
           <a href="../assets/img/depop-pdp-mockup-2.png" target="_blank" rel="noopener"><img src="../assets/img/depop-pdp-mockup-2.png" alt="Product page mockup with an Environmental Impact module, screen 2" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')"></a>
         </figure>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -586,7 +595,7 @@
       <div>
         <p class="dp-label">Feature 2</p>
         <h4>Personal impact tracker</h4>
-        <p>A "Your Sustainability Impact" section on the profile showing items kept in circulation and cumulative water and CO2 saved.</p>
+        <p>A <strong>"Your Sustainability Impact"</strong> section on the profile showing items kept in circulation and cumulative water and CO2 saved.</p>
       </div>
       <figure class="shot" data-placeholder="Image: profile page mockup">
           <a href="../assets/img/depop-profile-mockup.png" target="_blank" rel="noopener"><img src="../assets/img/depop-profile-mockup.png" alt="Profile page mockup with a Your Sustainability Impact section" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')"></a>
@@ -597,14 +606,14 @@
       <div>
         <p class="dp-label">Feature 3</p>
         <h4>Impact badges in search results</h4>
-        <p>Water and CO2 icons on each listing, so sustainability becomes a signal before the product page.</p>
+        <p><strong>Water and CO2 icons</strong> on each listing, so sustainability becomes a signal before the product page.</p>
       </div>
       <figure class="shot" data-placeholder="Image: search results mockup">
           <a href="../assets/img/depop-search-mockup.png" target="_blank" rel="noopener"><img src="../assets/img/depop-search-mockup.png" alt="Search results mockup with water and CO2 impact badges on each listing" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')"></a>
         </figure>
     </div>
 
-    <p><strong>Method:</strong> four 30-minute moderated sessions with Depop users from my network, a mix of eco-motivated and price-motivated shoppers. Each session started with the control, walked through each feature with the same questions, and ended with a side-by-side ranking.</p>
+    <p><strong>Methodology:</strong> Four 30-minute moderated sessions with Depop users, a mix of eco-motivated and price-motivated shoppers. Each session started with the control, walked through each feature with the same questions, and ended with a side-by-side ranking.</p>
 
     <div class="acc">
       <details>
@@ -648,7 +657,7 @@
 
     <ol class="numbered">
       <li><strong>Sustainability lifts brand trust more than purchase intent.</strong> 3 of 4 participants felt better about Depop as a platform ("makes Depop feel more trustworthy"), but only 2 of 4 said it would affect a purchase, and only as a tiebreaker ("might be what brings it over the fence").</li>
-      <li><strong>Item-level numbers on the product page were the strongest concept, if the numbers are believable.</strong> Two participants flagged the 6.67 L water figure as implausible for a denim jacket and asked how it was calculated. The concept works; the claim needs a comparison referent and visible receipts.</li>
+      <li><strong>Item-level numbers on the PDP were the strongest concept, if the numbers are believable.</strong> Two participants flagged the 6.67 L water figure as implausible for a denim jacket and asked how it was calculated. The concept works, but the claim needs a comparison referent and visible receipts.</li>
       <li><strong>The tracker drove selling and loyalty; search badges fell flat.</strong> The tracker made participants want to sell more ("my consistent choices add up to something"). 3 of 4 would scroll past the badges, calling them cluttered, generic, and in the way of photos.</li>
     </ol>
 
@@ -660,7 +669,7 @@
         <div class="acc-body">
         <ul>
           <li><strong>Feature 2.</strong> Aggregate totals hide per-item imprecision. P4: "This feels more credible than the description page because the numbers seem to make more sense."</li>
-          <li><strong>Feature 1</strong> built trust through item-specificity ("since each of the numbers are unique, it feels legit") until the water figure undercut it — a stimulus issue, not a concept issue.</li>
+          <li><strong>Feature 1</strong> built trust through item-specificity ("since each of the numbers are unique, it feels legit").</li>
           <li><strong>Feature 3</strong> read as generic: "If everything is sustainable, then there's no difference between each item."</li>
         </ul>
         </div>
@@ -671,12 +680,12 @@
         <ul>
           <li>Only P4 (eco) noticed sustainability was missing from the control.</li>
           <li>Purchase impact did not split by segment. Scrutiny tracked analytical and sustainability literacy (P2, P4), not motivation.</li>
-          <li>Across both segments, 3 of 4 wanted to know how numbers were calculated, 3 of 4 reported a brand-level lift, and no one treated sustainability as a primary purchase driver.</li>
+          <li>Across both segments, 3 of 4 wanted to know how numbers were calculated, 3 of 4 reported a brand-level lift, and <strong>no one treated sustainability as a primary purchase driver.</strong></li>
         </ul>
         </div>
       </details>
       <details>
-        <summary>Which concept felt most on-brand for Depop? (inferred)</summary>
+        <summary>Which concept felt most on-brand for Depop?</summary>
         <div class="acc-body">
         <ul>
           <li><strong>Feature 2</strong> matched Depop's community voice: "if you're going to claim the community is doing the work, show the community member their own contribution."</li>
@@ -687,15 +696,15 @@
       </details>
     </div>
 
-    <h3 id="connecting">Connecting back to discovery</h3>
+    <h3 id="connecting">Back to discovery</h3>
 
     <dl class="verdicts">
       <div><dt>Awareness gap<br><span class="chip">confirmed</span></dt><dd>"I'd see Depop posting about sustainability on Instagram… but I never saw any of it in the app itself."</dd></div>
       <div><dt>Sustainability is secondary<br><span class="chip">refined</span></dt><dd>A tiebreaker for purchases, and a stronger lever for trust and loyalty.</dd></div>
-      <div><dt>Metrics must be engaging<br><span class="chip">refined</span></dt><dd>Credibility comes first: a clear comparison and visible methodology. Gamification came up unprompted ("it feels like a personal achievement").</dd></div>
+      <div><dt>Metrics must be engaging<br><span class="chip">refined</span></dt><dd>Credibility comes first: a clear comparison and visible methodology. Gamification: "it feels like a personal achievement."</dd></div>
       <div><dt>Track impact over time<br><span class="chip">extended</span></dt><dd>Users want credit for selling, too.</dd></div>
-      <div><dt>Initial hypothesis<br><span class="chip">supported, with conditions</span></dt><dd>The product page is the right placement, but only with believable item-specific numbers and visible methodology.</dd></div>
-      <div><dt>New gap<br><span class="chip">sellers</span></dt><dd>Discovery only studied buyers. The seller-side opportunity surfaced in testing.</dd></div>
+      <div><dt>Initial hypothesis<br><span class="chip">supported</span></dt><dd>The PDP is the right placement, but only with believable item-specific numbers and visible methodology.</dd></div>
+      <div><dt>New gap<br><span class="chip">sellers</span></dt><dd>Discovery only studied buyers, but the <strong>seller-side opportunity</strong> surfaced in testing.</dd></div>
     </dl>
 
     <h2 id="phase-4">Phase 4: Recommendations</h2>
@@ -749,8 +758,8 @@
       <div class="card">
         <p class="dp-label">Limitations</p>
         <ul>
-          <li>Small samples from my network, so findings are directional, with two participants per segment.</li>
-          <li>The implausible water figure likely depressed Feature 1's credibility, and Feature 1 bundled two variables.</li>
+          <li>Small samples, so findings are directional, with two participants per segment.</li>
+          <li>The implausible water figure influenced Feature 1's credibility.</li>
           <li>Stated, not observed, behavior, and a single scenario (one denim jacket).</li>
           <li>The persona is eco-motivated, but price-motivated users responded very differently.</li>
         </ul>
@@ -760,7 +769,6 @@
         <ul>
           <li>Test with 5–8 more users, screened and balanced by motivation.</li>
           <li>Fix mockup numbers with a credible lifecycle-assessment source.</li>
-          <li>Isolate Feature 1's variables: item-specific vs. generic numbers, with vs. without translation.</li>
           <li>Run seller-side discovery, and A/B test the module and tracker if built.</li>
         </ul>
       </div>
@@ -768,12 +776,16 @@
 
     <h2 id="reflection">Reflection</h2>
 
-    <p>This was my first UX research case study, and the hardest part was knowing where to start: define a clear problem first, or explore and let the problem emerge? I took a hybrid route, starting with a loosely defined problem and refining it through research, and it felt messy at times. My psychology research background helped most in designing the survey.</p>
+    <p>This was my first UX research case study, and I went in with no prior knowledge of how to execute it, using UXR blogs and forums to guide me.</p>
 
+    <p>The biggest challenge was definitely figuring out where to start. Should I start with a clearly defined problem to tackle and then use interviews and surveys to see what users think about that specific issue? Or should I begin with open-ended research to explore user thoughts and behaviors, and only then pinpoint a problem and solution? I ended up taking a hybrid approach by starting with a loosely defined problem and refining it through research, but this process felt a bit messy at times. My psychology research background helped most in designing the survey.</p>
+    
     <p>When I returned to the project, I changed that. I treated my original recommendation as a hypothesis, used the competitive analysis to generate concepts, and tested them before recommending anything. The biggest surprise was that sustainability moved trust and loyalty more than purchases, and that the tracker spoke to sellers, an audience my original research left out.</p>
 
-    <p>I also learned how much the stimulus matters: one implausible number became the thing participants reacted to most. Next time, I'd sanity-check mockup data before testing, test one variable at a time, and recruit a larger, screened sample earlier.</p>
+    <p>I also learned how much the stimulus matters: one unbelievable number became the thing participants reacted to most. Next time, I'd sanity-check mockup data before testing, test one variable at a time, and recruit a larger, screened sample earlier.</p>
 
+    <p>Overall, this research project was exciting, yet unexpectedly challenging, shining a light on the nuances of UX research. I enjoyed seeing how my psychology background translated into product, especially in designing surveys and interpreting user insights.</p>
+    
     <div class="cs-note">
       <p>Self-directed project, not affiliated with or commissioned by Depop. Participants are de-identified.</p>
     </div>
